@@ -8,9 +8,10 @@
 var application_root = __dirname,
   express = require("express"),
   path = require("path"),
+  api = require('./api')
   mongoose = require('mongoose');
 
-var app = express.createServer();
+var app = express();
 
 // Database
 mongoose.connect('mongodb://localhost/graph-o-matic');
@@ -25,9 +26,13 @@ app.configure(function () {
 	app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 });
 
+
+
 app.get('/api', function (req, res) {
-	res.send('Ecomm API is running');
+	res.send('graph-o-matic-data REST API is running');
 });
+
+app.get('/view', api.newView);
 
 // Launch server
 

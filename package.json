@@ -1,0 +1,20 @@
+{
+  "name": "graph-O-matic-data",
+  "version": "0.0.0",
+  "description": "REST Service for graph data",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/javaConductor/graph-O-matic-data.git"
+  },
+  "keywords": [
+    "graphOmatic",
+    "graphing",
+    "data-visualization"
+  ],
+  "author": "Lee Collins",
+  "license": "BSD"
+}
