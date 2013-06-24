@@ -36,17 +36,32 @@ exports = (function(mongoose){
 		note: String
 	});
 
+	var RelationshipCategorySchema = new Schema({
+		id: { type: ObjectId, unique:true, required: true },
+		name : String,
+		parent : {type:ObjectId, ref:'RelationshipCategory'}
+	});
+
+	var ConstraintSchema = new Schema({
+		To: [{ref:'ItemType' , type:ObjectId  }],
+		From: [{ref:'ItemType' , type:ObjectId  }],
+		ToExpression: String,
+		FromExpression: String,
+		FromToExpression: String
+	});
 	var RelationshipTypeSchema = new Schema({
+		id: { type: ObjectId, unique:true, required: true },
 		name : String,
 		composite: Boolean,
 		bidirectional: Boolean,
 		reciprocalRelationship: {type:ObjectId, ref: 'RelationshipType' },
-		parent: RelationshipTypeSchema,
-		category: RelationshipCategory
-
+		parent: {type:ObjectId, ref:'RelationshipTypeSchema'},
+		category: RelationshipCategorySchema,
+		temporal:Boolean,
+		constraints: ConstraintSchema
 	});
 	var RelationshipSchema = new Schema({
-		id: { type: String, unique:true, required: true },
+		id: { type: ObjectId, unique:true, required: true },
 		type: { type: ObjectId, ref:'RelationshipType', required:true},
 		data:[RelationshipData],
 		active: { type: Boolean, required: true },
@@ -57,7 +72,7 @@ exports = (function(mongoose){
 	});
 	var ItemSchema = new Schema({
 		id: { type: ObjectId, required: true },
-		type : { type: Schema.ObjectId, ref: 'ItemType' },
+		type : { type: ObjectId, ref: 'ItemType' },
 		title: { type: String, required: false },
 		description: { type: String },
 		relatedImage: [{ type: String }],
@@ -72,9 +87,19 @@ exports = (function(mongoose){
 		selected: Boolean
 	});
 
+	var ViewTypeSchema  = new Schema({
+		id: { type: ObjectId, unique:true, required: true },
+		name:String,
+		itemTemplateURL:String,
+		relationshipTemplateURL:String,
+		cssFiles: [String],
+		title:String
+	});
 
-	var viewSchema = new Schema({
+	var ViewSchema = new Schema({
+		id: { type: ObjectId, unique:true, required: true },
 		name: {type: String, required: true},
+		type: {ref:'ViewType', type:ObjectId},
 		items: [ViewItemSchema]
 	});
 
@@ -82,11 +107,12 @@ exports = (function(mongoose){
 	/// MODELS
 	var ItemModel = mongoose.model('Item', ItemSchema);
 	var RelationshipModel = mongoose.model('Relationship', RelationshipSchema);
-
-	var ViewModel = mongoose();
+	var ViewTypeModel = mongoose.model('ViewType', ViewTypeSchema);
+	var ViewModel = mongoose.model('View', ViewSchema);
 	return {
 		Item: ItemModel,
 		Relationship: RelationshipModel,
+		ViewType: ViewTypeModel,
 		View: ViewModel
 	};
 
