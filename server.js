@@ -32,7 +32,10 @@ app.get('/api', function (req, res) {
 	res.send('graph-o-matic-data REST API is running');
 });
 
-app.get('/view', api.newView);
+app.get('/api', function (req, res) {
+	res.send('graph-o-matic-data REST API is running');
+});
+
 
 // Launch server
 

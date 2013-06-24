@@ -14,53 +14,80 @@ exports = (function(mongoose){
 		value: { type: String, required: true },
 		type: { type: String }
 	});
-
+	var PositionSchema = new Schema({
+		x: Number,
+		y: Number
+	})
 	var RelationshipData  = new Schema({
 		name: { type: String, unique:true, required: true },
 		value: { type: String, required: true },
 		type: { type: String }
 	});
-
 	var DurationDates = new Schema({
 		start: Date,
 		end: Date
 	});
-
 	var RelationshipDurations = new Schema({
 		currentStart: Date,
 		dates:[DurationDates]
-
 	});
 	var RelationshipNotes = new Schema({
 		date: {type: String, required:true},
 		note: String
 	});
-	var Relationship = new Schema({
+
+	var RelationshipTypeSchema = new Schema({
+		name : String,
+		composite: Boolean,
+		bidirectional: Boolean,
+		reciprocalRelationship: {type:ObjectId, ref: 'RelationshipType' },
+		parent: RelationshipTypeSchema,
+		category: RelationshipCategory
+
+	});
+	var RelationshipSchema = new Schema({
 		id: { type: String, unique:true, required: true },
-		type: { type: String, required:true},
+		type: { type: ObjectId, ref:'RelationshipType', required:true},
 		data:[RelationshipData],
 		active: { type: Boolean, required: true },
 		fromItem: { type: String, required: true },
 		toItem: { type: String, required: true },
-		durations: RelationshipDurations,
-		notes: [RelationshipNotes ]
+		durations: [RelationshipDurations],
+		notes: [ RelationshipNotes ]
 	});
-	var Item = new Schema({
-		id: { type: String, required: true },
+	var ItemSchema = new Schema({
+		id: { type: ObjectId, required: true },
+		type : { type: Schema.ObjectId, ref: 'ItemType' },
 		title: { type: String, required: false },
 		description: { type: String },
 		relatedImage: [{ type: String }],
-		relationships: [Relationship],
+		relationships: [String], /// ids only
 		data: [ItemData]
 	});
 
-	var ItemModel = mongoose.model('Item', Item);
-	var RelationshipModel = mongoose.model('Relationship', Relationship);
+	var ViewItemSchema = new Schema({
+		id: ObjectId,
+		item: { type: ObjectId, ref: 'Item', required:true },
+		position: PositionSchema,
+		selected: Boolean
+	});
 
+
+	var viewSchema = new Schema({
+		name: {type: String, required: true},
+		items: [ViewItemSchema]
+	});
+
+
+	/// MODELS
+	var ItemModel = mongoose.model('Item', ItemSchema);
+	var RelationshipModel = mongoose.model('Relationship', RelationshipSchema);
+
+	var ViewModel = mongoose();
 	return {
-		itemModel: ItemModel,
-		relationshipModel: RelationshipModel
+		Item: ItemModel,
+		Relationship: RelationshipModel,
+		View: ViewModel
 	};
 
 })(require("mongoose"));
-
