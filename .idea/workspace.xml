@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="23b8520e-8397-4718-a457-abae1f30f47b" name="Default" comment="oh yeah">
+    <list default="true" id="23b8520e-8397-4718-a457-abae1f30f47b" name="Default" comment="">
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/test.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/index.js" afterPath="$PROJECT_DIR$/api/index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/models.js" afterPath="$PROJECT_DIR$/api/models.js" />
@@ -10,7 +10,7 @@
     </list>
     <ignored path="graph-O-matic-data.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1372053519536" ignored="false" />
+    <file path="/Dummy.txt" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1372053552499" ignored="false" />
     <file path="/server.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1371706616831" ignored="false" />
     <file path="/index.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1371969242895" ignored="false" />
     <file path="/itemTypes.txt" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1371708609211" ignored="false" />
@@ -348,7 +348,11 @@
       <created>1371757428175</created>
       <updated>1371757428175</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="oh yeah">
+      <created>1372053557296</created>
+      <updated>1372053557296</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
