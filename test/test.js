@@ -5,20 +5,29 @@
  * Time: 7:04 PM
  */
 var assert = require("assert");
+var should = require("should");
 var request = require("superagent");
 var mongoose = require('mongoose');
 var models = require('../api/models.js');
 
 describe('Mongo Persistence Test', function(){
 
-	describe('when I call Mongo Persistence', function(){
+	describe('should create itemType', function(){
 
 		it("should return the string.", function(done){
-			request.post("http://localhost:4242/api")
-			  .end(function(res){
-				  assert.ok(res, "response == null");
-				 // assert.equal( 200, res.status );
-			  })
+			var itemType = new models.ItemType;
+			itemType.id = "--default--";
+			itemType.name = "BasicItem";
+			itemType.title = "Basic Item";
+			itemType.description = "";
+			itemType.properties = [
+
+			];
+			itemType.allowExtraProperties = true;
+			itemType.save( function(err, itype) {
+				should.not.exist(err);
+				console.dir(["new ItemType>>", itype]);
+			});
 		});
 
 	})

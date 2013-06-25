@@ -20,8 +20,6 @@ exports = (function(mongoose, models){
 			var y = req.params.y;
 			Item.find({ id: itemId }).exec(function(err, item){
 				res.send(new ViewItem());
-
-
 			});
 		},
 
@@ -31,4 +29,3 @@ exports = (function(mongoose, models){
 
 	};
 })( require('mongoose'), require("./models.js") );
-
