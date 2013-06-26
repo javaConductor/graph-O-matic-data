@@ -5,7 +5,10 @@
  * Time: 1:58 PM
  */
 
-exports = (function(mongoose){
+
+(function(mongoose){
+	// Database
+	var connection = mongoose.connect('mongodb://localhost/graph-o-matic');
 
 	var Schema = mongoose.Schema;
 	var ObjectId = mongoose.Schema.Types.ObjectId;
@@ -14,26 +17,10 @@ exports = (function(mongoose){
 		value: { type: String, required: true },
 		type: { type: String }
 	});
-	var positionSchema = new Schema({
-		x: Number,
-		y: Number
-	})
-	var relationshipData  = new Schema({
-		name: { type: String, unique:true, required: true },
-		value: { type: String, required: true },
-		type: { type: String }
-	});
+
 	var durationDates = new Schema({
 		start: Date,
 		end: Date
-	});
-	var relationshipDurations = new Schema({
-		currentStart: Date,
-		dates:[durationDates]
-	});
-	var relationshipNotes = new Schema({
-		date: {type: String, required:true},
-		note: String
 	});
 
 	var RelationshipCategorySchema = new Schema({
@@ -157,13 +144,22 @@ exports = (function(mongoose){
 	});
 
 	/// MODELS
-	return {
-		Item: mongoose.model('Item', ItemSchema),
-		ItemType: mongoose.model('ItemType', ItemTypeSchema),
-		Relationship: mongoose.model('Relationship', RelationshipSchema),
-		ViewType:  mongoose.model('ViewType', ViewTypeSchema),
-		ViewItem:  mongoose.model('ViewItem', ViewItemSchema),
-		View: mongoose.model('View', ViewSchema)
-	};
+	  exports.Item = connection.model('Item', ItemSchema);
+	  exports.ItemType = connection.model('ItemType', ItemTypeSchema);
+	  exports.Relationship = connection.model('Relationship', RelationshipSchema);
+	  exports.ViewType =  connection.model('ViewType', ViewTypeSchema);
+	  exports.ViewItem =  connection.model('ViewItem', ViewItemSchema);
+	  exports.View = connection.model('View', ViewSchema);
+
+
+//	return {
+//		test: "777",
+//		Item: mongoose.model('Item', ItemSchema),
+//		ItemType: mongoose.model('ItemType', ItemTypeSchema),
+//		Relationship: mongoose.model('Relationship', RelationshipSchema),
+//		ViewType:  mongoose.model('ViewType', ViewTypeSchema),
+//		ViewItem:  mongoose.model('ViewItem', ViewItemSchema),
+//		View: mongoose.model('View', ViewSchema)
+//	};
 
 })(require("mongoose"));

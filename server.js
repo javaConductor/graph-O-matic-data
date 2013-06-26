@@ -13,9 +13,6 @@ var application_root = __dirname,
 
 var app = express();
 
-// Database
-mongoose.connect('mongodb://localhost/graph-o-matic');
-
 // Config
 
 app.configure(function () {

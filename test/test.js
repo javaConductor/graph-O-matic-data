@@ -4,32 +4,31 @@
  * Date: 4/23/13
  * Time: 7:04 PM
  */
-var assert = require("assert");
 var should = require("should");
-var request = require("superagent");
-var mongoose = require('mongoose');
 var models = require('../api/models.js');
+var mongoose = require("mongoose");
 
-describe('Mongo Persistence Test', function(){
+exports.testItemTypeModel = function(test){
+	var itemType = new models.ItemType({description:"ddddddd"});
+	itemType.id = mongoose.Types.ObjectId('4edd40c86762e0fb12000F3F');
+	itemType.name = "BasicItem";
+	itemType.title = "Basic Item "+ new Date();
+//	itemType.description = "";
+	itemType.properties = [
+	];
+	itemType.allowExtraProperties = true;
+	console.dir(["saving>>", itemType]);
 
-	describe('should create itemType', function(){
+	itemType.save( function( err, itype ) {
+		test.ifError(err);
+		test.ok( itype._id );
+		models.ItemType.find({_id: itype._id }, function(err, theItemType){
+			test.ifError(err);
 
-		it("should return the string.", function(done){
-			var itemType = new models.ItemType;
-			itemType.id = "--default--";
-			itemType.name = "BasicItem";
-			itemType.title = "Basic Item";
-			itemType.description = "";
-			itemType.properties = [
-
-			];
-			itemType.allowExtraProperties = true;
-			itemType.save( function(err, itype) {
-				should.not.exist(err);
-				console.dir(["new ItemType>>", itype]);
-			});
 		});
+		console.dir(["error>>", err]);
+		console.dir(["new ItemType>>", itype]);
 
-	})
-
-});
+	});
+	test.done();
+};
