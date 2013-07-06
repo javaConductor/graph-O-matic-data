@@ -1,0 +1,219 @@
+{
+	"RelationshipTypes":[
+	{
+		"name" : "relatedTo",
+		"category" : "People",
+		"constraints": {
+			"From" : "item.isInTypes(['Person'])",
+			"To" : "item.isInTypes(['LiteraryWork'])",
+			"FromAndTo" : "item.isInTypes(['LiteraryWork'])"
+		},
+		"bidirectional":true,
+		"composite" : false,
+		"description" : ""
+	},
+	{
+		"name" : "immediateFamily",
+		"parent" : "relatedTo",
+		"description" : "Parent, Child or siblings"
+	},
+	{
+		"name" : "Aunt",
+		"parent" : "relatedTo",
+		"description" : "Father or mother's sister or aunt."
+	},
+	{
+		"name" : "Uncle",
+		"parent" : "relatedTo",
+		"description" : "Father or mother's brother or uncle."
+	},
+	{
+		"name" : "Cousin",
+		"parent" : "relatedTo",
+		"description" : "any cousin"
+	},
+	{
+		"name" : "Child",
+		"parent": "immediateFamily",
+		"description" : "Son or Daughter"
+	},
+	{
+		"name" : "Grandchild",
+		"parent": "relatedTo",
+		"description" : "Son or Daughter of Child"
+	},
+	{
+		"name" : "Son",
+		"parent": "Child",
+		"description" : "",
+		"constraints": {
+			"To" : "item.isInTypes(['Male'])",
+			"From" : "item.isInTypes(['Person'])"
+		}
+	},{
+		"name" : "Daughter",
+		"parent": "Child",
+		"description" : "",
+		"constraints": {
+			"To" : "item.isInTypes(['Female'])",
+			"From" : "item.isInTypes(['Person'])"
+		}
+	},
+	{
+		"name" : "Husband",
+		"parent": "immediateFamily",
+		"description" : "",
+		"constraints": {
+			"To" : "item.isInTypes(['Male'])",
+			"From" : "item.isInTypes(['Person'])"
+		}
+	},{
+		"name" : "Wife",
+		"parent": "immediateFamily",
+		"description" : "",
+		"constraints": {
+			"To" : "item.isInTypes(['Female'])",
+			"From" : "item.isInTypes(['Person'])"
+		}
+	},
+	{
+		"name" : "Grandson",
+		"parent": "Grandchild",
+		"description" : "",
+		"constraints": {
+			"To" : "item.isInTypes(['Male'])",
+			"From" : "item.isInTypes(['Person'])"
+		}
+	},{
+		"name" : "Granddaughter",
+		"parent": "Grandchild",
+		"description" : "",
+		"constraints": {
+			"To" : "item.isInTypes(['Female'])",
+			"From" : "item.isInTypes(['Person'])"
+		}
+	},
+	{
+		"name" : "Parent",
+		"parent": "immediateFamily",
+		"description" : "Mother or Father"
+	},
+	{
+		"name" : "Mother",
+		"parent": "Parent",
+		"constraints": {
+			"To" : "item.isInTypes(['Female'])"
+		}
+	},
+	{
+		"name" : "Father",
+		"parent": "Parent",
+		"constraints": {
+			"To" : "item.isInTypes(['Male'])"
+		}
+	},
+	{
+		"name" : "Sibling",
+		"parent" : "immediateFamily",
+		"description" : "Brother or sister."
+	},
+	{
+		"name" : "Sister",
+		"parent": "Sibling",
+		"constraints": {
+			"To" : "item.isInTypes(['Female'])"
+		}
+	},
+	{
+		"name" : "Brother",
+		"parent": "Sibling",
+		"constraints": {
+			"To" : "item.isInTypes(['Male'])"
+		}
+	},
+	{
+		"name" : "Friend",
+		"constraints": {
+			"To" : "item.isInTypes(['Person'])",
+			"From" : "item.isInTypes(['Person'])"
+		}
+	}
+	],
+	"RelationshipCategories":[
+		{
+		"name": "Family",
+		}
+	],
+	"ItemCategories":[{
+		"name": "People"
+
+	}],
+	"ItemTypes":[
+		{
+			"name": "Person",
+			"category": "People",
+			"properties": [
+				{"name": "firstName", "type": "text", "required":true},
+				{"name": "lastName", "type": "text"},
+				{"name": "sex", "type": "text"},
+				{"name": "birthdate", "relationshipType": "hasBirthdate", "itemType": "CalendarDate"},
+				{"name": "deathDate", "relationshipType": "diedOn", "itemType": "CalendarDate"},
+				{"name": "family", "relationshipType": "relatedTo", "itemType": "Person"},
+				{"name": "residence", "relationshipType": "resides", "itemTypes": ["StreetAddress", "City", "State", "Country"]}
+			]
+		},
+		{
+			"name": "Male",
+			"parent": "Person",
+			"defaults": [
+				{"name": "sex", "value": "male", "fixed": true}
+			]
+		},
+		{
+			"name": "Female",
+			"parent": "Person",
+			"defaults": [
+				{"name": "sex", "value": "female", "fixed": true}
+			]
+		},
+		{
+			"name": "Notes",
+			"category":  "Notes",
+			"properties":[
+				{"name": "date", "type": "date", "required":true},
+				{"name": "notes", "type": "text", "required":true}
+			]
+		},
+		{   "name" : "EmailAddress",
+			"properties" : [
+				{"name": "email", "type": "emailAddress", "required":true}
+			]
+		},
+		{
+			"parent":"Person",
+			"name": "Man",
+			"defaults": [
+				{"name": "sex", "value": "male"}
+			]
+		},
+		{
+			"parent":"Female",
+			"name": "Woman",
+			"defaults": [
+				{"name": "sex", "value": "female"}
+			]
+		},
+		{
+			"name": "Business",
+			"category": "Business",
+			"properties": [
+				{"name": "name", "type": "text"},
+				{"name": "mainAddress", "relationshipType": "atAddress", "itemType": "StreetAddress"},
+				{"name": "branches", "relationshipType": "atAddress", "itemType": "BusinessLocation"},
+				{"name": "email", "relationshipType": "emailAddress", "itemType": "EmailAddress" },
+				{"name": "postalAddress", "relationshipType": "mailingAddress", "itemType": "StreetAddress" }
+			]
+		}
+	]
+
+}

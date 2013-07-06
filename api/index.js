@@ -5,27 +5,45 @@
  * Time: 12:21 AM
  */
 
-exports = (function(mongoose, models){
+exports = (function(mongoose, model){
 
-	var Item = models.ItemModel;
+	var RelationshipCategory = model.RelationshipTypeCategory;
+	var RelationshipType = model.RelationshipType;
+	var Relationship = model.Relationship;
+	var ItemCategory = model.ItemTypeCategory;
+	var ItemType = model.ItemType;
+	var Item = model.Item;
+	var ViewType = model.ViewType;
+	var ViewItem = model.ViewItem;
+	var View = model.View;
 
 	return {
 
+
+		/// /// /// /// Item /// /// /// ///
+		/// /// /// /// Item /// /// /// ///
 		createItem: function(req, res){
 			res.send(new Item());
 		},
 
+		/// /// /// /// View Item /// /// /// ///
+		/// /// /// /// View Item /// /// /// ///
 		setViewItemLocation:function(req, res){
+			var id=req.params.viewItemId;
 			var x = req.params.x;
 			var y = req.params.y;
-			Item.find({ id: itemId }).exec(function(err, item){
-				res.send(new ViewItem());
+			model.updateViewItemPosition(id,x,y,function(err, resp){
+				model.getViewItem(id, function(err, viewItem){
+					res.send(viewItem);
+				});
 			});
 		},
 
+		/// /// /// /// View /// /// /// ///
+		/// /// /// /// View /// /// /// ///
 		newView: function(req, res){
 			var vrId = req.params.vrId;
 		}
 
 	};
-})( require('mongoose'), require("./models.js") );
+})( require('mongoose'), require("../../model") );
