@@ -28,8 +28,9 @@
 	//////  RelationshipType //////
 	this.saveRelationshipType = persistence.saveRelationshipType;
 	this.getRelationshipType = persistence.getRelationshipType;
+	this.getRelationshipTypes = persistence.getRelationshipTypes;
 	this.relationshipTypeNameMap = function(f){
-	relationshipTypeNameMap(function(err, relTypes){
+		getRelationshipTypes(function(err, relTypes){
 			  if (err){ return f(err, null);}
 
 			  var m = {};
@@ -59,6 +60,17 @@
 	//////  ItemType  //////
 	this.saveItemType = persistence.saveItemType;
 	this.getItemType = persistence.getItemType;
+	this.getItemTypes = persistence.getItemTypes;
+	this.itemTypeNameMap = function(f){
+		getItemTypes(function(err, iCats){
+			if (err){ return f(err, null);}
+			var m = {};
+			iCats.forEach(function(iCat){
+				m[iCat.name] = iCat;
+			});
+			return f(null, m);
+		});
+	};
 
 	//////  Item  //////
 	//////  Item  //////
@@ -70,6 +82,31 @@
 	this.getViewItem = 	persistence.getViewItem;
 	this.saveViewItem = 	persistence.saveViewItem;
 	this.updateViewItemPosition = persistence.updateViewItemPosition;
+
+
+	///////// Convenience Methods /////////////
+	///////// Convenience Methods /////////////
+	this.nameMaps = function( f ){
+		this.relationshipCategoryNameMap(function (err, relCatNameMap) {
+			if(err)
+				return f(err);
+			this.relationshipTypeNameMap(function (err, relTypeNameMap) {
+				if(err)
+					return f(err);
+
+				this.itemCategoryNameMap(function (err, itemCatNameMap) {
+					if(err)
+						return f(err);
+					this.itemTypeNameMap(function (err, itemTypeNameMap) {
+						if(err)
+							return f(err);
+						f(null, relTypeNameMap, relCatNameMap, itemTypeNameMap, itemCatNameMap);
+					})
+				})
+			})
+		})
+	};
+
 
 	/////////// EXPORTS ////////////
 	/////////// EXPORTS ////////////
@@ -83,9 +120,12 @@
 
 	exports.saveItemCategory = this.saveItemCategory;
 	exports.getItemCategory = this.getItemCategory;
+	exports.itemCategoryNameMap = this.itemCategoryNameMap;
+
 
 	exports.saveItemType = this.saveItemType;
 	exports.getItemType = this.getItemType;
+	exports.itemTypeNameMap = this.itemTypeNameMap;
 
 	exports.saveItem = this.saveItem;
 	exports.getItem = this.getItem;
@@ -97,4 +137,5 @@
 	exports.saveView = this.saveView;
 	exports.getView = this.getView;
 
+	exports.nameMaps = this.nameMaps;
 })(require("../persistence"));

@@ -1,0 +1,24 @@
+{
+	"RelationshipTypes": [
+		{
+			"name": "baseRT"
+		}
+	],
+	"RelationshipCategories": [
+		{
+			"name": "baseRC"
+		}
+	],
+	"ItemCategories": [
+		{
+			"name": "baseIC"
+		}
+	],
+	"ItemTypes": [
+		{
+			"name": "baseIT",
+			"category": "baseIC",
+			"allowExtraProperties": true
+		}
+	]
+ }

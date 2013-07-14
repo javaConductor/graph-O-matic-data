@@ -7,9 +7,9 @@
 var should = require("should");
 var model = require('../model');
 var mongoose = require("mongoose");
-/*
-exports.testItemTypeModel = function(test){
 
+exports.testItemTypeModel = function(test){
+	console.log("---------------------------------------------------------:testItemTypeModel");
 
 	var itemType = {};//new models.ItemType({description:"ddddddd"});
 	//itemType.id = mongoose.Types.ObjectId('4edd40c86762e0fb12000F3F');
@@ -34,7 +34,7 @@ exports.testItemTypeModel = function(test){
 	});
 //	test.done();
 };
-*/
+
 
 
 
