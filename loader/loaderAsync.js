@@ -24,11 +24,12 @@
 			console.log('%s %j', msg, err);
 		};
 
+		var typeNames = [];
+
 		/// Get name maps to resolve references
 		model.nameMaps(function (err, relTypeNameMap, relCatNameMap,itemTypeNameMap, itemCatNameMap) {
 
 			async.series([
-
 				/// Relationship Categories ///
 				/// Relationship Categories ///
 				function (callback) {
@@ -40,12 +41,11 @@
 							  area: areaName
 						  });
 
-//						  model.saveRelationshipCategory(relCat, cb);
 						  model.saveRelationshipCategory( relCat, function(err, cat) {
-									relCatNameMap[cat.name] = cat;
-							  cb(err, cat);
+							relCatNameMap[cat.name] = cat;
+							typeNames.push(cat.name);
+							cb(err, cat);
 						  });
-
 					  },
 					  function (err) {
 						callback(err);
@@ -65,6 +65,7 @@
 
 						  model.saveItemCategory( itemCat, function(err, cat) {
 							  itemCatNameMap[cat.name] = cat;
+							  typeNames.push(cat.name);
 							  cb(err, cat);
 						  });
 
@@ -92,6 +93,7 @@
 						  model.saveRelationshipType( relType, function(err, saved) {
 							  relTypeNameMap[saved.name] = saved;
 							  fDetail({context: contextName, area: areaName, type: 'RelationshipType', name: saved.name})
+							  typeNames.push(saved.name);;
 							  cb(err, saved);
 						  });
 					  },
@@ -121,6 +123,7 @@
 						  model.saveItemType( itemType, function(err, saved) {
 							  itemTypeNameMap[saved.name] = saved;
 							  fDetail({context: contextName, area: areaName, type: 'ItemType', name: saved.name})
+							  typeNames.push(saved.name);;
 							  cb(err, saved);
 						  });
 					  },
@@ -135,14 +138,27 @@
 				},
 
 			  function(callback){
-				  console.log("All loaded!")
+				  model.saveContext(contextName, areaName, typeNames, function(err, saved){
+					  if(err)
+					  	console.error("Error saving Context:"+contextName+"."+areaName+": "+JSON.stringify(err));
+					  else
+					  	console.log("All loaded! ->",JSON.stringify(saved));
+				  }   );
 			  }
 
 			]);
 		});
 	};
 
-	exports.loadArea = function loadArea(contextName, areaName, file, f, fDetail) {
+	var checkForContextLoaded = function checkForContextLoaded(contextName, areaName, f){
+		model.getContext(contextName, areaName, function(err, ctxt){
+			var b = (ctxt) ? true : false;
+			f(err, b);
+		});
+	}
+
+
+		exports.loadArea = function loadArea(contextName, areaName, file, f, fDetail) {
 		console.log("loader.loadArea");
 		fs.readFile(file, 'utf8', function (err, data) {
 			if (err) {
@@ -150,7 +166,13 @@
 				return;
 			}
 			data = JSON.parse(data);
-			exports.loadContextObject(contextName, areaName, data,f,fDetail);
+
+			checkForContextLoaded(contextName, areaName, function(err, alreadyLoaded){
+				if (!alreadyLoaded)
+					exports.loadContextObject(contextName, areaName, data,f,fDetail);
+				else
+					console.error("Area: "+contextName+"."+areaName+" is already loaded.");
+			});
 		});
 	};
 

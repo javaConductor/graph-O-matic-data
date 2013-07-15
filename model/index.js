@@ -83,6 +83,10 @@
 	this.saveViewItem = 	persistence.saveViewItem;
 	this.updateViewItemPosition = persistence.updateViewItemPosition;
 
+	//////  Context //////
+	//////  Context //////
+	this.getContext = 	persistence.getContext;
+	this.saveContext = 	persistence.saveContext;
 
 	///////// Convenience Methods /////////////
 	///////// Convenience Methods /////////////
@@ -136,6 +140,9 @@
 
 	exports.saveView = this.saveView;
 	exports.getView = this.getView;
+
+	exports.getContext = this.getContext;
+	exports.saveContext = this.saveContext;
 
 	exports.nameMaps = this.nameMaps;
 })(require("../persistence"));
