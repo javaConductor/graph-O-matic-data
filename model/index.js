@@ -61,6 +61,8 @@
 	this.saveItemType = persistence.saveItemType;
 	this.getItemType = persistence.getItemType;
 	this.getItemTypes = persistence.getItemTypes;
+	this.updateItemType = persistence.updateItemType;
+
 	this.itemTypeNameMap = function(f){
 		getItemTypes(function(err, iCats){
 			if (err){ return f(err, null);}
@@ -120,6 +122,7 @@
 	exports.relationshipCategoryNameMap = this.relationshipCategoryNameMap;
 
 	exports.saveRelationshipType = this.saveRelationshipType;
+	exports.updateRelationshipType = this.updateRelationshipType;
 	exports.relationshipTypeNameMap = this.relationshipTypeNameMap;
 
 	exports.saveItemCategory = this.saveItemCategory;
@@ -129,6 +132,7 @@
 
 	exports.saveItemType = this.saveItemType;
 	exports.getItemType = this.getItemType;
+	exports.updateItemType = this.updateItemType;
 	exports.itemTypeNameMap = this.itemTypeNameMap;
 
 	exports.saveItem = this.saveItem;

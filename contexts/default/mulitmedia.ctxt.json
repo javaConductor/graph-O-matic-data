@@ -5,8 +5,8 @@
 			"bidirectional": false,
 			"reciprocalRelationship": "performedBy",
 			"constraints": {
-				"To": "item.isInTypes(['Track'])",
-				"From": "item.isInTypes(['Artist','Person'])"
+				"ToExpression": "item.isInTypes(['Track'])",
+				"FromExpression": "item.isInTypes(['Artist','Person'])"
 			}
 		},
 		{
@@ -14,15 +14,15 @@
 			"bidirectional": false,
 			"reciprocalRelationship": "performed",
 			"constraints": {
-				"From": "item.isInTypes(['Track'])",
-				"To": "item.isInTypes(['Artist','Person'])"
+				"FromExpression": "item.isInTypes(['Track'])",
+				"ToExpression": "item.isInTypes(['Artist','Person'])"
 			}
 		},
 		{
 			"name": "onLabel",
 			"constraints": {
-				"From": "item.isInTypes(['AudioRecording'])",
-				"To": "item.isInTypes(['Business'])"
+				"FromExpression": "item.isInTypes(['AudioRecording'])",
+				"ToExpression": "item.isInTypes(['Business'])"
 			}
 		},
 		{
@@ -30,8 +30,8 @@
 			"bidirectional": false,
 			"reciprocalRelationship": "performed",
 			"constraints": {
-				"From": "item.isInTypes(['Recording'])",
-				"To": "item.isInTypes(['AudioFile'])"
+				"FromExpression": "item.isInTypes(['Recording'])",
+				"ToExpression": "item.isInTypes(['AudioFile'])"
 			}
 		},
 		{
@@ -39,22 +39,23 @@
 			"bidirectional": false,
 			"reciprocalRelationship": "performed",
 			"constraints": {
-				"From": "item.isInTypes(['Recording'])",
-				"To": "item.isInTypes(['VideoFile'])"
+				"FromExpression": "item.isInTypes(['Recording'])",
+				"ToExpression": "item.isInTypes(['VideoFile'])"
 			}
 		}
 	],
 	"RelationshipCategories": [
-		{
-			"name": "Family"
-		},
-		{
-			"name": "Work"
-		}
+
 	],
 	"ItemCategories": [
 		{
-			"name": "People"
+			"name": "Video"
+		},
+		{
+			"name": "Audio"
+		},
+		{
+			"name": "Multimedia"
 		}
 	],
 	"ItemTypes": [
@@ -167,7 +168,7 @@
 		},
 		{
 			"name": "Recording",
-			"category": "",
+
 			"properties": [
 				{
 					"name": "title",
