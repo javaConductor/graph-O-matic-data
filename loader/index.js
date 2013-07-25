@@ -28,5 +28,5 @@
 		console.error('Error in params:'+JSON.stringify(argv));
 	}
 
-})(require("./loaderAsync.js"), require('optimist'), require('fs'));
+})(require("./contextLoader.js"), require('optimist'), require('fs'));
 

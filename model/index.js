@@ -40,6 +40,7 @@
 			  return f(null, m);
 		  });
 	};
+	this.getRelationshipTypeById = persistence.getRelationshipTypeById;
 
 	//////  Item Category //////
 	//////  Item Category //////
@@ -73,6 +74,7 @@
 			return f(null, m);
 		});
 	};
+	this.getItemTypeById = persistence.getItemTypeById;
 
 	//////  Item  //////
 	//////  Item  //////
@@ -134,6 +136,7 @@
 	exports.getItemType = this.getItemType;
 	exports.updateItemType = this.updateItemType;
 	exports.itemTypeNameMap = this.itemTypeNameMap;
+	exports.getItemTypeById = this.getItemTypeById;
 
 	exports.saveItem = this.saveItem;
 	exports.getItem = this.getItem;

@@ -18,7 +18,8 @@
 		{
 			"name": "baseIT",
 			"category": "baseIC",
-			"allowExtraProperties": true
+			"allowExtraProperties": true,
+			"description": ""
 		}
 	]
  }

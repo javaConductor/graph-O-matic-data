@@ -46,4 +46,4 @@ exports = (function(mongoose, model){
 		}
 
 	};
-})( require('mongoose'), require("../../model") );
+})( require('mongoose'), require("../model") );

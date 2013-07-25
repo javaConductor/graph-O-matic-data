@@ -146,9 +146,23 @@
 	],
 	"ItemCategories":[
 		{ "name": "People" },
-		{ "name": "Business"}
+		{ "name": "Business"},
+		{ "name": "Locations"}
 	],
 	"ItemTypes":[
+		{
+			"name":"StreetAddress",
+			"category": "Locations",
+			"properties": [
+				{"name": "address", "type": "text", "required":true },
+				{"name": "city", "type": "text", "required":true },
+				{"name": "state", "type": "text", "required":true },
+				{"name": "address2", "type": "text" },
+				{"name": "suite", "type": "text"},
+				{"name": "postalCode", "type": "text"},
+				{"name": "country", "type": "text"}
+			]
+		},
 		{
 			"name": "Person",
 			"category": "People",
@@ -156,7 +170,7 @@
 				{"name": "firstName", "type": "text", "required":true},
 				{"name": "lastName", "type": "text"},
 				{"name": "sex", "type": "text"},
-				{"name": "birthdate", "relationshipType": "hasBirthdate", "itemType": "CalendarDate"},
+				{"name": "birthDate", "relationshipType": "hasBirthdate", "itemType": "CalendarDate"},
 				{"name": "deathDate", "relationshipType": "diedOn", "itemType": "CalendarDate"},
 				{"name": "family", "relationshipType": "relatedTo", "itemType": "Person"},
 				{"name": "residence", "relationshipType": "resides", "itemTypes": ["StreetAddress", "City", "State", "Country"]}

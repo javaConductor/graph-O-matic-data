@@ -19,7 +19,6 @@
 		var relCategories = contextObject.RelationshipCategories;
 		var itemTypes = contextObject.ItemTypes;
 		var itemCategories = contextObject.ItemCategories;
-		var itemTypesNeedParents = {};
 
 		var error = function (msg, err) {
 			console.log('%s %j', msg, err);
@@ -30,14 +29,123 @@
 
 		var createResolutionFunction = function createResolutionFunction(itemToUpdate, fieldName, nameMap, nameInMap, fSave) {
 			return function (f) {
+				console.log("createResolutionFunction("+fieldName+" >> "+nameInMap+")");
 				if (!nameMap[nameInMap])
 					return f("Cannot resolve " + fieldName + ": " + nameInMap);
-				if(!itemToUpdate[fieldName])
+				if (!itemToUpdate[fieldName])
 					itemToUpdate[fieldName] = [];
 				itemToUpdate[fieldName].push(nameMap[nameInMap]);
-				return fSave(itemToUpdate, f);
+				return itemToUpdate.save(f);
+//				return fSave(itemToUpdate, f);
 			}
 		}
+
+		var createPropertyResolutionFunction = function createPropertyResolutionFunction(itemToUpdate, propertiesArray) {
+			return function (f) {
+				console.log("createPropertyResolutionFunction("+JSON.stringify(propertiesArray)+")");
+				itemToUpdate.properties = itemToUpdate.properties || [];
+				var newProps =[];
+				async.map(propertiesArray, function(properties,outerForEachCallback){
+
+				async.parallel(
+				  [function (paralellCallback) {
+						  if (properties.itemTypes && properties.itemTypes.length) {
+
+							  var itemTypeList = [];
+
+							  async.map(properties.itemTypes,
+								function (itemTypeName, cb) {
+									var parts = itemTypeName.split(".");
+									var ctxt, area, type;
+									if (parts.length === 1) {
+										ctxt = contextName;
+										area = areaName;
+										type = itemTypeName;
+									} else if (parts.length === 3) {
+										ctxt = parts[0];
+										area = parts[1];
+										type = parts[2];
+									} else {
+										//error
+										console.log("Bad type id:" + type);
+										return f("Bad type id:" + type);
+									}
+									model.getItemType(ctxt, area, type, function (err, itemType) {
+										if (err){
+											error("Could not find type: "+ctxt + "." + area + "." + type, JSON.stringify(err));
+										}
+										if(!itemType){
+											error("Could not find type: "+ctxt + "." + area + "." + type);
+										}
+										cb(err, itemType);
+									});
+
+								},
+								function (err, itypes) {
+									//itemToUpdate.properties = propertiesArray;
+									properties.itemTypes = itypes;
+									paralellCallback(null, properties);
+								});
+						  }
+					  },
+					  function (paralellCallback) {
+						  if (properties.relationshipTypes && properties.relationshipTypes.length) {
+							  var relationshipTypeList = [];
+
+							  async.map(properties.relationshipTypes,
+								function (relationshipTypeName, cb) {
+								  var parts = relationshipTypeName.split(".");
+								  var ctxt, area, type;
+								  if (parts.length === 1) {
+									  ctxt = "default";
+									  area = "built-in";
+									  type = relationshipTypeName;
+								  } else if (parts.length === 3) {
+									  ctxt = parts[0];
+									  area = parts[1];
+									  type = parts[2];
+								  } else {
+									  //error
+									  console.log("Bad type id:" + type);
+									  return f("Bad type id:" + type);
+								  }
+								  model.getRelationshipType(ctxt, area, type, function (err, relationshipType) {
+									  //relationshipTypeList.push(relationshipType);
+									  cb(err, relationshipType);
+								  });
+
+							  },
+								function (err, rtypes) {
+								  properties.relationshipTypes = rtypes;
+								  paralellCallback(null, properties);
+							  });
+
+						  }
+					  }
+				  ],
+				  function (err) {
+					  console.log("parallelCallback: err="+JSON.stringify(err));
+					  if (err) {
+						  return f(err);
+					  }
+
+					  outerForEachCallback(null, properties);
+				  }
+				);//parallel
+					//outerForEachCallback(null);
+			},function(err){
+					console.log("forEachPropertyCallback: err="+JSON.stringify(err));
+
+					if (err) {
+						return f(err);
+					}
+					//outerForEachCallback(null);
+					itemToUpdate.save(f);
+
+//					return fSave(itemToUpdate, f);
+				});//outer async.forEach
+			}; // returned function
+		};
 
 		var relTypeNameMap = {}, relCatNameMap = {}, itemTypeNameMap = {}, itemCatNameMap = {};
 		/// Get name maps to resolve references
@@ -79,6 +187,7 @@
 						  context: contextName,
 						  area: areaName
 					  });
+					  //var values = [];
 
 					  model.saveItemCategory(itemCat, function (err, cat) {
 						  if (err) {
@@ -86,15 +195,16 @@
 						  }
 						  itemCatNameMap[cat.name] = cat;
 						  typeNames.push(cat.name);
+						  //values.push(cat);
 						  cb(err, cat);
 					  });
 
 				  },
-				  function (err) {
+				  function (err, values) {
 					  if (err) {
 						  process.exit(-2);
 					  }
-					  callback(err);
+					  callback(err, values);
 				  });
 			},
 			/// Relationship Type ///
@@ -121,16 +231,14 @@
 						  fDetail({context: contextName, area: areaName, type: 'RelationshipType', name: saved.name})
 						  typeNames.push(saved.name);
 						  if (tmpParent) {
-							  var fResolve = createResolutionFunction(saved,
-								"parent", relTypeNameMap, tmpParent, model.updateRelationshipType);
-							  fkResolutionFunctions.push(fResolve);
-
+							  fkResolutionFunctions.push(createResolutionFunction(saved,
+								"parent", relTypeNameMap, tmpParent,
+								model.updateRelationshipType));
 						  }
-						  if(tmpRecip){
-							  fResolve = createResolutionFunction(saved,
+						  if (tmpRecip) {
+							  fkResolutionFunctions.push(createResolutionFunction(saved,
 								"reciprocalRelationship", relTypeNameMap, tmpRecip,
-								model.updateRelationshipType);
-							  fkResolutionFunctions.push(fResolve);
+								model.updateRelationshipType));
 						  }
 						  cb(null, saved);
 					  });
@@ -143,15 +251,15 @@
 				  });
 			},
 			function (callback) {
-				var allData = [];
+				var values = [];
 				async.parallelLimit(fkResolutionFunctions, 1, function (err, data) {
-
-				console.log("ResolutionFunc: "+data);
+					if (data)
+						values = values.concat(data);
+					console.log("ResolutionFunc: " + data);
 				});
 				/// reset this array now that we are done w/ relTypes
 				fkResolutionFunctions = [];
-				callback(null, []);
-
+				callback(null, values);
 			},
 			/// Item Type ///
 			/// Item Type ///
@@ -164,33 +272,38 @@
 						  area: areaName
 					  });
 
-					  if (itemType.category){
-						  if (! itemCatNameMap[itemType.category] ){
-							  console.error("Cannot resolve itemType:"+itemType.category);
-						  }
-						  itemType.category = itemCatNameMap[itemType.category];
+					  if (itemType.category) {
+						  if (!itemCatNameMap[itemType.category]) {
+							  console.error("Cannot resolve itemType:" + itemType.category);
+						  } else
+							  itemType.category = itemCatNameMap[itemType.category];
 					  }
 					  else
-					  	itemType.category = null;
+						  itemType.category = null;
 
 					  var tmpParent = itemType.parent;
 					  itemType.parent = null;
 
+					  var tmpProps = itemType.properties;
+					  itemType.properties = null;
 
 					  model.saveItemType(itemType, function (err, saved) {
 						  if (err) {
 							  return cb(err, saved);
 						  }
 						  itemTypeNameMap[saved.name] = saved;
-						  fDetail({context: contextName, area: areaName, type: 'ItemType', name: saved.name})
+						  fDetail({context: contextName, area: areaName, type: 'ItemType', name: saved.name});
 						  typeNames.push(saved.name);
 						  if (tmpParent) {
 							  /// at this point we do not have all the parent itemTypes
 							  /// Here we create a function that will get the parents when
 							  /// the time is right
-							  var fResolve = createResolutionFunction(saved,
-								"parent", itemTypeNameMap, tmpParent, model.updateItemType);
-							  fkResolutionFunctions.push(fResolve);
+							  fkResolutionFunctions.push(createResolutionFunction(saved,
+								"parent", itemTypeNameMap, tmpParent, model.updateItemType));
+						  }
+						  if (tmpProps){
+							  fkResolutionFunctions.push(createPropertyResolutionFunction(saved,
+								tmpProps, model.updateItemType));
 						  }
 						  cb(null, saved);
 					  });
@@ -211,37 +324,39 @@
 			/// Item Type FK resolution ///
 			/// Item Type FK resolution ///
 			function (callback) {
-				async.parallelLimit(fkResolutionFunctions, 1, function (err, data) {
-					console.log("ResolutionFunc: "+JSON.stringify(data));
-				});
-				/// reset this array now that we are done w/ itemTypes
-				fkResolutionFunctions = [];
-				callback(null, []);
+				async.parallelLimit(fkResolutionFunctions, 5, function (err, data) {
+					if (err) console.log("ResolutionFunc: Error:" + JSON.stringify(err));
+					if (data) console.log("ResolutionFunc: Data:" + JSON.stringify(data) );
+					/// reset this array now that we are done w/ itemTypes
+					fkResolutionFunctions = [];
+					callback(err, data);});
+
 			},
 
 			/// Save the Context ///
 			/// Save the Context ///
 			function (callback) {
 				model.saveContext(contextName, areaName, typeNames, function (err, saved) {
-					if (err){
-						console.error("Error saving Context:" + contextName + "." + areaName + ": " + JSON.stringify(err));
+					if (err) {
+						console.error("Error saving Context:"
+						  + contextName + "."
+						  + areaName + ": "
+						  + JSON.stringify(err));
 						callback(err);
-					}else{
+					} else {
 						console.log("All loaded! ->", JSON.stringify(saved));
 						callback(null, saved);
 					}
 				});
-
 			},
 
 			/// the Last Task ///
 			/// the Last Task ///
 			function (callback) {
-				console.log("Done!");
+				console.log(contextName + "." + areaName + " Done!");
 				callback(null);
 			}
 		]);
-
 
 	};
 
@@ -272,7 +387,6 @@
 	exports.loadContext = function loadContext(contextName, contextDirectory, f, fDetail) {
 		contextName = contextName || path.basename(contextDirectory);
 		console.log("loader.loadContext(): " + contextName + "@" + contextDirectory);
-
 
 		/// for each *.json.ctxt file in contextDirectory
 		var finder = findit.find(contextDirectory);
