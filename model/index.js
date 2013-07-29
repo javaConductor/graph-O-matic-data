@@ -126,6 +126,7 @@
 	exports.saveRelationshipType = this.saveRelationshipType;
 	exports.updateRelationshipType = this.updateRelationshipType;
 	exports.relationshipTypeNameMap = this.relationshipTypeNameMap;
+	exports.getRelationshipType = this.getRelationshipType;
 
 	exports.saveItemCategory = this.saveItemCategory;
 	exports.getItemCategory = this.getItemCategory;

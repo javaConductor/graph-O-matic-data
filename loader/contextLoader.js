@@ -29,7 +29,21 @@
 
 		var createResolutionFunction = function createResolutionFunction(itemToUpdate, fieldName, nameMap, nameInMap, fSave) {
 			return function (f) {
-				console.log("createResolutionFunction("+fieldName+" >> "+nameInMap+")");
+				console.log("createResolutionFunction(" + fieldName + " >> " + nameInMap + ")");
+				if (!nameMap[nameInMap])
+					return f("Cannot resolve " + fieldName + ": " + nameInMap);
+				if (!itemToUpdate[fieldName])
+					itemToUpdate[fieldName] = [];
+				itemToUpdate[fieldName].push(nameMap[nameInMap]);
+				return itemToUpdate.save(f);
+//				return fSave(itemToUpdate, f);
+			}
+		}
+
+
+		var createResolutionFunction = function createResolutionFunction(itemToUpdate, fieldName, nameMap, nameInMap, fSave) {
+			return function (f) {
+				console.log("createResolutionFunction(" + fieldName + " >> " + nameInMap + ")");
 				if (!nameMap[nameInMap])
 					return f("Cannot resolve " + fieldName + ": " + nameInMap);
 				if (!itemToUpdate[fieldName])
@@ -42,18 +56,17 @@
 
 		var createPropertyResolutionFunction = function createPropertyResolutionFunction(itemToUpdate, propertiesArray) {
 			return function (f) {
-				console.log("createPropertyResolutionFunction("+JSON.stringify(propertiesArray)+")");
+				console.log("createPropertyResolutionFunction(" + JSON.stringify(propertiesArray) + ")");
 				itemToUpdate.properties = itemToUpdate.properties || [];
-				var newProps =[];
-				async.map(propertiesArray, function(properties,outerForEachCallback){
+				var newProps = [];
+				async.map(propertiesArray, function (properties, outerForEachCallback) {
 
-				async.parallel(
-				  [function (paralellCallback) {
-						  if (properties.itemTypes && properties.itemTypes.length) {
+					async.parallel(
+					  [function (paralellCallback) {
+						  if (properties.itemType && properties.itemType.length) {
 
 							  var itemTypeList = [];
-
-							  async.map(properties.itemTypes,
+							  async.map(properties.itemType,
 								function (itemTypeName, cb) {
 									var parts = itemTypeName.split(".");
 									var ctxt, area, type;
@@ -71,11 +84,11 @@
 										return f("Bad type id:" + type);
 									}
 									model.getItemType(ctxt, area, type, function (err, itemType) {
-										if (err){
-											error("Could not find type: "+ctxt + "." + area + "." + type, JSON.stringify(err));
+										if (err) {
+											error("Could not find type: " + ctxt + "." + area + "." + type, JSON.stringify(err));
 										}
-										if(!itemType){
-											error("Could not find type: "+ctxt + "." + area + "." + type);
+										if (!itemType) {
+											error("Could not find type: " + ctxt + "." + area + "." + type);
 										}
 										cb(err, itemType);
 									});
@@ -83,66 +96,36 @@
 								},
 								function (err, itypes) {
 									//itemToUpdate.properties = propertiesArray;
-									properties.itemTypes = itypes;
+									properties.itemType = itypes;
 									paralellCallback(null, properties);
 								});
 						  }
-					  },
-					  function (paralellCallback) {
-						  if (properties.relationshipTypes && properties.relationshipTypes.length) {
-							  var relationshipTypeList = [];
-
-							  async.map(properties.relationshipTypes,
-								function (relationshipTypeName, cb) {
-								  var parts = relationshipTypeName.split(".");
-								  var ctxt, area, type;
-								  if (parts.length === 1) {
-									  ctxt = "default";
-									  area = "built-in";
-									  type = relationshipTypeName;
-								  } else if (parts.length === 3) {
-									  ctxt = parts[0];
-									  area = parts[1];
-									  type = parts[2];
-								  } else {
-									  //error
-									  console.log("Bad type id:" + type);
-									  return f("Bad type id:" + type);
-								  }
-								  model.getRelationshipType(ctxt, area, type, function (err, relationshipType) {
-									  //relationshipTypeList.push(relationshipType);
-									  cb(err, relationshipType);
-								  });
-
-							  },
-								function (err, rtypes) {
-								  properties.relationshipTypes = rtypes;
-								  paralellCallback(null, properties);
-							  });
-
+						  else
+							  paralellCallback();
+					  }
+					  ],
+					  function (err) {
+						  console.log("parallelCallback: err=" + JSON.stringify(err));
+						  if (err) {
+							  return f(err);
 						  }
-					  }
-				  ],
-				  function (err) {
-					  console.log("parallelCallback: err="+JSON.stringify(err));
-					  if (err) {
-						  return f(err);
-					  }
 
-					  outerForEachCallback(null, properties);
-				  }
-				);//parallel
+						  outerForEachCallback(null, properties);
+					  }
+					);//parallel
 					//outerForEachCallback(null);
-			},function(err){
-					console.log("forEachPropertyCallback: err="+JSON.stringify(err));
+				}, function (err, data) {
+					console.log("forEachPropertyCallback: err=" + JSON.stringify(err));
 
 					if (err) {
 						return f(err);
 					}
 					//outerForEachCallback(null);
-					itemToUpdate.save(f);
+					itemToUpdate.properties = data;
 
-//					return fSave(itemToUpdate, f);
+					model.updateItemType(itemToUpdate, f);
+
+//					itemToUpdate.save(f);
 				});//outer async.forEach
 			}; // returned function
 		};
@@ -281,8 +264,8 @@
 					  else
 						  itemType.category = null;
 
-					  var tmpParent = itemType.parent;
-					  itemType.parent = null;
+					 var tmpParent = itemType.parent;
+					 itemType.parent = null;
 
 					  var tmpProps = itemType.properties;
 					  itemType.properties = null;
@@ -301,7 +284,7 @@
 							  fkResolutionFunctions.push(createResolutionFunction(saved,
 								"parent", itemTypeNameMap, tmpParent, model.updateItemType));
 						  }
-						  if (tmpProps){
+						  if (tmpProps) {
 							  fkResolutionFunctions.push(createPropertyResolutionFunction(saved,
 								tmpProps, model.updateItemType));
 						  }
@@ -326,10 +309,11 @@
 			function (callback) {
 				async.parallelLimit(fkResolutionFunctions, 5, function (err, data) {
 					if (err) console.log("ResolutionFunc: Error:" + JSON.stringify(err));
-					if (data) console.log("ResolutionFunc: Data:" + JSON.stringify(data) );
+					if (data) console.log("ResolutionFunc: Data:" + JSON.stringify(data));
 					/// reset this array now that we are done w/ itemTypes
 					fkResolutionFunctions = [];
-					callback(err, data);});
+					callback(err, data);
+				});
 
 			},
 

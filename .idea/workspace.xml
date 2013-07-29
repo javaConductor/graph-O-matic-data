@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="23b8520e-8397-4718-a457-abae1f30f47b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/loader/dataLoader.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/mongoSettings.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/contexts/default/mulitmedia.ctxt.json" afterPath="$PROJECT_DIR$/contexts/default/multimedia.ctxt.jsonx" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/loader/loaderAsync.js" afterPath="$PROJECT_DIR$/loader/contextLoader.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contexts/default/built-in.ctxt.json" afterPath="$PROJECT_DIR$/contexts/default/built-in.ctxt.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/index.js" afterPath="$PROJECT_DIR$/api/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/loader/index.js" afterPath="$PROJECT_DIR$/loader/index.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/contexts/default/mulitmedia.ctxt.json" afterPath="$PROJECT_DIR$/contexts/default/multimedia.ctxt.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/loader/contextLoader.js" afterPath="$PROJECT_DIR$/loader/contextLoader.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/index.js" afterPath="$PROJECT_DIR$/model/index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/mongoAdapter/index.js" afterPath="$PROJECT_DIR$/node_modules/mongoAdapter/index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/mongoAdapter/model.js" afterPath="$PROJECT_DIR$/node_modules/mongoAdapter/model.js" />
@@ -17,9 +12,9 @@
     </list>
     <ignored path="graph-O-matic-data.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1374767229267" ignored="false" />
+    <file path="/Dummy.txt" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1375083323275" ignored="false" />
     <file path="/server.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1371706616831" ignored="false" />
-    <file path="/index.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1374729521021" ignored="false" />
+    <file path="/index.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1374797418456" ignored="false" />
     <file path="/itemTypes.txt" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1371708609211" ignored="false" />
     <file path="$PROJECT_DIR$/../graph-O-matic/docs/itemTypes.txt" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1371708610586" ignored="false" />
     <file path="/models.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1372901828605" ignored="false" />
@@ -38,7 +33,7 @@
     <file path="/a.dummy" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1374561541108" ignored="false" />
     <file path="/loaderAsync.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1374043790183" ignored="false" />
     <file path="/objectid.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1373606275686" ignored="false" />
-    <file path="/people.ctxt.json" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1374469228284" ignored="false" />
+    <file path="/people.ctxt.json" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1375082755142" ignored="false" />
     <file path="/mulitmedia.ctxt.json" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1374017521461" ignored="false" />
     <file path="$PROJECT_DIR$/../sword-express/node_modules/sword-db/index.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1374043923768" ignored="false" />
     <file path="$PROJECT_DIR$/../graph-O-matic/public/js/services/model.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1374156312767" ignored="false" />
@@ -48,7 +43,7 @@
     <file path="/dataLoader.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1374266872568" ignored="false" />
     <file path="/a.lua" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1374199804666" ignored="false" />
     <file path="/a.xml" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1374199839590" ignored="false" />
-    <file path="/contextLoader.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1374730196604" ignored="false" />
+    <file path="/contextLoader.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1375084205135" ignored="false" />
     <file path="/multimedia.ctxt.json" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1374468987533" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -69,10 +64,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="index.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/node_modules/mongoAdapter/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="0" selection-start="378" selection-end="378" vertical-scroll-proportion="0.0">
+            <state line="18" column="0" selection-start="378" selection-end="378" vertical-scroll-proportion="0.33333334">
               <folding />
             </state>
           </provider>
@@ -135,8 +130,29 @@
       <file leaf-file-name="contextLoader.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/loader/contextLoader.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="88" column="16" selection-start="3005" selection-end="3005" vertical-scroll-proportion="0.0">
+            <state line="125" column="0" selection-start="4099" selection-end="4099" vertical-scroll-proportion="0.0">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="objectid.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/node_modules/mongoose/lib/schema/objectid.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="92" column="0" selection-start="2083" selection-end="2083" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="multimedia.ctxt.json" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/contexts/default/multimedia.ctxt.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="2" column="0" selection-start="0" selection-end="26" vertical-scroll-proportion="11.875">
+              <folding>
+                <element signature="e#28#262#0" expanded="false" />
+                <element signature="e#266#500#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -171,7 +187,7 @@
       <file leaf-file-name="async.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file:///usr/local/lib/node_modules/async/lib/async.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="555" column="0" selection-start="17287" selection-end="17287" vertical-scroll-proportion="0.0">
+            <state line="39" column="15" selection-start="951" selection-end="951" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -180,122 +196,8 @@
       <file leaf-file-name="index.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="130" column="12" selection-start="3744" selection-end="3744" vertical-scroll-proportion="0.0">
+            <state line="129" column="0" selection-start="3740" selection-end="3740" vertical-scroll-proportion="0.0">
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="multimedia.ctxt.jsonx" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/contexts/default/multimedia.ctxt.jsonx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="301" column="12" selection-start="5413" selection-end="5413" vertical-scroll-proportion="0.0">
-              <folding>
-                <marker date="1374472939000" expanded="true" signature="0:6904" placeholder="{...}" />
-                <marker date="1374472939000" expanded="true" signature="24:1142" placeholder="[...]" />
-                <marker date="1374472939000" expanded="true" signature="28:262" placeholder="{&quot;name&quot;: &quot;performed&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="143:258" placeholder="{&quot;ToExpression&quot;: &quot;item.isInTypes(['Track'])&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="266:500" placeholder="{&quot;name&quot;: &quot;performedBy&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="381:496" placeholder="{&quot;FromExpression&quot;: &quot;item.isInTypes(['Track'])&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="504:667" placeholder="{&quot;name&quot;: &quot;onLabel&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="546:663" placeholder="{&quot;FromExpression&quot;: &quot;item.isInTypes(['AudioRecording'])&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="671:903" placeholder="{&quot;name&quot;: &quot;audioClipOf&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="786:899" placeholder="{&quot;FromExpression&quot;: &quot;item.isInTypes(['Recording'])&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="907:1139" placeholder="{&quot;name&quot;: &quot;videoClipOf&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="1022:1135" placeholder="{&quot;FromExpression&quot;: &quot;item.isInTypes(['Recording'])&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="1171:1176" placeholder="[...]" />
-                <marker date="1374472939000" expanded="true" signature="1197:1320" placeholder="[...]" />
-                <marker date="1374472939000" expanded="true" signature="1201:1225" placeholder="{&quot;name&quot;: &quot;Video&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="1229:1253" placeholder="{&quot;name&quot;: &quot;Audio&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="1257:1286" placeholder="{&quot;name&quot;: &quot;Multimedia&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="1290:1317" placeholder="{&quot;name&quot;: &quot;Business&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="1336:6902" placeholder="[...]" />
-                <marker date="1374472939000" expanded="true" signature="1337:1388" placeholder="{&quot;name&quot;: &quot;Business&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="1392:2045" placeholder="{&quot;name&quot;: &quot;Track&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="1455:2041" placeholder="[...]" />
-                <marker date="1374472939000" expanded="true" signature="1461:1533" placeholder="{&quot;name&quot;: &quot;title&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="1539:1632" placeholder="{&quot;name&quot;: &quot;artist&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="1638:1709" placeholder="{&quot;name&quot;: &quot;producer&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="1715:1817" placeholder="{&quot;name&quot;: &quot;audioClip&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="1823:1925" placeholder="{&quot;name&quot;: &quot;audioFile&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="1931:2036" placeholder="{&quot;name&quot;: &quot;credits&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="2049:2428" placeholder="{&quot;name&quot;: &quot;Artist&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="2113:2424" placeholder="[...]" />
-                <marker date="1374472939000" expanded="true" signature="2119:2190" placeholder="{&quot;name&quot;: &quot;name&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="2196:2293" placeholder="{&quot;name&quot;: &quot;photos&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="2299:2419" placeholder="{&quot;name&quot;: &quot;groupMembers&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="2432:2571" placeholder="{&quot;name&quot;: &quot;GroupMember&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="2500:2567" placeholder="[...]" />
-                <marker date="1374472939000" expanded="true" signature="2506:2562" placeholder="{&quot;name&quot;: &quot;contribution&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="2575:2831" placeholder="{&quot;name&quot;: &quot;Credits&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="2616:2827" placeholder="[...]" />
-                <marker date="1374472939000" expanded="true" signature="2622:2822" placeholder="{&quot;name&quot;: &quot;contributors&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="2685:2816" placeholder="{...}" />
-                <marker date="1374472939000" expanded="true" signature="2700:2731" placeholder="{&quot;type&quot;: &quot;text&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="2748:2809" placeholder="{...}" />
-                <marker date="1374472939000" expanded="true" signature="2835:2968" placeholder="{&quot;name&quot;: &quot;TrackCredits&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="2881:2964" placeholder="[...]" />
-                <marker date="1374472939000" expanded="true" signature="2887:2959" placeholder="{&quot;name&quot;: &quot;trackId&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="2972:3109" placeholder="{&quot;name&quot;: &quot;RecordingCredits&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="3022:3105" placeholder="[...]" />
-                <marker date="1374472939000" expanded="true" signature="3028:3100" placeholder="{&quot;name&quot;: &quot;trackId&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="3113:3433" placeholder="{&quot;name&quot;: &quot;Recording&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="3156:3429" placeholder="[...]" />
-                <marker date="1374472939000" expanded="true" signature="3162:3232" placeholder="{&quot;name&quot;: &quot;title&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="3238:3310" placeholder="{&quot;name&quot;: &quot;media&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="3316:3368" placeholder="{&quot;name&quot;: &quot;length&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="3374:3424" placeholder="{&quot;name&quot;: &quot;format&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="3437:4052" placeholder="{&quot;name&quot;: &quot;VideoRecording&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="3535:4048" placeholder="[...]" />
-                <marker date="1374472939000" expanded="true" signature="3541:3681" placeholder="{&quot;name&quot;: &quot;producer&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="3687:3823" placeholder="{&quot;name&quot;: &quot;credits&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="3829:3951" placeholder="{&quot;name&quot;: &quot;images&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="3957:4043" placeholder="{&quot;name&quot;: &quot;files&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="4056:4617" placeholder="{&quot;name&quot;: &quot;AudioRecording&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="4154:4613" placeholder="[...]" />
-                <marker date="1374472939000" expanded="true" signature="4160:4209" placeholder="{&quot;name&quot;: &quot;title&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="4215:4317" placeholder="{&quot;name&quot;: &quot;label&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="4323:4433" placeholder="{&quot;name&quot;: &quot;artist&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="4439:4519" placeholder="{&quot;name&quot;: &quot;executiveProducer&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="4525:4608" placeholder="{&quot;name&quot;: &quot;tracks&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="4621:4715" placeholder="{&quot;name&quot;: &quot;AnalogAudioRecording&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="4719:5044" placeholder="{&quot;name&quot;: &quot;VinylRecord&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="4825:4941" placeholder="[...]" />
-                <marker date="1374472939000" expanded="true" signature="4831:4880" placeholder="{&quot;name&quot;: &quot;rpm&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="4886:4936" placeholder="{&quot;name&quot;: &quot;size&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="4958:5040" placeholder="[...]" />
-                <marker date="1374472939000" expanded="true" signature="4964:5035" placeholder="{&quot;name&quot;: &quot;media&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="5048:5288" placeholder="{&quot;name&quot;: &quot;DigitalAudioRecording&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="5158:5284" placeholder="[...]" />
-                <marker date="1374472939000" expanded="true" signature="5164:5217" placeholder="{&quot;name&quot;: &quot;bitRate&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="5223:5279" placeholder="{&quot;name&quot;: &quot;bitRateUnits&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="5292:5525" placeholder="{&quot;name&quot;: &quot;DigitalVideoRecording&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="5402:5521" placeholder="[...]" />
-                <marker date="1374472939000" expanded="true" signature="5408:5460" placeholder="{&quot;name&quot;: &quot;length&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="5466:5516" placeholder="{&quot;name&quot;: &quot;format&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="5529:5712" placeholder="{&quot;name&quot;: &quot;AudioFile&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="5620:5707" placeholder="[...]" />
-                <marker date="1374472939000" expanded="true" signature="5626:5702" placeholder="{&quot;name&quot;: &quot;format&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="5716:5906" placeholder="{&quot;name&quot;: &quot;VideoFile&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="5807:5901" placeholder="[...]" />
-                <marker date="1374472939000" expanded="true" signature="5813:5896" placeholder="{&quot;name&quot;: &quot;format&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="5910:6092" placeholder="{&quot;name&quot;: &quot;ImageFile&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="6001:6088" placeholder="[...]" />
-                <marker date="1374472939000" expanded="true" signature="6007:6083" placeholder="{&quot;name&quot;: &quot;format&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="6096:6247" placeholder="{&quot;name&quot;: &quot;CD&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="6168:6243" placeholder="{&quot;format&quot;: &quot;CD&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="6251:6354" placeholder="{&quot;name&quot;: &quot;MP3&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="6324:6350" placeholder="{&quot;format&quot;: &quot;MP3&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="6358:6465" placeholder="{&quot;name&quot;: &quot;WAVFile&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="6435:6461" placeholder="{&quot;format&quot;: &quot;MP3&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="6469:6569" placeholder="{&quot;name&quot;: &quot;MP4a&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="6538:6565" placeholder="{&quot;format&quot;: &quot;MP4a&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="6573:6652" placeholder="{&quot;name&quot;: &quot;RecordLabel&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="6656:6898" placeholder="{&quot;name&quot;: &quot;MediaFile&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="6728:6894" placeholder="[...]" />
-                <marker date="1374472939000" expanded="true" signature="6734:6809" placeholder="{&quot;name&quot;: &quot;mimeType&quot;...}" />
-                <marker date="1374472939000" expanded="true" signature="6815:6889" placeholder="{&quot;name&quot;: &quot;fileUrl&quot;...}" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -303,8 +205,11 @@
       <file leaf-file-name="people.ctxt.json" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/contexts/default/people.ctxt.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="172" column="64" selection-start="3838" selection-end="3838" vertical-scroll-proportion="-107.5">
-              <folding />
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
+              <folding>
+                <element signature="e#23#2978#0" expanded="false" />
+                <element signature="e#3057#3135#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -312,16 +217,16 @@
       <file leaf-file-name="model.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/node_modules/mongoAdapter/model.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="165" column="11" selection-start="4114" selection-end="4114" vertical-scroll-proportion="0.0">
+            <state line="165" column="52" selection-start="4184" selection-end="4184" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="built-in.ctxt.json" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="built-in.ctxt.json" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/contexts/default/built-in.ctxt.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="0" selection-start="302" selection-end="302" vertical-scroll-proportion="0.6880734">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
               <folding />
             </state>
           </provider>
@@ -367,12 +272,12 @@
         <option value="$PROJECT_DIR$/loader/loaderAsync.js" />
         <option value="$PROJECT_DIR$/loader/dataLoader.js" />
         <option value="$PROJECT_DIR$/contexts/default/built-in.ctxt.json" />
+        <option value="$PROJECT_DIR$/node_modules/mongoAdapter/index.js" />
         <option value="$PROJECT_DIR$/model/index.js" />
         <option value="$PROJECT_DIR$/contexts/default/multimedia.ctxt.json" />
-        <option value="$PROJECT_DIR$/node_modules/mongoAdapter/index.js" />
+        <option value="$PROJECT_DIR$/contexts/default/people.ctxt.json" />
         <option value="$PROJECT_DIR$/node_modules/mongoAdapter/model.js" />
         <option value="$PROJECT_DIR$/loader/contextLoader.js" />
-        <option value="$PROJECT_DIR$/contexts/default/people.ctxt.json" />
       </list>
     </option>
   </component>
@@ -527,6 +432,20 @@
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="graph-O-matic-data">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="contexts/default">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -534,14 +453,14 @@
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="recentsLimit" value="5" />
     <property name="options.lastSelected" value="preferences.fileTypes" />
-    <property name="restartRequiresConfirmation" value="true" />
+    <property name="recentsLimit" value="5" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/loader/index.js" />
+    <property name="restartRequiresConfirmation" value="true" />
     <property name="FullScreen" value="false" />
     <property name="last.edited.regexp" value="even_larger_filename.json.ctxt" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="PublishConfig" serverName="SwordData-node.js" serverId="e4920063-8608-471e-931d-b5dfcf179ced">
     <servers>
@@ -593,10 +512,6 @@
       <setting name="preferredDebugBrowser" value="CHROME" />
       <method />
     </configuration>
-    <configuration default="true" type="NodeJSRemoteDebug" factoryName="Node.js Remote Debug">
-      <node-js-remote-debug />
-      <method />
-    </configuration>
     <configuration default="true" type="NodeunitConfigurationType" factoryName="Nodeunit">
       <setting name="nodePath" value="/usr/local/bin/node" />
       <envs />
@@ -605,6 +520,10 @@
       <setting name="workingDirectory" value="$PROJECT_DIR$" />
       <setting name="testType" value="DIRECTORY" />
       <setting name="directory" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSRemoteDebug" factoryName="Node.js Remote Debug">
+      <node-js-remote-debug />
       <method />
     </configuration>
     <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" working-dir="$PROJECT_DIR$">
@@ -745,7 +664,11 @@
       <created>1374022208077</created>
       <updated>1374022208077</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="loader almost there .&#10;">
+      <created>1374768835021</created>
+      <updated>1374768835021</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -755,13 +678,13 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18729642" sideWeight="0.21625766" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20114006" sideWeight="0.4493865" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18729642" sideWeight="0.4493865" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.43952802" sideWeight="0.62340766" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20114006" sideWeight="0.5644172" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18892509" sideWeight="0.5644172" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.43558282" sideWeight="0.62340766" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.22748092" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31957185" sideWeight="0.37659237" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Mongo Runner" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20398773" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5501475" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="13" y="118" width="1254" height="535" />
+      <window_info id="Mongo Runner" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.55368096" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.54447854" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="13" y="118" width="1254" height="535" />
       <window_info id="LuaJ" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32874617" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -816,7 +739,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="loader works with all area files" />
+    <option name="LAST_COMMIT_MESSAGE" value="loader almost there .&#10;" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -836,6 +759,7 @@
     <MESSAGE value="Two NodeUnit tests working" />
     <MESSAGE value="loader works with builtin types" />
     <MESSAGE value="loader works with all area files" />
+    <MESSAGE value="loader almost there .&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -867,18 +791,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/node_modules/mongoAdapter/index.js</url>
-          <line>206</line>
+          <line>205</line>
           <option name="timeStamp" value="226" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/loader/contextLoader.js</url>
-          <line>342</line>
-          <option name="timeStamp" value="255" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file:///usr/local/lib/node_modules/async/lib/async.js</url>
-          <line>132</line>
-          <option name="timeStamp" value="256" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/node_modules/mongoose/node_modules/mongodb/lib/mongodb/connection/server.js</url>
@@ -896,41 +810,6 @@
           <option name="timeStamp" value="263" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/loader/contextLoader.js</url>
-          <line>227</line>
-          <option name="timeStamp" value="281" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/loader/contextLoader.js</url>
-          <line>276</line>
-          <option name="timeStamp" value="282" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/loader/contextLoader.js</url>
-          <line>317</line>
-          <option name="timeStamp" value="287" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/loader/contextLoader.js</url>
-          <line>204</line>
-          <option name="timeStamp" value="296" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/loader/contextLoader.js</url>
-          <line>127</line>
-          <option name="timeStamp" value="297" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/loader/contextLoader.js</url>
-          <line>327</line>
-          <option name="timeStamp" value="299" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/loader/contextLoader.js</url>
-          <line>338</line>
-          <option name="timeStamp" value="307" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/node_modules/mongoAdapter/index.js</url>
           <line>67</line>
           <option name="timeStamp" value="310" />
@@ -946,65 +825,45 @@
           <option name="timeStamp" value="315" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/loader/contextLoader.js</url>
-          <line>139</line>
-          <option name="timeStamp" value="317" />
+          <url>file://$PROJECT_DIR$/node_modules/mongoAdapter/index.js</url>
+          <line>184</line>
+          <option name="timeStamp" value="337" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/loader/contextLoader.js</url>
-          <line>97</line>
-          <option name="timeStamp" value="319" />
+          <line>325</line>
+          <option name="timeStamp" value="340" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/node_modules/mongoAdapter/index.js</url>
+          <line>190</line>
+          <option name="timeStamp" value="341" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/loader/contextLoader.js</url>
-          <line>142</line>
-          <option name="timeStamp" value="321" />
+          <line>99</line>
+          <option name="timeStamp" value="346" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/loader/contextLoader.js</url>
-          <line>118</line>
-          <option name="timeStamp" value="323" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/loader/contextLoader.js</url>
-          <line>330</line>
-          <option name="timeStamp" value="326" />
+          <line>125</line>
+          <option name="timeStamp" value="355" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/node_modules/mongoAdapter/index.js</url>
           <line>18</line>
-          <option name="timeStamp" value="327" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/loader/contextLoader.js</url>
-          <line>86</line>
-          <option name="timeStamp" value="329" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/node_modules/mongoAdapter/index.js</url>
-          <line>192</line>
-          <option name="timeStamp" value="330" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/loader/contextLoader.js</url>
-          <line>131</line>
-          <option name="timeStamp" value="333" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/loader/contextLoader.js</url>
-          <line>85</line>
-          <option name="timeStamp" value="334" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/loader/contextLoader.js</url>
-          <line>79</line>
-          <option name="timeStamp" value="335" />
+          <option name="timeStamp" value="357" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="336" />
+      <default-breakpoints>
+        <breakpoint log-message="true" type="javascript-exception">
+          <properties />
+        </breakpoint>
+      </default-breakpoints>
+      <option name="time" value="358" />
     </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
@@ -1020,11 +879,6 @@
     </PATH>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///usr/local/lib/node_modules/mongoose/node_modules/mongodb/lib/mongodb/connection/connection.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="293" column="0" selection-start="11670" selection-end="11670" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Library/Caches/WebStorm6/extLibs/nodejs-v0.8.6-src/core-modules-sources/lib/fs.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="523" column="0" selection-start="14057" selection-end="14057" vertical-scroll-proportion="0.0" />
@@ -1191,125 +1045,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="130" column="12" selection-start="3744" selection-end="3744" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/contexts/default/multimedia.ctxt.jsonx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="301" column="12" selection-start="5413" selection-end="5413" vertical-scroll-proportion="0.0">
-          <folding>
-            <marker date="1374472939000" expanded="true" signature="0:6904" placeholder="{...}" />
-            <marker date="1374472939000" expanded="true" signature="24:1142" placeholder="[...]" />
-            <marker date="1374472939000" expanded="true" signature="28:262" placeholder="{&quot;name&quot;: &quot;performed&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="143:258" placeholder="{&quot;ToExpression&quot;: &quot;item.isInTypes(['Track'])&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="266:500" placeholder="{&quot;name&quot;: &quot;performedBy&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="381:496" placeholder="{&quot;FromExpression&quot;: &quot;item.isInTypes(['Track'])&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="504:667" placeholder="{&quot;name&quot;: &quot;onLabel&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="546:663" placeholder="{&quot;FromExpression&quot;: &quot;item.isInTypes(['AudioRecording'])&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="671:903" placeholder="{&quot;name&quot;: &quot;audioClipOf&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="786:899" placeholder="{&quot;FromExpression&quot;: &quot;item.isInTypes(['Recording'])&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="907:1139" placeholder="{&quot;name&quot;: &quot;videoClipOf&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="1022:1135" placeholder="{&quot;FromExpression&quot;: &quot;item.isInTypes(['Recording'])&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="1171:1176" placeholder="[...]" />
-            <marker date="1374472939000" expanded="true" signature="1197:1320" placeholder="[...]" />
-            <marker date="1374472939000" expanded="true" signature="1201:1225" placeholder="{&quot;name&quot;: &quot;Video&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="1229:1253" placeholder="{&quot;name&quot;: &quot;Audio&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="1257:1286" placeholder="{&quot;name&quot;: &quot;Multimedia&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="1290:1317" placeholder="{&quot;name&quot;: &quot;Business&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="1336:6902" placeholder="[...]" />
-            <marker date="1374472939000" expanded="true" signature="1337:1388" placeholder="{&quot;name&quot;: &quot;Business&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="1392:2045" placeholder="{&quot;name&quot;: &quot;Track&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="1455:2041" placeholder="[...]" />
-            <marker date="1374472939000" expanded="true" signature="1461:1533" placeholder="{&quot;name&quot;: &quot;title&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="1539:1632" placeholder="{&quot;name&quot;: &quot;artist&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="1638:1709" placeholder="{&quot;name&quot;: &quot;producer&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="1715:1817" placeholder="{&quot;name&quot;: &quot;audioClip&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="1823:1925" placeholder="{&quot;name&quot;: &quot;audioFile&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="1931:2036" placeholder="{&quot;name&quot;: &quot;credits&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="2049:2428" placeholder="{&quot;name&quot;: &quot;Artist&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="2113:2424" placeholder="[...]" />
-            <marker date="1374472939000" expanded="true" signature="2119:2190" placeholder="{&quot;name&quot;: &quot;name&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="2196:2293" placeholder="{&quot;name&quot;: &quot;photos&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="2299:2419" placeholder="{&quot;name&quot;: &quot;groupMembers&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="2432:2571" placeholder="{&quot;name&quot;: &quot;GroupMember&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="2500:2567" placeholder="[...]" />
-            <marker date="1374472939000" expanded="true" signature="2506:2562" placeholder="{&quot;name&quot;: &quot;contribution&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="2575:2831" placeholder="{&quot;name&quot;: &quot;Credits&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="2616:2827" placeholder="[...]" />
-            <marker date="1374472939000" expanded="true" signature="2622:2822" placeholder="{&quot;name&quot;: &quot;contributors&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="2685:2816" placeholder="{...}" />
-            <marker date="1374472939000" expanded="true" signature="2700:2731" placeholder="{&quot;type&quot;: &quot;text&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="2748:2809" placeholder="{...}" />
-            <marker date="1374472939000" expanded="true" signature="2835:2968" placeholder="{&quot;name&quot;: &quot;TrackCredits&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="2881:2964" placeholder="[...]" />
-            <marker date="1374472939000" expanded="true" signature="2887:2959" placeholder="{&quot;name&quot;: &quot;trackId&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="2972:3109" placeholder="{&quot;name&quot;: &quot;RecordingCredits&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="3022:3105" placeholder="[...]" />
-            <marker date="1374472939000" expanded="true" signature="3028:3100" placeholder="{&quot;name&quot;: &quot;trackId&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="3113:3433" placeholder="{&quot;name&quot;: &quot;Recording&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="3156:3429" placeholder="[...]" />
-            <marker date="1374472939000" expanded="true" signature="3162:3232" placeholder="{&quot;name&quot;: &quot;title&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="3238:3310" placeholder="{&quot;name&quot;: &quot;media&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="3316:3368" placeholder="{&quot;name&quot;: &quot;length&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="3374:3424" placeholder="{&quot;name&quot;: &quot;format&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="3437:4052" placeholder="{&quot;name&quot;: &quot;VideoRecording&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="3535:4048" placeholder="[...]" />
-            <marker date="1374472939000" expanded="true" signature="3541:3681" placeholder="{&quot;name&quot;: &quot;producer&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="3687:3823" placeholder="{&quot;name&quot;: &quot;credits&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="3829:3951" placeholder="{&quot;name&quot;: &quot;images&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="3957:4043" placeholder="{&quot;name&quot;: &quot;files&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="4056:4617" placeholder="{&quot;name&quot;: &quot;AudioRecording&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="4154:4613" placeholder="[...]" />
-            <marker date="1374472939000" expanded="true" signature="4160:4209" placeholder="{&quot;name&quot;: &quot;title&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="4215:4317" placeholder="{&quot;name&quot;: &quot;label&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="4323:4433" placeholder="{&quot;name&quot;: &quot;artist&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="4439:4519" placeholder="{&quot;name&quot;: &quot;executiveProducer&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="4525:4608" placeholder="{&quot;name&quot;: &quot;tracks&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="4621:4715" placeholder="{&quot;name&quot;: &quot;AnalogAudioRecording&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="4719:5044" placeholder="{&quot;name&quot;: &quot;VinylRecord&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="4825:4941" placeholder="[...]" />
-            <marker date="1374472939000" expanded="true" signature="4831:4880" placeholder="{&quot;name&quot;: &quot;rpm&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="4886:4936" placeholder="{&quot;name&quot;: &quot;size&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="4958:5040" placeholder="[...]" />
-            <marker date="1374472939000" expanded="true" signature="4964:5035" placeholder="{&quot;name&quot;: &quot;media&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="5048:5288" placeholder="{&quot;name&quot;: &quot;DigitalAudioRecording&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="5158:5284" placeholder="[...]" />
-            <marker date="1374472939000" expanded="true" signature="5164:5217" placeholder="{&quot;name&quot;: &quot;bitRate&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="5223:5279" placeholder="{&quot;name&quot;: &quot;bitRateUnits&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="5292:5525" placeholder="{&quot;name&quot;: &quot;DigitalVideoRecording&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="5402:5521" placeholder="[...]" />
-            <marker date="1374472939000" expanded="true" signature="5408:5460" placeholder="{&quot;name&quot;: &quot;length&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="5466:5516" placeholder="{&quot;name&quot;: &quot;format&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="5529:5712" placeholder="{&quot;name&quot;: &quot;AudioFile&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="5620:5707" placeholder="[...]" />
-            <marker date="1374472939000" expanded="true" signature="5626:5702" placeholder="{&quot;name&quot;: &quot;format&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="5716:5906" placeholder="{&quot;name&quot;: &quot;VideoFile&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="5807:5901" placeholder="[...]" />
-            <marker date="1374472939000" expanded="true" signature="5813:5896" placeholder="{&quot;name&quot;: &quot;format&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="5910:6092" placeholder="{&quot;name&quot;: &quot;ImageFile&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="6001:6088" placeholder="[...]" />
-            <marker date="1374472939000" expanded="true" signature="6007:6083" placeholder="{&quot;name&quot;: &quot;format&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="6096:6247" placeholder="{&quot;name&quot;: &quot;CD&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="6168:6243" placeholder="{&quot;format&quot;: &quot;CD&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="6251:6354" placeholder="{&quot;name&quot;: &quot;MP3&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="6324:6350" placeholder="{&quot;format&quot;: &quot;MP3&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="6358:6465" placeholder="{&quot;name&quot;: &quot;WAVFile&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="6435:6461" placeholder="{&quot;format&quot;: &quot;MP3&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="6469:6569" placeholder="{&quot;name&quot;: &quot;MP4a&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="6538:6565" placeholder="{&quot;format&quot;: &quot;MP4a&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="6573:6652" placeholder="{&quot;name&quot;: &quot;RecordLabel&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="6656:6898" placeholder="{&quot;name&quot;: &quot;MediaFile&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="6728:6894" placeholder="[...]" />
-            <marker date="1374472939000" expanded="true" signature="6734:6809" placeholder="{&quot;name&quot;: &quot;mimeType&quot;...}" />
-            <marker date="1374472939000" expanded="true" signature="6815:6889" placeholder="{&quot;name&quot;: &quot;fileUrl&quot;...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/loader/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -1350,13 +1085,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/local/lib/node_modules/async/lib/async.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="555" column="0" selection-start="17287" selection-end="17287" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/mongoose/node_modules/hooks/hooks.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="95" column="0" selection-start="3714" selection-end="3714" vertical-scroll-proportion="0.0">
@@ -1364,37 +1092,71 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/mongoAdapter/model.js">
+    <entry file="file://$PROJECT_DIR$/model/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="165" column="11" selection-start="4114" selection-end="4114" vertical-scroll-proportion="0.0">
+        <state line="129" column="0" selection-start="3740" selection-end="3740" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/mongoAdapter/index.js">
+    <entry file="file:///usr/local/lib/node_modules/async/lib/async.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="0" selection-start="378" selection-end="378" vertical-scroll-proportion="0.0">
+        <state line="39" column="15" selection-start="951" selection-end="951" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/loader/contextLoader.js">
+    <entry file="file://$PROJECT_DIR$/contexts/default/multimedia.ctxt.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="88" column="16" selection-start="3005" selection-end="3005" vertical-scroll-proportion="0.0">
+        <state line="2" column="0" selection-start="0" selection-end="26" vertical-scroll-proportion="11.875">
+          <folding>
+            <element signature="e#28#262#0" expanded="false" />
+            <element signature="e#266#500#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contexts/default/built-in.ctxt.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/contexts/default/people.ctxt.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="172" column="64" selection-start="3838" selection-end="3838" vertical-scroll-proportion="-107.5">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#23#2978#0" expanded="false" />
+            <element signature="e#3057#3135#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/mongoose/lib/schema/objectid.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="92" column="0" selection-start="2083" selection-end="2083" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/contexts/default/built-in.ctxt.json">
+    <entry file="file://$PROJECT_DIR$/node_modules/mongoAdapter/model.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="0" selection-start="302" selection-end="302" vertical-scroll-proportion="0.6880734">
+        <state line="165" column="52" selection-start="4184" selection-end="4184" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loader/contextLoader.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="125" column="0" selection-start="4099" selection-end="4099" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/mongoAdapter/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="0" selection-start="378" selection-end="378" vertical-scroll-proportion="0.33333334">
           <folding />
         </state>
       </provider>

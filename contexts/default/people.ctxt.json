@@ -163,6 +163,13 @@
 				{"name": "country", "type": "text"}
 			]
 		},
+		{	"name": "CalendarDate",
+			"properties": [
+				{"name": "era", "type": "text"},
+				{"name": "year", "type": "number"},
+				{"name": "month", "type": "number"},
+				{"name": "day", "type": "number"}]
+		},
 		{
 			"name": "Person",
 			"category": "People",
@@ -170,10 +177,10 @@
 				{"name": "firstName", "type": "text", "required":true},
 				{"name": "lastName", "type": "text"},
 				{"name": "sex", "type": "text"},
-				{"name": "birthDate", "relationshipType": "hasBirthdate", "itemType": "CalendarDate"},
-				{"name": "deathDate", "relationshipType": "diedOn", "itemType": "CalendarDate"},
-				{"name": "family", "relationshipType": "relatedTo", "itemType": "Person"},
-				{"name": "residence", "relationshipType": "resides", "itemTypes": ["StreetAddress", "City", "State", "Country"]}
+				{"name": "birthDate", "itemType": ["CalendarDate"]},
+				{"name": "deathDate", "itemType": ["CalendarDate"]},
+				{"name": "family", "itemType": ["Person"]},
+				{"name": "residence", "itemType": ["StreetAddress"]}
 			]
 		},
 		{
@@ -221,10 +228,9 @@
 			"category": "Business",
 			"properties": [
 				{"name": "name", "type": "text"},
-				{"name": "mainAddress", "relationshipType": "atAddress", "itemType": "StreetAddress"},
-				{"name": "branches", "relationshipType": "atAddress", "itemType": "BusinessLocation"},
-				{"name": "email", "relationshipType": "emailAddress", "itemType": "EmailAddress" },
-				{"name": "postalAddress", "relationshipType": "mailingAddress", "itemType": "StreetAddress" }
+				{"name": "mainAddress",  "itemType": ["StreetAddress"]},
+				{"name": "email", "itemType": ["EmailAddress"] },
+				{"name": "postalAddress",  "itemType": ["StreetAddress"] }
 			]
 		}
 	]

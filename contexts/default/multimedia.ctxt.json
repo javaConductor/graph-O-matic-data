@@ -56,9 +56,15 @@
 		},
 		{
 			"name": "Multimedia"
+		},
+		{
+			"name": "Business"
 		}
 	],
-	"ItemTypes": [
+	"ItemTypes": [{
+		"name": "Business",
+		"category": "Business"
+		},
 		{
 			"name": "Track",
 			"category": "Audio",
@@ -70,31 +76,22 @@
 				},
 				{
 					"name": "artist",
-					"required": true,
-					"relationshipType": "performed",
-					"itemType": ["Person", "Artist"]
-				}
-			],
-			"optionalData": [
+					"required": true
+				},
 				{
-					"name": "producer",
-					"relationshipType": "produced",
-					"itemType": ["Person", "Artist", "Producer"]
+					"name": "producer"
 				},
 				{
 					"name": "audioClip",
-					"relationshipType": "audioClip",
-					"itemType": "Audio"
+					"itemType": ["Audio"]
 				},
 				{
 					"name": "audioFile",
-					"relationshipType": "audioFile",
-					"itemType": "Audio"
+					"itemType": ["Audio"]
 				},
 				{
 					"name": "credits",
-					"relationshipType": "credits",
-					"itemType": "TrackCredits"
+					"itemType": ["TrackCredits"]
 				}
 			]
 		},
@@ -109,13 +106,11 @@
 				},
 				{
 					"name": "photos",
-					"relationshipType": "photoOf",
-					"itemType": "Image"
+					"itemType": ["Image"]
 				},
 				{
 					"name": "groupMembers",
-					"relationshipType": "memberOf",
-					"itemType": ["Person", "GroupMemeber"]
+					"itemType": ["Person"]
 				}
 			]
 		},
@@ -140,7 +135,7 @@
 							"type": "text"
 						},
 						"value": {
-							"itemType": ["Person", "Artist", "Producer"]
+							"itemType": ["Person"]
 						}
 					}
 				}
@@ -168,7 +163,6 @@
 		},
 		{
 			"name": "Recording",
-
 			"properties": [
 				{
 					"name": "title",
@@ -197,25 +191,23 @@
 			"properties": [
 				{
 					"name": "producer",
-					"relationshipType": "producerOf",
 					"itemType": [ "Person", "Business"],
 					"required": false
 				},
 				{
 					"name": "credits",
-					"relationshipType": "creditsOf",
 					"itemType": [ "RecordingCredits"],
 					"required": false
 				},
 				{
 					"name": "images",
-					"relationshipType": "imageOf",
+					"relationshipTypes": ["imageOf"],
 					"itemType": [ "Image"],
 					"required": false
 				},
 				{
 					"name": "files",
-					"itemType": [ "MediaFile"],
+					"itemTypes": [ "MediaFile"],
 					"required": false
 				}
 			]
@@ -231,12 +223,10 @@
 				},
 				{
 					"name": "label",
-					"relationshipType": "onLabel",
 					"itemType": ["RecordLabel"]
 				},
 				{
 					"name": "artist",
-					"relationshipType": "performed",
 					"itemType": ["Person", "Artist"]
 				},
 				{
@@ -245,7 +235,7 @@
 				},
 				{
 					"name": "tracks",
-					"itemType": [ "Track"],
+					"itemTypes": [ "Track"],
 					"required": false
 				}
 			]
@@ -293,6 +283,21 @@
 			]
 		},
 		{
+			"name": "DigitalVideoRecording",
+			"category": "Video",
+			"parent": "VideoRecording",
+			"properties": [
+				{
+					"name": "length",
+					"type": "number"
+				},
+				{
+					"name": "format",
+					"type": "text"
+				}
+			]
+		},
+		{
 			"name": "AudioFile",
 			"category": "Audio",
 			"parent": "MediaFile",
@@ -329,7 +334,7 @@
 		},
 		{
 			"name": "CD",
-			"parent": "DigitalRecording",
+			"parent": "DigitalAudioRecording",
 			"defaults": {
 				"format": "CD",
 				"bitRate": "14400",
@@ -338,14 +343,14 @@
 		},
 		{
 			"name": "MP3",
-			"parent": "DigitalRecording",
+			"parent": "DigitalAudioRecording",
 			"defaults": {
 				"format": "MP3"
 			}
 		},
 		{
 			"name": "WAVFile",
-			"parent": "DigitalRecording",
+			"parent": "DigitalAudioRecording",
 			"defaults": {
 				"format": "MP3"
 			}
