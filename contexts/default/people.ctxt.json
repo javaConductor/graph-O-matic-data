@@ -153,6 +153,7 @@
 		{
 			"name":"StreetAddress",
 			"category": "Locations",
+			"description" : "",
 			"properties": [
 				{"name": "address", "type": "text", "required":true },
 				{"name": "city", "type": "text", "required":true },
@@ -168,11 +169,13 @@
 				{"name": "era", "type": "text"},
 				{"name": "year", "type": "number"},
 				{"name": "month", "type": "number"},
-				{"name": "day", "type": "number"}]
+				{"name": "day", "type": "number"}],
+			"description" : "date on calendar"
 		},
 		{
 			"name": "Person",
 			"category": "People",
+			"description" : "a person",
 			"properties": [
 				{"name": "firstName", "type": "text", "required":true},
 				{"name": "lastName", "type": "text"},
@@ -186,6 +189,7 @@
 		{
 			"name": "Male",
 			"parent": "Person",
+			"description" : "man or boy",
 			"defaults": [
 				{"name": "sex", "value": "male", "fixed": true}
 			]
@@ -193,24 +197,28 @@
 		{
 			"name": "Female",
 			"parent": "Person",
+			"description" : "girls",
 			"defaults": [
 				{"name": "sex", "value": "female", "fixed": true}
 			]
 		},
 		{
 			"name": "Notes",
+			"description" : "notes",
 			"properties":[
 				{"name": "date", "type": "date", "required":true},
 				{"name": "notes", "type": "text", "required":true}
 			]
 		},
 		{   "name" : "EmailAddress",
+			"description" : "email addr",
 			"properties" : [
-				{"name": "email", "type": "emailAddress", "required":true}
+				{"name": "email", "type": "email", "required":true}
 			]
 		},
 		{
 			"parent":"Person",
+			"description" : "man",
 			"name": "Man",
 			"defaults": [
 				{"name": "sex", "value": "male"}
@@ -218,6 +226,7 @@
 		},
 		{
 			"parent":"Female",
+			"description" : "",
 			"name": "Woman",
 			"defaults": [
 				{"name": "sex", "value": "female"}
@@ -225,6 +234,7 @@
 		},
 		{
 			"name": "Business",
+			"description" : "",
 			"category": "Business",
 			"properties": [
 				{"name": "name", "type": "text"},

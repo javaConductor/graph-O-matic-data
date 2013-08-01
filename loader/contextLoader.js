@@ -35,22 +35,9 @@
 				if (!itemToUpdate[fieldName])
 					itemToUpdate[fieldName] = [];
 				itemToUpdate[fieldName].push(nameMap[nameInMap]);
-				return itemToUpdate.save(f);
-//				return fSave(itemToUpdate, f);
-			}
-		}
 
-
-		var createResolutionFunction = function createResolutionFunction(itemToUpdate, fieldName, nameMap, nameInMap, fSave) {
-			return function (f) {
-				console.log("createResolutionFunction(" + fieldName + " >> " + nameInMap + ")");
-				if (!nameMap[nameInMap])
-					return f("Cannot resolve " + fieldName + ": " + nameInMap);
-				if (!itemToUpdate[fieldName])
-					itemToUpdate[fieldName] = [];
-				itemToUpdate[fieldName].push(nameMap[nameInMap]);
-				return itemToUpdate.save(f);
-//				return fSave(itemToUpdate, f);
+//				return itemToUpdate.save(f);
+				return fSave(itemToUpdate, f);
 			}
 		}
 
@@ -59,7 +46,8 @@
 				console.log("createPropertyResolutionFunction(" + JSON.stringify(propertiesArray) + ")");
 				itemToUpdate.properties = itemToUpdate.properties || [];
 				var newProps = [];
-				async.map(propertiesArray, function (properties, outerForEachCallback) {
+				async.map(propertiesArray,
+				  function (properties, outerForEachCallback) {
 
 					async.parallel(
 					  [function (paralellCallback) {
@@ -114,7 +102,8 @@
 					  }
 					);//parallel
 					//outerForEachCallback(null);
-				}, function (err, data) {
+				},
+				  function (err, data) {
 					console.log("forEachPropertyCallback: err=" + JSON.stringify(err));
 
 					if (err) {
@@ -123,10 +112,11 @@
 					//outerForEachCallback(null);
 					itemToUpdate.properties = data;
 
-					model.updateItemType(itemToUpdate, f);
-
-//					itemToUpdate.save(f);
-				});//outer async.forEach
+					model.updateItemType(itemToUpdate, function(err, itmType){
+						itemToUpdate.save(f);
+					});
+				}
+				);
 			}; // returned function
 		};
 

@@ -1,0 +1,55 @@
+{
+	"RelationshipTypes": [	],
+	"RelationshipCategories": [
+	],
+	"ItemCategories": [
+		{ "name": "ThingCat" },
+		{ "name": "ThangCat"},
+		{ "name": "Other"}
+	],
+	"ItemTypes": [
+		{
+			"name": "Thing2",
+			"description" : "de thing",
+			"category": "ThingCat",
+			"properties": [
+				{
+					"name": "accountNumber",
+					"type": "text",
+					"required": true
+				}
+			],
+			"defaults": [
+				{"name": "accountNumber", "value": "ACCT:abcdef" }
+			]
+		},
+		{
+			"name": "Thang",
+			"parent": "Thing2",
+			"description" : "de thang",
+			"properties": [
+				{
+					"name": "innerThing",
+					"itemType": ["test.test.Thing"],
+					"required": true
+				}
+			]
+		},
+		{
+			"name": "DigitalAudioRecording",
+			"description" : "dar",
+			"parent": "Thang",
+			"properties": [
+				{
+					"name": "bitRate",
+					"type": "number"
+				},
+				{
+					"name": "bitRateUnits",
+					"type": "text"
+				}
+			]
+		}
+
+	]
+}
