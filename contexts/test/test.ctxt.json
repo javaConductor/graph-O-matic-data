@@ -19,18 +19,6 @@
 			]
 		},
 		{
-			"name": "Thang",
-			"parent": "Thing",
-			"description" : "de thang",
-			"properties": [
-				{
-					"name": "OtherThing",
-					"itemType": ["test.test.Thing"],
-					"required": true
-				}
-			]
-		},
-		{
 			"name": "DigitalAudioRecording",
 			"description" : "dar",
 			"parent": "Thang",
@@ -42,6 +30,18 @@
 				{
 					"name": "bitRateUnits",
 					"type": "text"
+				}
+			]
+		},
+		{
+			"name": "Thang",
+			"parent": "Thing",
+			"description" : "de thang",
+			"properties": [
+				{
+					"name": "OtherThing",
+					"itemType": ["test.test.Thing"],
+					"required": true
 				}
 			]
 		}

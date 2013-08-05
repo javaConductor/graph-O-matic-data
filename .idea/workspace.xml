@@ -2,33 +2,38 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="23b8520e-8397-4718-a457-abae1f30f47b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/contexts/test/test.ctxt.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/contexts/test/testCategory.ctxt.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/logger/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/log4js.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/mongoAdapter/logger.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/contexts/test/people.ctxt.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/contexts/default/multimedia.ctxt.json" afterPath="$PROJECT_DIR$/contexts/multimedia/multimedia.ctxt.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/contexts/default/people.ctxt.json" afterPath="$PROJECT_DIR$/contexts/default/common.ctxt.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/loader/contextLoader.js" afterPath="$PROJECT_DIR$/loader/contextLoader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/loader/index.js" afterPath="$PROJECT_DIR$/loader/index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/mongoAdapter/index.js" afterPath="$PROJECT_DIR$/node_modules/mongoAdapter/index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/mongoAdapter/model.js" afterPath="$PROJECT_DIR$/node_modules/mongoAdapter/model.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contexts/default/multimedia.ctxt.json" afterPath="$PROJECT_DIR$/contexts/default/multimedia.ctxt.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contexts/default/people.ctxt.json" afterPath="$PROJECT_DIR$/contexts/default/people.ctxt.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contexts/test/test.ctxt.json" afterPath="$PROJECT_DIR$/contexts/test/test.ctxt.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contexts/test/testCategory.ctxt.json" afterPath="$PROJECT_DIR$/contexts/test/testCategory.ctxt.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="graph-O-matic-data.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1375363637022" ignored="false" />
+    <file path="/Dummy.txt" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1375651248518" ignored="false" />
     <file path="/server.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1371706616831" ignored="false" />
-    <file path="/index.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1374797418456" ignored="false" />
+    <file path="/index.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1375649449802" ignored="false" />
     <file path="/itemTypes.txt" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1371708609211" ignored="false" />
     <file path="$PROJECT_DIR$/../graph-O-matic/docs/itemTypes.txt" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1371708610586" ignored="false" />
     <file path="/models.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1372901828605" ignored="false" />
     <file path="/test.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1373269500940" ignored="false" />
     <file path="/fragment.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1375317602960" ignored="false" />
     <file path="$PROJECT_DIR$/../sword-express/routes/api.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1372477101636" ignored="false" />
-    <file path="/a.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1374199841845" ignored="false" />
+    <file path="/a.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1375600296764" ignored="false" />
     <file path="/private/var/folders/mx/17smv6gx63zbt_v7d130dzk80000gn/T/nodeunit-intellij-starter.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1373267098676" ignored="false" />
     <file path="/viewItem.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1372399256620" ignored="false" />
     <file path="/populateContext.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1372399528350" ignored="false" />
     <file path="$PROJECT_DIR$/../graph-O-matic/public/js/contexts/default/people.json" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1372399879267" ignored="false" />
     <file path="/config.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1373004793472" ignored="false" />
-    <file path="/model.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1375164367053" ignored="false" />
+    <file path="/model.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1375599404641" ignored="false" />
     <file path="/loader.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1373527332589" ignored="false" />
     <file path="/built-in.ctxt.json" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1374273526535" ignored="false" />
     <file path="/a.dummy" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1375139139952" ignored="false" />
@@ -44,10 +49,12 @@
     <file path="/dataLoader.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1374266872568" ignored="false" />
     <file path="/a.lua" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1374199804666" ignored="false" />
     <file path="/a.xml" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1374199839590" ignored="false" />
-    <file path="/contextLoader.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1375192467617" ignored="false" />
+    <file path="/contextLoader.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1375651821304" ignored="false" />
     <file path="/multimedia.ctxt.json" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1375138873384" ignored="false" />
     <file path="/test.ctxt.json" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1375223887143" ignored="false" />
     <file path="/testCategory.ctxt.json" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1375363968855" ignored="false" />
+    <file path="/common.ctxt.json" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1375597700110" ignored="false" />
+    <file path="/logger.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1375601778953" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,106 +77,65 @@
       <file leaf-file-name="index.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/node_modules/mongoAdapter/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="0" selection-start="654" selection-end="654" vertical-scroll-proportion="0.0">
+            <state line="190" column="0" selection-start="5858" selection-end="5858" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="promise.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node_modules/mongoose/node_modules/mpromise/lib/promise.js">
+      <file leaf-file-name="logger.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/node_modules/mongoAdapter/logger.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="156" column="0" selection-start="3704" selection-end="3704" vertical-scroll-proportion="0.0">
+            <state line="8" column="13" selection-start="125" selection-end="125" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="query.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node_modules/mongoose/lib/query.js">
+      <file leaf-file-name="contextLoader.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/loader/contextLoader.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="171" column="0" selection-start="4473" selection-end="4473" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="document.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node_modules/mongoose/lib/document.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="1173" column="0" selection-start="28293" selection-end="28293" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="418" column="60" selection-start="13963" selection-end="13963" vertical-scroll-proportion="0.63917524">
+              <folding>
+                <element signature="e#4235#4701#0" expanded="false" />
+                <element signature="e#4724#5003#0" expanded="false" />
+                <element signature="e#5154#5663#0" expanded="false" />
+                <element signature="e#5363#5652#0" expanded="false" />
+                <element signature="e#5712#5952#0" expanded="false" />
+                <element signature="e#6352#7470#0" expanded="false" />
+                <element signature="e#7493#7939#0" expanded="false" />
+                <element signature="e#8082#8338#0" expanded="false" />
+                <element signature="e#8344#8597#0" expanded="false" />
+                <element signature="e#8972#10440#0" expanded="false" />
+                <element signature="e#10481#10711#0" expanded="false" />
+                <element signature="e#12246#12369#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="index.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api/index.js">
+        <entry file="file://$PROJECT_DIR$/logger/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="15" selection-start="677" selection-end="677" vertical-scroll-proportion="0.0">
+            <state line="9" column="0" selection-start="172" selection-end="172" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="model.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node_modules/mongoose/lib/model.js">
+      <file leaf-file-name="log4js.json" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/log4js.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1153" column="0" selection-start="30422" selection-end="30422" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="utils.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node_modules/mongoose/lib/utils.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="561" column="0" selection-start="12084" selection-end="12084" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mongo_reply.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node_modules/mongoose/node_modules/mongodb/lib/mongodb/responses/mongo_reply.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="132" column="0" selection-start="6057" selection-end="6057" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="contextLoader.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/loader/contextLoader.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="114" column="0" selection-start="3583" selection-end="3583" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="async.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file:///usr/local/lib/node_modules/async/lib/async.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="513" column="0" selection-start="15833" selection-end="15833" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="objectid.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node_modules/mongoose/lib/schema/objectid.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="92" column="0" selection-start="2083" selection-end="2083" vertical-scroll-proportion="0.0">
+            <state line="14" column="36" selection-start="287" selection-end="287" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="multimedia.ctxt.json" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/contexts/default/multimedia.ctxt.json">
+        <entry file="file://$PROJECT_DIR$/contexts/multimedia/multimedia.ctxt.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="296" column="10" selection-start="5089" selection-end="5356" vertical-scroll-proportion="0.0">
+            <state line="299" column="23" selection-start="4919" selection-end="4919" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -178,7 +144,7 @@
       <file leaf-file-name="index.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/loader/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+            <state line="10" column="0" selection-start="188" selection-end="188" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -203,12 +169,19 @@
         </entry>
       </file>
       <file leaf-file-name="people.ctxt.json" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/contexts/default/people.ctxt.json">
+        <entry file="file://$PROJECT_DIR$/contexts/test/people.ctxt.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="147" column="0" selection-start="3059" selection-end="3132" vertical-scroll-proportion="-3.7083333">
-              <folding>
-                <element signature="e#23#2978#0" expanded="false" />
-              </folding>
+            <state line="77" column="6" selection-start="1736" selection-end="1736" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="common.ctxt.json" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/contexts/default/common.ctxt.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="15" column="6" selection-start="256" selection-end="256" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -216,27 +189,7 @@
       <file leaf-file-name="model.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/node_modules/mongoAdapter/model.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="117" column="24" selection-start="2920" selection-end="2920" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#3676#4050#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test.ctxt.json" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/contexts/test/test.ctxt.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="23" selection-start="82" selection-end="82" vertical-scroll-proportion="-2.5">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="testCategory.ctxt.json" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/contexts/test/testCategory.ctxt.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="12" selection-start="556" selection-end="556" vertical-scroll-proportion="0.65625">
+            <state line="151" column="0" selection-start="3817" selection-end="3817" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -283,7 +236,6 @@
         <option value="$PROJECT_DIR$/test/populateContext.js" />
         <option value="$PROJECT_DIR$/test/test.js" />
         <option value="$PROJECT_DIR$/loader/loader.js" />
-        <option value="$PROJECT_DIR$/loader/index.js" />
         <option value="/usr/local/lib/node_modules/mongoose/lib/drivers/node-mongodb-native/objectid.js" />
         <option value="$PROJECT_DIR$/node_modules/mongoose/package.json" />
         <option value="$PROJECT_DIR$/contexts/default/mulitmedia.ctxt.json" />
@@ -293,13 +245,23 @@
         <option value="$PROJECT_DIR$/contexts/default/built-in.ctxt.json" />
         <option value="$PROJECT_DIR$/model/index.js" />
         <option value="$PROJECT_DIR$/contexts/default/people.ctxt.json" />
-        <option value="$PROJECT_DIR$/node_modules/mongoAdapter/model.js" />
         <option value="$PROJECT_DIR$/contexts/default/test.ctxt.json" />
-        <option value="$PROJECT_DIR$/contexts/default/multimedia.ctxt.json" />
         <option value="$PROJECT_DIR$/contexts/test/test.ctxt.json" />
-        <option value="$PROJECT_DIR$/loader/contextLoader.js" />
-        <option value="$PROJECT_DIR$/node_modules/mongoAdapter/index.js" />
         <option value="$PROJECT_DIR$/contexts/test/testCategory.ctxt.json" />
+        <option value="$PROJECT_DIR$/contexts/default/multimedia.ctxt.json" />
+        <option value="$PROJECT_DIR$/contexts/default/common.ctxt.json" />
+        <option value="$PROJECT_DIR$/node_modules/mongoAdapter/model.js" />
+        <option value="$PROJECT_DIR$/logger/logger.js" />
+        <option value="$PROJECT_DIR$/logger/log4js.json" />
+        <option value="$PROJECT_DIR$/logger/index.js" />
+        <option value="$PROJECT_DIR$/log4js.json" />
+        <option value="$PROJECT_DIR$/node_modules/mongoAdapter/logger.js" />
+        <option value="$PROJECT_DIR$/node_modules/mongoAdapter/index.js" />
+        <option value="$PROJECT_DIR$/logs/adapter.log.2" />
+        <option value="$PROJECT_DIR$/logs/graph-o-matic.log" />
+        <option value="$PROJECT_DIR$/contexts/multimedia/multimedia.ctxt.json" />
+        <option value="$PROJECT_DIR$/loader/index.js" />
+        <option value="$PROJECT_DIR$/loader/contextLoader.js" />
       </list>
     </option>
   </component>
@@ -390,11 +352,139 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="contexts" />
+              <option name="myItemId" value="node_modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graph-O-matic-data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graph-O-matic-data" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
+              <option name="myItemId" value="node_modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mongoose" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graph-O-matic-data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graph-O-matic-data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="node_modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mongoAdapter" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graph-O-matic-data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graph-O-matic-data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="node_modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="findit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graph-O-matic-data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graph-O-matic-data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="node_modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="findit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="examples" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graph-O-matic-data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graph-O-matic-data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graph-O-matic-data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graph-O-matic-data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="logger" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graph-O-matic-data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graph-O-matic-data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="loader" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graph-O-matic-data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graph-O-matic-data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="contexts" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -412,7 +502,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="default" />
+              <option name="myItemId" value="multimedia" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -425,14 +515,14 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="91" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="95" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="92" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
     <property name="recentsLimit" value="5" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="92" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/loader/index.js" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="108" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="891" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="891" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="891" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="107" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="95" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -444,7 +534,7 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
-    <property name="options.lastSelected" value="preferences.fileTypes" />
+    <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="last.edited.regexp" value="even_larger_filename.json.ctxt" />
     <property name="options.searchVisible" value="true" />
@@ -471,18 +561,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/contexts/test" />
-      <recent name="$PROJECT_DIR$/contexts/default" />
-      <recent name="$PROJECT_DIR$/loader" />
+      <recent name="$PROJECT_DIR$/node_modules/mongoAdapter" />
       <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/test" />
+      <recent name="$PROJECT_DIR$/contexts/default" />
+      <recent name="$PROJECT_DIR$/contexts/test" />
+      <recent name="$PROJECT_DIR$/loader" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/contexts/test" />
+      <recent name="$PROJECT_DIR$/contexts" />
+      <recent name="$PROJECT_DIR$/contexts/default/multimedia" />
+      <recent name="$PROJECT_DIR$/contexts/multimedia" />
       <recent name="$PROJECT_DIR$/.idea" />
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/contexts/default/contexts/test" />
-      <recent name="$PROJECT_DIR$/node_modules" />
     </key>
   </component>
   <component name="RunManager" selected="Node.js.Loader">
@@ -501,6 +591,10 @@
       <setting name="preferredDebugBrowser" value="CHROME" />
       <method />
     </configuration>
+    <configuration default="true" type="NodeJSRemoteDebug" factoryName="Node.js Remote Debug">
+      <node-js-remote-debug />
+      <method />
+    </configuration>
     <configuration default="true" type="NodeunitConfigurationType" factoryName="Nodeunit">
       <setting name="nodePath" value="/usr/local/bin/node" />
       <envs />
@@ -509,10 +603,6 @@
       <setting name="workingDirectory" value="$PROJECT_DIR$" />
       <setting name="testType" value="DIRECTORY" />
       <setting name="directory" value="" />
-      <method />
-    </configuration>
-    <configuration default="true" type="NodeJSRemoteDebug" factoryName="Node.js Remote Debug">
-      <node-js-remote-debug />
       <method />
     </configuration>
     <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" working-dir="$PROJECT_DIR$">
@@ -547,7 +637,7 @@
       <ConfigurationWrapper RunnerId="NodeJS.run" />
       <method />
     </configuration>
-    <configuration default="false" name="Loader" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="/usr/local/bin/node" path-to-js-file="loader/index.js" application-parameters="--path ./contexts/test" working-dir="$PROJECT_DIR$">
+    <configuration default="false" name="Loader" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="/usr/local/bin/node" path-to-js-file="loader/index.js" application-parameters="--path ./contexts/default" working-dir="$PROJECT_DIR$">
       <RunnerSettings RunnerId="NodeJS.debug" />
       <RunnerSettings RunnerId="NodeJS.run" />
       <ConfigurationWrapper RunnerId="NodeJS.debug" />
@@ -661,7 +751,11 @@
       <created>1375084417299</created>
       <updated>1375084417299</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Tests working.&#10;">
+      <created>1375364337333</created>
+      <updated>1375364337333</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -671,13 +765,13 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18729642" sideWeight="0.21625766" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19706841" sideWeight="0.4493865" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18892509" sideWeight="0.4493865" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.43067846" sideWeight="0.62340766" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1953748" sideWeight="0.45092025" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18892509" sideWeight="0.5720859" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42772862" sideWeight="0.62340766" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.22748092" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31957185" sideWeight="0.37659237" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Mongo Runner" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.5506135" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5398773" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="13" y="118" width="1254" height="535" />
+      <window_info id="Mongo Runner" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.54867256" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4417178" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="13" y="118" width="1254" height="535" />
       <window_info id="LuaJ" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32822084" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -732,7 +826,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Mostly working.  Must fit the schema and data together properly.&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tests working.&#10;" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -754,6 +848,7 @@
     <MESSAGE value="loader works with all area files" />
     <MESSAGE value="loader almost there .&#10;" />
     <MESSAGE value="Mostly working.  Must fit the schema and data together properly.&#10;" />
+    <MESSAGE value="Tests working.&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -795,11 +890,6 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/node_modules/mongoAdapter/index.js</url>
-          <line>168</line>
-          <option name="timeStamp" value="263" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/node_modules/mongoAdapter/index.js</url>
           <line>67</line>
           <option name="timeStamp" value="310" />
         </line-breakpoint>
@@ -814,13 +904,8 @@
           <option name="timeStamp" value="315" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/node_modules/mongoAdapter/index.js</url>
-          <line>184</line>
-          <option name="timeStamp" value="337" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/loader/contextLoader.js</url>
-          <line>315</line>
+          <line>350</line>
           <option name="timeStamp" value="340" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -829,44 +914,39 @@
           <option name="timeStamp" value="341" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/loader/contextLoader.js</url>
-          <line>87</line>
-          <option name="timeStamp" value="346" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/node_modules/mongoAdapter/index.js</url>
           <line>18</line>
           <option name="timeStamp" value="357" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/loader/contextLoader.js</url>
-          <line>115</line>
-          <option name="timeStamp" value="358" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/loader/contextLoader.js</url>
-          <line>31</line>
-          <option name="timeStamp" value="361" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/loader/contextLoader.js</url>
-          <line>39</line>
-          <option name="timeStamp" value="362" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/loader/contextLoader.js</url>
-          <line>114</line>
-          <option name="timeStamp" value="363" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
+        <line-breakpoint type="javascript">
           <url>file://$PROJECT_DIR$/node_modules/mongoose/node_modules/mpromise/lib/promise.js</url>
           <line>156</line>
           <option name="timeStamp" value="364" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
+        <line-breakpoint type="javascript">
           <url>file://$PROJECT_DIR$/node_modules/mongoose/node_modules/mpromise/lib/promise.js</url>
           <line>161</line>
           <option name="timeStamp" value="365" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/logger/index.js</url>
+          <line>9</line>
+          <option name="timeStamp" value="369" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/loader/index.js</url>
+          <line>10</line>
+          <option name="timeStamp" value="370" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/loader/index.js</url>
+          <line>16</line>
+          <option name="timeStamp" value="371" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/loader/index.js</url>
+          <line>18</line>
+          <option name="timeStamp" value="374" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -877,7 +957,7 @@
           <properties />
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="366" />
+      <option name="time" value="376" />
     </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
@@ -893,61 +973,23 @@
     </PATH>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///usr/local/lib/node_modules/jsonfile/lib/jsonfile.js">
+    <entry file="file://$PROJECT_DIR$/contexts/default/common.ctxt.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="0" selection-start="158" selection-end="158" vertical-scroll-proportion="0.0">
+        <state line="15" column="6" selection-start="256" selection-end="256" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/local/lib/node_modules/mongoose/lib/statemachine.js">
+    <entry file="file://$PROJECT_DIR$/node_modules/mongoAdapter/model.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="0" selection-start="855" selection-end="855" vertical-scroll-proportion="0.0" />
+        <state line="151" column="0" selection-start="3817" selection-end="3817" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file:///usr/local/lib/node_modules/mongoose/lib/types/embedded.js">
+    <entry file="file://$PROJECT_DIR$/contexts/default/built-in.ctxt.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="0" selection-start="478" selection-end="478" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/node_modules/mongoose/lib/schema/array.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="0" selection-start="1482" selection-end="1482" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/node_modules/mongoose/lib/schema/documentarray.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="0" selection-start="1314" selection-end="1314" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/node_modules/mongoose/node_modules/hooks/hooks.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="161" column="0" selection-start="5386" selection-end="5386" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/node_modules/mongoose/lib/schema.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="181" column="0" selection-start="3735" selection-end="3735" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/node_modules/mongoose/lib/types/objectid.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="3" selection-start="133" selection-end="133" vertical-scroll-proportion="0.63084114" />
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/node_modules/mongoose/lib/schematype.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="248" column="0" selection-start="4681" selection-end="4681" vertical-scroll-proportion="0.30152673" />
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/node_modules/mongoose/lib/promise.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="120" column="0" selection-start="2227" selection-end="2227" vertical-scroll-proportion="0.33096084" />
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/node_modules/mongoose/lib/drivers/node-mongodb-native/objectid.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="0" selection-start="476" selection-end="476" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -996,9 +1038,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/mongoose/node_modules/mongodb/lib/mongodb/responses/mongo_reply.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="132" column="0" selection-start="6057" selection-end="6057" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="132" column="0" selection-start="6057" selection-end="6057" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/mongoose/node_modules/mongodb/lib/mongodb/connection/server.js">
@@ -1028,27 +1068,6 @@
         <state line="410" column="10" selection-start="9612" selection-end="9612" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/loader/dataLoader.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="24" selection-start="1715" selection-end="1715" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="15" selection-start="677" selection-end="677" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/loader/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/async/lib/async.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="469" column="25" selection-start="14189" selection-end="14189" vertical-scroll-proportion="0.41904762" />
@@ -1056,35 +1075,108 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/mongoose/lib/document.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1173" column="0" selection-start="28293" selection-end="28293" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/mongoose/lib/model.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1153" column="0" selection-start="30422" selection-end="30422" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="1173" column="0" selection-start="28293" selection-end="28293" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/mongoose/lib/query.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="171" column="0" selection-start="4473" selection-end="4473" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/mongoose/lib/utils.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="561" column="0" selection-start="12084" selection-end="12084" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="171" column="0" selection-start="4473" selection-end="4473" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/mongoose/node_modules/hooks/hooks.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="95" column="0" selection-start="3714" selection-end="3714" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/node_modules/async/lib/async.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="513" column="0" selection-start="15833" selection-end="15833" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/mongoose/node_modules/mpromise/lib/promise.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="161" column="0" selection-start="3816" selection-end="3816" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/mongoose/lib/schema/objectid.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="92" column="0" selection-start="2083" selection-end="2083" vertical-scroll-proportion="0.02636204" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/mongoose/lib/utils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="561" column="0" selection-start="12084" selection-end="12084" vertical-scroll-proportion="0.025773196" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/mongoose/lib/model.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1153" column="0" selection-start="30422" selection-end="30422" vertical-scroll-proportion="0.025773196" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="15" selection-start="677" selection-end="677" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contexts/test/test.ctxt.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="28" selection-start="124" selection-end="124" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contexts/test/testCategory.ctxt.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="0" selection-start="362" selection-end="362" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/mongoAdapter/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="190" column="0" selection-start="5858" selection-end="5858" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/mongoAdapter/logger.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="13" selection-start="125" selection-end="125" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/logger/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="0" selection-start="172" selection-end="172" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/log4js.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="36" selection-start="287" selection-end="287" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contexts/multimedia/multimedia.ctxt.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="299" column="23" selection-start="4919" selection-end="4919" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loader/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="0" selection-start="188" selection-end="188" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loader/dataLoader.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="60" column="24" selection-start="1715" selection-end="1715" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/model/index.js">
@@ -1094,44 +1186,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/mongoose/lib/schema/objectid.js">
+    <entry file="file://$PROJECT_DIR$/contexts/test/people.ctxt.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="92" column="0" selection-start="2083" selection-end="2083" vertical-scroll-proportion="0.0">
+        <state line="77" column="6" selection-start="1736" selection-end="1736" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/contexts/default/multimedia.ctxt.json">
+    <entry file="file://$PROJECT_DIR$/contexts/default/common.ctxt.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="296" column="10" selection-start="5089" selection-end="5356" vertical-scroll-proportion="0.0">
+        <state line="15" column="6" selection-start="256" selection-end="256" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/loader/contextLoader.js">
+    <entry file="file://$PROJECT_DIR$/node_modules/mongoAdapter/model.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="114" column="0" selection-start="3583" selection-end="3583" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/node_modules/async/lib/async.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="513" column="0" selection-start="15833" selection-end="15833" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/mongoose/node_modules/mpromise/lib/promise.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="156" column="0" selection-start="3704" selection-end="3704" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/mongoAdapter/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="0" selection-start="654" selection-end="654" vertical-scroll-proportion="0.0">
+        <state line="151" column="0" selection-start="3817" selection-end="3817" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -1143,35 +1214,54 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/mongoAdapter/model.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="117" column="24" selection-start="2920" selection-end="2920" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#3676#4050#0" expanded="false" />
-          </folding>
-        </state>
+    <entry file="file://$PROJECT_DIR$/node_modules/findit/README.markdown">
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/contexts/test/test.ctxt.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="23" selection-start="82" selection-end="82" vertical-scroll-proportion="-2.5">
+        <state line="51" column="0" selection-start="786" selection-end="786" vertical-scroll-proportion="1.419295">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/contexts/default/people.ctxt.json">
+    <entry file="file://$PROJECT_DIR$/node_modules/findit/examples/sync.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="147" column="0" selection-start="3059" selection-end="3132" vertical-scroll-proportion="-3.7083333">
-          <folding>
-            <element signature="e#23#2978#0" expanded="false" />
-          </folding>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/contexts/test/testCategory.ctxt.json">
+    <entry file="file://$PROJECT_DIR$/node_modules/findit/examples/emitter.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="12" selection-start="556" selection-end="556" vertical-scroll-proportion="0.65625">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/findit/examples/callback.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loader/contextLoader.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="418" column="60" selection-start="13963" selection-end="13963" vertical-scroll-proportion="0.63917524">
+          <folding>
+            <element signature="e#4235#4701#0" expanded="false" />
+            <element signature="e#4724#5003#0" expanded="false" />
+            <element signature="e#5154#5663#0" expanded="false" />
+            <element signature="e#5363#5652#0" expanded="false" />
+            <element signature="e#5712#5952#0" expanded="false" />
+            <element signature="e#6352#7470#0" expanded="false" />
+            <element signature="e#7493#7939#0" expanded="false" />
+            <element signature="e#8082#8338#0" expanded="false" />
+            <element signature="e#8344#8597#0" expanded="false" />
+            <element signature="e#8972#10440#0" expanded="false" />
+            <element signature="e#10481#10711#0" expanded="false" />
+            <element signature="e#12246#12369#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

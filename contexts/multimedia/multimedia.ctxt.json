@@ -1,48 +1,6 @@
 {
 	"RelationshipTypes": [
-		{
-			"name": "performed",
-			"bidirectional": false,
-			"reciprocalRelationship": "performedBy",
-			"constraints": {
-				"ToExpression": "item.isInTypes(['Track'])",
-				"FromExpression": "item.isInTypes(['Artist','default.people.Person'])"
-			}
-		},
-		{
-			"name": "performedBy",
-			"bidirectional": false,
-			"reciprocalRelationship": "performed",
-			"constraints": {
-				"FromExpression": "item.isInTypes(['Track'])",
-				"ToExpression": "item.isInTypes(['Artist','default.people.Person'])"
-			}
-		},
-		{
-			"name": "onLabel",
-			"constraints": {
-				"FromExpression": "item.isInTypes(['AudioRecording'])",
-				"ToExpression": "item.isInTypes(['Business'])"
-			}
-		},
-		{
-			"name": "audioClipOf",
-			"bidirectional": false,
-			"reciprocalRelationship": "performed",
-			"constraints": {
-				"FromExpression": "item.isInTypes(['Recording'])",
-				"ToExpression": "item.isInTypes(['AudioFile'])"
-			}
-		},
-		{
-			"name": "videoClipOf",
-			"bidirectional": false,
-			"reciprocalRelationship": "performed",
-			"constraints": {
-				"FromExpression": "item.isInTypes(['Recording'])",
-				"ToExpression": "item.isInTypes(['VideoFile'])"
-			}
-		}
+
 	],
 	"RelationshipCategories": [
 
@@ -85,11 +43,11 @@
 				},
 				{
 					"name": "audioClip",
-					"itemType": ["Audio"]
+					"itemType": ["AudioFile"]
 				},
 				{
 					"name": "audioFile",
-					"itemType": ["Audio"]
+					"itemType": ["AudioFile"]
 				},
 				{
 					"name": "credits",
@@ -211,7 +169,7 @@
 				{
 					"name": "images",
 					"relationshipTypes": ["imageOf"],
-					"itemType": [ "Image"],
+					"itemType": [ "ImageFile"],
 					"required": false
 				},
 				{
@@ -408,24 +366,6 @@
 			"parent": "Business",
 			"description" : "l",
 			"industry": "Music"
-		},
-		{
-			"name": "MediaFile",
-			"category": "Multimedia",
-			"description" : "some kind of media file",
-			"properties": [
-				{
-					"name": "mimeType",
-					"type": "text",
-					"required": true
-				},
-				{
-					"name": "fileUrl",
-					"type": "text",
-					"required": true
-				}
-			]
 		}
-
 	]
 }
