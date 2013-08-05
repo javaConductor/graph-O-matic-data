@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="23b8520e-8397-4718-a457-abae1f30f47b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="23b8520e-8397-4718-a457-abae1f30f47b" name="Default" comment="" />
     <ignored path="graph-O-matic-data.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1375678520334" ignored="false" />
