@@ -1,48 +1,6 @@
 {
 	"RelationshipTypes": [
-		{
-			"name": "performed",
-			"bidirectional": false,
-			"reciprocalRelationship": "performedBy",
-			"constraints": {
-				"ToExpression": "item.isInTypes(['Track'])",
-				"FromExpression": "item.isInTypes(['Artist','Person'])"
-			}
-		},
-		{
-			"name": "performedBy",
-			"bidirectional": false,
-			"reciprocalRelationship": "performed",
-			"constraints": {
-				"FromExpression": "item.isInTypes(['Track'])",
-				"ToExpression": "item.isInTypes(['Artist','Person'])"
-			}
-		},
-		{
-			"name": "onLabel",
-			"constraints": {
-				"FromExpression": "item.isInTypes(['AudioRecording'])",
-				"ToExpression": "item.isInTypes(['Business'])"
-			}
-		},
-		{
-			"name": "audioClipOf",
-			"bidirectional": false,
-			"reciprocalRelationship": "performed",
-			"constraints": {
-				"FromExpression": "item.isInTypes(['Recording'])",
-				"ToExpression": "item.isInTypes(['AudioFile'])"
-			}
-		},
-		{
-			"name": "videoClipOf",
-			"bidirectional": false,
-			"reciprocalRelationship": "performed",
-			"constraints": {
-				"FromExpression": "item.isInTypes(['Recording'])",
-				"ToExpression": "item.isInTypes(['VideoFile'])"
-			}
-		}
+
 	],
 	"RelationshipCategories": [
 
@@ -63,11 +21,13 @@
 	],
 	"ItemTypes": [{
 		"name": "Business",
-		"category": "Business"
+		"category": "Business",
+		"description" : "business"
 		},
 		{
 			"name": "Track",
 			"category": "Audio",
+			"description" : "trakk",
 			"properties": [
 				{
 					"name": "title",
@@ -83,11 +43,11 @@
 				},
 				{
 					"name": "audioClip",
-					"itemType": ["Audio"]
+					"itemType": ["AudioFile"]
 				},
 				{
 					"name": "audioFile",
-					"itemType": ["Audio"]
+					"itemType": ["AudioFile"]
 				},
 				{
 					"name": "credits",
@@ -98,6 +58,7 @@
 		{
 			"name": "Artist",
 			"category": "Audio",
+			"description" : "",
 			"properties": [
 				{
 					"name": "name",
@@ -106,17 +67,18 @@
 				},
 				{
 					"name": "photos",
-					"itemType": ["Image"]
+					"itemType": ["ImageFile"]
 				},
 				{
 					"name": "groupMembers",
-					"itemType": ["Person"]
+					"itemType": ["default.people.Person"]
 				}
 			]
 		},
 		{
 			"name": "GroupMember",
-			"parent": "Person",
+			"parent": "default.people.Person",
+			"description" : "Member of group.",
 			"properties": [
 				{
 					"name": "contribution",
@@ -126,6 +88,7 @@
 		},
 		{
 			"name": "Credits",
+			"description" : "Credits.",
 			"properties": [
 				{
 					"name": "contributors",
@@ -135,7 +98,7 @@
 							"type": "text"
 						},
 						"value": {
-							"itemType": ["Person"]
+							"itemType": ["default.people.Person"]
 						}
 					}
 				}
@@ -143,30 +106,33 @@
 		},
 		{
 			"name": "TrackCredits",
+			"description" : "Contributors to the track credits",
 			"properties": [
 				{
 					"name": "trackId",
-					"type": "id",
+					"type": "text",
 					"required": true
 				}
 			]
 		},
 		{
 			"name": "RecordingCredits",
+			"description" : "RC",
 			"properties": [
 				{
 					"name": "trackId",
-					"type": "id",
+					"type": "text",
 					"required": true
 				}
 			]
 		},
 		{
 			"name": "Recording",
+			"description" : "REC",
 			"properties": [
 				{
 					"name": "title",
-					"type": "id",
+					"type": "text",
 					"required": true
 				},
 				{
@@ -187,11 +153,12 @@
 		{
 			"name": "VideoRecording",
 			"category": "Video",
+			"description" : "VR",
 			"parent": "Recording",
 			"properties": [
 				{
 					"name": "producer",
-					"itemType": [ "Person", "Business"],
+					"itemType": [ "default.people.Person", "Business"],
 					"required": false
 				},
 				{
@@ -202,7 +169,7 @@
 				{
 					"name": "images",
 					"relationshipTypes": ["imageOf"],
-					"itemType": [ "Image"],
+					"itemType": [ "ImageFile"],
 					"required": false
 				},
 				{
@@ -215,6 +182,7 @@
 		{
 			"name": "AudioRecording",
 			"category": "Audio",
+			"description" : "AR",
 			"parent": "Recording",
 			"properties": [
 				{
@@ -227,11 +195,11 @@
 				},
 				{
 					"name": "artist",
-					"itemType": ["Person", "Artist"]
+					"itemType": ["default.people.Person", "Artist"]
 				},
 				{
 					"name": "executiveProducer",
-					"itemType": ["Person", "Artist"]
+					"itemType": ["default.people.Person", "Artist"]
 				},
 				{
 					"name": "tracks",
@@ -243,11 +211,13 @@
 		{
 			"name": "AnalogAudioRecording",
 			"category": "Audio",
+			"description" : "analog (non-digital) audio recording",
 			"parent": "AudioRecording"
 		},
 		{
 			"name": "VinylRecord",
 			"category": "Audio",
+			"description" : "vinyl record",
 			"parent": "AnalogAudioRecording",
 			"properties": [
 				{
@@ -270,6 +240,7 @@
 		{
 			"name": "DigitalAudioRecording",
 			"category": "Audio",
+			"description" : "dar",
 			"parent": "AudioRecording",
 			"properties": [
 				{
@@ -285,6 +256,7 @@
 		{
 			"name": "DigitalVideoRecording",
 			"category": "Video",
+			"description" : "dvr",
 			"parent": "VideoRecording",
 			"properties": [
 				{
@@ -300,11 +272,12 @@
 		{
 			"name": "AudioFile",
 			"category": "Audio",
+			"description" : "Audio File",
 			"parent": "MediaFile",
 			"defaults": [
 				{
 					"name": "format",
-					"choices": ["mp3", "wav", "mp4a", "wma"]
+					"value": "mp3"
 				}
 			]
 
@@ -312,11 +285,12 @@
 		{
 			"name": "VideoFile",
 			"category": "Video",
+			"description" : "video file",
 			"parent": "MediaFile",
 			"defaults": [
 				{
 					"name": "format",
-					"choices": ["wmv", "mov", "mp4", "mpeg", "mpg"]
+					"value": "mp4"
 				}
 			]
 
@@ -324,65 +298,74 @@
 		{
 			"name": "ImageFile",
 			"category": "Video",
+			"description" : "image file",
 			"parent": "MediaFile",
 			"defaults": [
 				{
 					"name": "format",
-					"choices": ["gif", "jpeg", "png", "bmp"]
+					"value": ["png"]
 				}
 			]
 		},
 		{
 			"name": "CD",
 			"parent": "DigitalAudioRecording",
-			"defaults": {
-				"format": "CD",
-				"bitRate": "14400",
-				"bitRateUnits": "hz"
-			}
+			"defaults": [
+				{
+					"name": "format",
+					"value": "CD"
+				},
+				{
+					"name": "bitRate",
+					"value": "14000"
+				},
+				{
+					"name": "bitRateUnits",
+					"value": "hz"
+				}],
+			"description" : ""
 		},
 		{
 			"name": "MP3",
 			"parent": "DigitalAudioRecording",
-			"defaults": {
-				"format": "MP3"
-			}
+			"defaults": [
+				{
+				"name": "format",
+				"value": "mp3",
+				"fixed": true
+				}
+			],
+			"description" : "MPEG 3"
 		},
 		{
 			"name": "WAVFile",
 			"parent": "DigitalAudioRecording",
-			"defaults": {
-				"format": "MP3"
-			}
+			"defaults": [
+				{
+					"name": "format",
+					"value": "wav",
+					"fixed": true
+				}
+			],
+			"description" : "wav"
 		},
 		{
 			"name": "MP4a",
 			"parent": "DigitalRecording",
-			"defaults": {
-				"format": "MP4a"
+			"description" : "MPEG 4",
+			"defaults": [
+			{
+				"name": "format",
+				"value": "mp3",
+				"fixed": true
 			}
+			]
 		},
 		{
 			"name": "RecordLabel",
 			"parent": "Business",
+			"description" : "l",
 			"industry": "Music"
-		},
-		{
-			"name": "MediaFile",
-			"category": "Multimedia",
-			"properties": [
-				{
-					"name": "mimeType",
-					"type": "text",
-					"required": true
-				},
-				{
-					"name": "fileUrl",
-					"type": "text",
-					"required": true
-				}
-			]
 		}
-
 	]
 }

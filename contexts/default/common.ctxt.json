@@ -1,0 +1,146 @@
+{
+	"RelationshipTypes":[
+	],
+	"RelationshipCategories":[
+		{
+		"name": "Family"
+		}
+	],
+	"ItemCategories":[
+		{ "name": "People" },
+		{ "name": "Business"},
+		{ "name": "Multimedia"},
+		{ "name": "Audio"},
+		{ "name": "Video"},
+		{ "name": "Locations"}
+	],
+	"ItemTypes":[
+		{
+			"name":"StreetAddress",
+			"category": "Locations",
+			"description" : "",
+			"properties": [
+				{"name": "address", "type": "text", "required":true },
+				{"name": "city", "type": "text", "required":true },
+				{"name": "state", "type": "text", "required":true },
+				{"name": "address2", "type": "text" },
+				{"name": "suite", "type": "text"},
+				{"name": "postalCode", "type": "text"},
+				{"name": "country", "type": "text"}
+			]
+		},
+		{	"name": "CalendarDate",
+			"properties": [
+				{"name": "era", "type": "text"},
+				{"name": "year", "type": "number"},
+				{"name": "month", "type": "number"},
+				{"name": "day", "type": "number"}],
+			"description" : "date on calendar"
+		},
+		{
+			"name": "Person",
+			"category": "People",
+			"description" : "a person",
+			"properties": [
+				{"name": "firstName", "type": "text", "required":true},
+				{"name": "lastName", "type": "text"},
+				{"name": "sex", "type": "text"},
+				{"name": "birthDate", "itemType": ["CalendarDate"]},
+				{"name": "deathDate", "itemType": ["CalendarDate"]},
+				{"name": "family", "itemType": ["Person"]},
+				{"name": "residence", "itemType": ["StreetAddress"]}
+			]
+		},
+
+		{
+			"name": "Notes",
+			"description" : "notes",
+			"properties":[
+				{"name": "date", "type": "date", "required":true},
+				{"name": "notes", "type": "text", "required":true}
+			]
+		},		{
+			"name": "Event",
+			"description" : "A party, wedding, graduation, SuperBowl, or whatever.",
+			"properties":[
+				{"name": "date", "type": "date", "required":true},
+				{"name": "title", "type": "text", "required":true},
+				{"name": "address", "itemType": ["StreetAddress"], "required":false},
+				{"name": "url", "type": "url", "required":false},
+				{"name": "online", "type": "boolean", "required":true}
+			]
+		},
+		{   "name" : "EmailAddress",
+			"description" : "email addr",
+			"properties" : [
+				{"name": "email", "type": "email", "required":true}
+			]
+		},
+		{
+			"name": "Business",
+			"description" : "",
+			"category": "Business",
+			"properties": [
+				{"name": "name", "type": "text"},
+				{"name": "mainAddress",  "itemType": ["StreetAddress"]},
+				{"name": "email", "itemType": ["EmailAddress"] },
+				{"name": "postalAddress",  "itemType": ["StreetAddress"] }
+			]
+		},
+		{
+			"name": "MediaFile",
+			"category": "Multimedia",
+			"description" : "some kind of media file",
+			"properties": [
+				{
+					"name": "mimeType",
+					"type": "text",
+					"required": true
+				},
+				{
+					"name": "fileUrl",
+					"type": "text",
+					"required": true
+				}
+			]
+		},
+		{
+			"name": "AudioFile",
+			"category": "Audio",
+			"description" : "Audio File",
+			"parent": "MediaFile",
+			"defaults": [
+				{
+					"name": "format",
+					"value": "mp3"
+				}
+			]
+
+		},
+		{
+			"name": "VideoFile",
+			"category": "Video",
+			"description" : "video file",
+			"parent": "MediaFile",
+			"defaults": [
+				{
+					"name": "format",
+					"value": "mp4"
+				}
+			]
+
+		},
+		{
+			"name": "ImageFile",
+			"category": "Video",
+			"description" : "image file",
+			"parent": "MediaFile",
+			"defaults": [
+				{
+					"name": "format",
+					"value": ["png"]
+				}
+			]
+		}
+	]
+}

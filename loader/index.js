@@ -4,15 +4,19 @@
  * Date: 7/8/13
  * Time: 8:42 PM
  */
-(function (loader, optimist, fs) {
-	var argv = optimist
-	  .argv;
-	console.log('Argv:'+JSON.stringify(argv));
-	var le = [];
+(function (loader, optimist, fs, logger) {
+	var argv = optimist.argv;
+
+	logger.setLevel('DEBUG');
+	logger.debug('Argv:'+JSON.stringify(argv));
+	var le = [] 	;
+
 	var done = function( ){
+
 		le.forEach(function(loadedElement){
 			console.log('Loaded -> %s -> %s -> %s -> %s', loadedElement.context,loadedElement.area, loadedElement.type, loadedElement.name );
 		});
+		process.exit(0);
 	};
 
 	var detail = function(loadedElement){
@@ -25,8 +29,8 @@
 	}else if ( argv.path ){
 			loader.loadContext(argv.context, argv.path, done , detail)
 	}else{
-		console.error('Error in params:'+JSON.stringify(argv));
+		logger.error('Error in params:'+JSON.stringify(argv));
 	}
 
-})(require("./contextLoader.js"), require('optimist'), require('fs'));
 
+})(require("./contextLoader.js"), require('optimist'), require('fs'), require('../logger'));
