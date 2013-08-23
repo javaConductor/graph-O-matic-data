@@ -1,0 +1,183 @@
+{
+	"RelationshipTypes": [	],
+	"RelationshipCategories": [
+	],
+	"ItemCategories": [],
+	"ItemTypes": [
+		{
+			"name": "Account",
+			"description" : "Something that is owed.",
+			"properties": [
+                {
+                    "name": "accountNumber",
+                    "type": "text",
+                    "required": true
+                },
+                {
+                    "name": "title",
+                    "type": "text",
+                    "required": true
+                },
+                {
+                    "name": "amount",
+                    "type": "number",
+                    "required": true
+                },
+                {
+                    "name": "balance",
+                    "type": "number",
+                    "required": true
+                },
+                {
+                    "name": "debit",
+                    "type": "boolean",
+                    "default":true,
+                    "required": true
+                },
+                {
+                    "name": "paymentAmount",
+                    "type": "number",
+                    "required": true
+                },
+
+                {
+                    "name": "paymentSchedule",
+                    "itemType": "PaymentSchedule",
+                    "required": true
+                }
+
+            ],
+			"defaults": [
+			]
+		},
+        {
+            "name": "Debt",
+            "description" : "A debt.",
+            "parent":"Payable",
+            "properties": [
+                {
+                    "name": "balance",
+                    "type": "number",
+                    "required": true
+                }
+                ]
+        },
+        {
+            "name": "Service",
+            "description" : "Ongoing service payment.",
+            "parent":"Debt"
+        },
+        {
+            "name": "ScheduledPayment",
+            "description" : "Payment scheduled based on a PaymentSchedule.",
+            "properties": [
+                {
+                    "name": "account",
+                    "itemType": "Account",
+                    "required": true
+                },
+                {
+                    "name": "date",
+                    "type": "date",
+                    "required": true
+                },
+                {
+                    "name": "paymentAmount",
+                    "type": "number",
+                    "required": true
+                },
+                {
+                    "name": "paymentSchedule",
+                    "itemType": "PaymentSchedule",
+                    "required": true
+                }
+            ],
+            "defaults": [
+            ]
+        },
+        {
+            "name": "PaymentPaid",
+            "description" : "Create these when you pay something..",
+            "properties": [
+                {
+                    "name": "account",
+                    "itemType": "Account",
+                    "required": true
+                },
+                {
+                    "name": "date",
+                    "type": "date",
+                    "required": true
+                },
+                {
+                    "name": "paymentAmount",
+                    "type": "number",
+                    "required": true
+                },
+                {
+                    "name": "paymentConfirmationCode",
+                    "type": "text",
+                    "required": false
+                }
+            ],
+            "defaults": [
+            ]
+        },
+        {
+            "name": "AutoDeductPayment",
+            "description" : "Payments automatically deducted from a bank account.",
+            "parent": "ScheduledPayment"
+        },
+        {
+            "name": "PaymentSchedule",
+            "description" : "Describes when a payment should be made to an account.",
+            "properties": [
+                {
+                    "name": "interval",
+                    "type": "text",
+                    "oneOf": ["monthly","quarterly","yearly", "weekly"],
+                    "required": true
+                },
+                {
+                    "name": "date1",
+                    "type": "date",
+                    "required": false
+                },
+                {
+                    "name": "date2",
+                    "type": "date",
+                    "required": false
+                },
+                {
+                    "name": "date3",
+                    "type": "date",
+                    "required": false
+                },
+                {
+                    "name": "date4",
+                    "type": "date",
+                    "required": false
+                },
+                {
+                    "name": "dayOfWeek",
+                    "type": "number",
+                    "required": false
+                },
+                {
+                    "name": "dayOfMonth",
+                    "type": "number",
+                    "required": false
+                },
+                {
+                    "name": "paymentConfirmationCode",
+                    "type": "text",
+                    "required": false
+                }
+            ],
+            "defaults": [
+            ]
+        }
+
+
+    ]
+}

@@ -41,8 +41,6 @@
                 if (!itemToUpdate[fieldName])
                     itemToUpdate[fieldName] = [];
                 itemToUpdate[fieldName].push(nameMap[nameInMap]);
-
-//				return itemToUpdate.save(f);
                 return fSave(itemToUpdate, f);
             }
         }
@@ -445,6 +443,6 @@
             exports.loadContext(path.basename(dir), dir, f,fDetail);
         });
     }
-
-})
-    (require('findit'), require('fs'), require('path'), require('../model'), require('async'), require('../logger'));
+})(require('findit'), require('fs'),
+        require('path'), require('../model'),
+        require('async'), require('../logger'));

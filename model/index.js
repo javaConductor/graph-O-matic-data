@@ -11,35 +11,12 @@
 	//////  Relationship Category //////
 	this.saveRelationshipCategory = persistence.saveRelationshipCategory;
 	this.getRelationshipCategories = persistence.getRelationshipCategories;
-	this.relationshipCategoryNameMap = function(f){
-
-		getRelationshipCategories(function(err, relCats){
-			  if (err){ return f(err, null);}
-
-			  var m = {};
-			  relCats.forEach(function(relCat){
-				  m[relCat.name] = relCat;
-			  });
-			  return f(null, m);
-		  });
-	};
 
 	//////  RelationshipType //////
 	//////  RelationshipType //////
 	this.saveRelationshipType = persistence.saveRelationshipType;
 	this.getRelationshipType = persistence.getRelationshipType;
 	this.getRelationshipTypes = persistence.getRelationshipTypes;
-	this.relationshipTypeNameMap = function(f){
-		getRelationshipTypes(function(err, relTypes){
-			  if (err){ return f(err, null);}
-
-			  var m = {};
-			  relTypes.forEach(function(relType){
-				  m[relType.name] = relType;
-			  });
-			  return f(null, m);
-		  });
-	};
 	this.getRelationshipTypeById = persistence.getRelationshipTypeById;
 
 	//////  Item Category //////
@@ -63,7 +40,7 @@
 	this.getItemType = persistence.getItemType;
 	this.getItemTypes = persistence.getItemTypes;
 	this.updateItemType = persistence.updateItemType;
-
+    this.getItemTypeByName = persistence.getItemTypeByName;
 	this.itemTypeNameMap = function(f){
 		getItemTypes(function(err, iCats){
 			if (err){ return f(err, null);}
@@ -81,62 +58,43 @@
 	this.saveItem = persistence.saveItem;
 	this.getItem = persistence.getItem;
 
-	//////  View Item //////
-	//////  View Item //////
-	this.getViewItem = 	persistence.getViewItem;
-	this.saveViewItem = 	persistence.saveViewItem;
-	this.updateViewItemPosition = persistence.updateViewItemPosition;
+    //////  View Item //////
+    //////  View Item //////
+    this.getViewItem = 	persistence.getViewItem;
+    this.saveViewItem = 	persistence.saveViewItem;
+    this.updateViewItemPosition = persistence.updateViewItemPosition;
 
-	//////  Context //////
+    //////  View //////
+    //////  View //////
+    this.getView = 	persistence.getView;
+    this.getViews = 	persistence.getViews;
+    this.saveView = 	persistence.saveView;
+    this.updateView = persistence.updateView;
+
+    //////  Context //////
 	//////  Context //////
 	this.getContext = 	persistence.getContext;
 	this.saveContext = 	persistence.saveContext;
-
-	///////// Convenience Methods /////////////
-	///////// Convenience Methods /////////////
-	this.nameMaps = function( f ){
-		this.relationshipCategoryNameMap(function (err, relCatNameMap) {
-			if(err)
-				return f(err);
-			this.relationshipTypeNameMap(function (err, relTypeNameMap) {
-				if(err)
-					return f(err);
-
-				this.itemCategoryNameMap(function (err, itemCatNameMap) {
-					if(err)
-						return f(err);
-					this.itemTypeNameMap(function (err, itemTypeNameMap) {
-						if(err)
-							return f(err);
-						f(null, relTypeNameMap, relCatNameMap, itemTypeNameMap, itemCatNameMap);
-					})
-				})
-			})
-		})
-	};
-
 
 	/////////// EXPORTS ////////////
 	/////////// EXPORTS ////////////
 
 	exports.saveRelationshipCategory = this.saveRelationshipCategory;
 	exports.getRelationshipCategories = this.getRelationshipCategories;
-	exports.relationshipCategoryNameMap = this.relationshipCategoryNameMap;
 
 	exports.saveRelationshipType = this.saveRelationshipType;
 	exports.updateRelationshipType = this.updateRelationshipType;
-	exports.relationshipTypeNameMap = this.relationshipTypeNameMap;
 	exports.getRelationshipType = this.getRelationshipType;
 
 	exports.saveItemCategory = this.saveItemCategory;
 	exports.getItemCategory = this.getItemCategory;
-	exports.itemCategoryNameMap = this.itemCategoryNameMap;
 
 
 	exports.saveItemType = this.saveItemType;
-	exports.getItemType = this.getItemType;
+    exports.getItemType = this.getItemType;
+    exports.getItemTypeByName = this.getItemTypeByName;
+    exports.getItemTypes = this.getItemTypes;
 	exports.updateItemType = this.updateItemType;
-	exports.itemTypeNameMap = this.itemTypeNameMap;
 	exports.getItemTypeById = this.getItemTypeById;
 
 	exports.saveItem = this.saveItem;
@@ -147,10 +105,12 @@
 	exports.updateViewItemPosition = this.updateViewItemPosition;
 
 	exports.saveView = this.saveView;
-	exports.getView = this.getView;
+    exports.getView = this.getView;
+    exports.getViews = this.getViews;
+    exports.updateView = this.updateView;
 
 	exports.getContext = this.getContext;
 	exports.saveContext = this.saveContext;
 
-	exports.nameMaps = this.nameMaps;
+	//exports.nameMaps = this.nameMaps;
 })(require("../persistence"));

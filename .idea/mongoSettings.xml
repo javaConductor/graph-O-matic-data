@@ -4,6 +4,7 @@
     <option name="serverConfigurations">
       <list>
         <ServerConfiguration>
+          <option name="connectOnIdeStartup" value="true" />
           <option name="label" value="graph-o-matic db" />
           <option name="serverName" value="localhost" />
           <option name="serverPort" value="27017" />
@@ -11,7 +12,7 @@
         </ServerConfiguration>
       </list>
     </option>
-    <option name="shellPath" value="/usr/local/bin/mongo" />
+    <option name="shellPath" value="/usr/bin/mongo " />
   </component>
 </project>
 

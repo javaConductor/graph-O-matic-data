@@ -7,5 +7,12 @@
 (function(nodeExtend){
 	exports.extend = nodeExtend.extend;
 
+    exports.mergeModule= function(mod, modName){
+        var pa = require( modName );
+        for (var name in pa)
+        {
+            mod.exports[ name ] = pa[ name ];
+        }
+    };
 
 })(require("node-extend"));

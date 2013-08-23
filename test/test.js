@@ -11,32 +11,28 @@ var mongoose = require("mongoose");
 exports.testItemTypeModel = function(test){
 	console.log("---------------------------------------------------------:testItemTypeModel");
 
-	var itemType = {};//new models.ItemType({description:"ddddddd"});
-	//itemType.id = mongoose.Types.ObjectId('4edd40c86762e0fb12000F3F');
-	itemType.name = "BasicItem";
+	var itemType = {};
+	itemType.name = "BasicItem."+Math.random();
 	itemType.title = "Basic Item ";
 	itemType.description = "Test itemType: "+ new Date();
 	itemType.properties = [
 	];
+    itemType.origin = [{context:"test", area:"test"}];
 	itemType.allowExtraProperties = true;
 	console.dir(["saving>>", itemType]);
 	model.saveItemType(itemType, function(err, itype){
-		test.ifError(err);
+		test.ifError(err );
 		test.ok( itype );
-		test.ok( itype._id );
-		model.getItemType(itype._id , function(err, theItemType){
+        console.dir(["Saved OK =>",itype, err]);
+		test.ok( itype.id );
+		model.getItemTypeById(itype.id , function(err, theItemType){
 			test.ifError(err);
 			test.ok(theItemType);
 			test.done();
 		});
-		console.dir(["error>>", err]);
-		console.dir(["new ItemType>>", itype]);
 	});
 //	test.done();
 };
-
-
-
 
 exports.testSaveGetItemCategory = function(test){
 	console.log("---------------------------------------------------------:testSaveGetItemCategory");
@@ -47,19 +43,18 @@ exports.testSaveGetItemCategory = function(test){
 		test.ifError(err);
 		test.ok(saved);
 		model.getItemCategory(saved._id, function(err, theItemCat){
-				test.ifError(err);
-				test.ok(theItemCat);
-				test.done();
-			});
-
-			console.dir(["error>>", err]);
-			console.dir(["new ItemCat>>", saved]);
+            console.dir(["error>>", err]);
+            console.dir(["new ItemCat>>", saved]);
+			test.ifError(err);
+			test.ok(theItemCat);
+			test.done();
 		});
+
+	});
 //	test.done();
 
 
 };
-
 
 exports.testItemTypeWithCategory = function(test){
 console.log("---------------------------------------------------------:testItemTypeWithCategory");
@@ -69,7 +64,7 @@ console.log("---------------------------------------------------------:testItemT
 
 		var itemType = {};//new models.ItemType({description:"ddddddd"});
 		//itemType.id = mongoose.Types.ObjectId('4edd40c86762e0fb12000F3F');
-		itemType.name = "BasicItem";
+		itemType.name = "BasicItem."+Math.random();
 		itemType.title = "Basic Item ";
 		itemType.description = "Test itemType: "+ new Date();
 		itemType.category = saved;
@@ -82,7 +77,7 @@ console.log("---------------------------------------------------------:testItemT
 			test.ok( itype );
 			test.ok( itype.category);
 
-				model.getItemType(itype._id, function(err, theItemType){
+				model.getItemTypeById(itype._id, function(err, theItemType){
 					test.ifError(err);
 					console.dir(["new ItemType>>", theItemType]);
 
@@ -91,12 +86,7 @@ console.log("---------------------------------------------------------:testItemT
 					test.ok(theItemType.category._id);
 					test.done();
 				});
-
-			//console.dir(["error>>", err]);
-			//console.dir(["new ItemType>>", itype]);
-		});
-//	test.done();
-
-	})
+    	});
+	});
 
 };

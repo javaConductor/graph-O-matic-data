@@ -1,0 +1,6 @@
+{
+    description:"This file contains the resource list for processing THIS context.",
+    cssFiles: [],
+    jsModules:[],
+    extensionPointMap : {}
+}
