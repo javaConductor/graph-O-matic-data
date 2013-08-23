@@ -6,12 +6,11 @@
  * To change this template use File | Settings | File Templates.
  */
 
-exports = (function(model){
+(function(model){
 
-    return {
-        sendError:function(res, msg){
+    exports.sendError = function(res, msg){
                 res.send({errorMessage:msg});
         }
-    };
+
 })( require("../model") );
 

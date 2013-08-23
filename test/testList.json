@@ -1,0 +1,18 @@
+[{
+    "title": "Rent",
+    "type": "test.finance.Account",
+    "data": [
+        {
+            "name":"accountNumber",
+            "value": "7819Laflin60620"
+        }]
+},{
+    "title": "Light Bill",
+    "type": "test.finance.Account",
+    "data": [
+        {
+            "name":"ComED",
+            "value": "7819Laflin60620"
+        }]
+}
+]

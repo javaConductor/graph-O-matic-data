@@ -52,6 +52,7 @@ app.get('/item-types', api.getItemTypes);
 // Item Resource
 app.get('/items/:id', api.getItem);
 app.put('/items', api.saveItem);
+app.put('/items/load', api.loadItems);
 
 // Launch server
 
