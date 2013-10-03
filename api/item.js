@@ -46,7 +46,6 @@
             itemsPrepped.push(itm);
             return prepItems(nuItems,f,itemsPrepped);
         });
-
     };
 
 
@@ -63,7 +62,6 @@
     exports.loadItems = function(req, res){
         var itemList = reqToItemList( req );
         prepItems( itemList, function(err, items){
-
             items.forEach(function(item){
                 model.saveItem(item, function(err, itm){
                     if(err)
@@ -71,7 +69,6 @@
                     res.send(itm);
                 });
             });
-
         });
     };
 
@@ -79,6 +76,13 @@
         var id = req.params.id;
         model.getItem(id, function(err, itm){
             res.send(itm);
+        });
+    };
+
+    exports.deleteItem = function(req, res){
+        var id = req.params.id;
+        model.deleteItem(id, function(err, resp){
+            res.send(resp);
         });
     };
 

@@ -56,13 +56,20 @@
 	//////  Item  //////
 	//////  Item  //////
 	this.saveItem = persistence.saveItem;
-	this.getItem = persistence.getItem;
+    this.getItem = persistence.getItem;
+    this.deleteItem = persistence.deleteItem;
 
     //////  View Item //////
     //////  View Item //////
     this.getViewItem = 	persistence.getViewItem;
     this.saveViewItem = 	persistence.saveViewItem;
     this.updateViewItemPosition = persistence.updateViewItemPosition;
+
+
+    //////  View Type //////
+    //////  View Type //////
+    this.saveViewType = 	persistence.saveViewType;
+    this.getViewTypes = 	persistence.getViewTypes;
 
     //////  View //////
     //////  View //////
@@ -97,8 +104,11 @@
 	exports.updateItemType = this.updateItemType;
 	exports.getItemTypeById = this.getItemTypeById;
 
-	exports.saveItem = this.saveItem;
-	exports.getItem = this.getItem;
+    exports.saveItemType = this.saveItemType;
+
+    exports.saveItem = this.saveItem;
+    exports.getItem = this.getItem;
+    exports.deleteItem = this.deleteItem;
 
 	exports.saveViewItem = this.saveViewItem;
 	exports.getViewItem = this.getViewItem;

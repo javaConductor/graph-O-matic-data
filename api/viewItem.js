@@ -32,13 +32,15 @@
 			var x = req.params.x;
 			var y = req.params.y;
 			var vid = req.params.viewItemId;
-            model.updateViewItemPosition(vid,x,y, function(err, item){
+            model.updateViewItemPosition(vid,x,y, function(err, vitem){
                 if (err)
                     return utils.sendError(res, err);
-                item.position.x = x;
-				item.position.y = y;
+                vitem.position.x = x;
+				vitem.position.y = y;
 				res.send(item);
 			});
 		};
+
+
 
 })( require('./utils.js'), require("../model") );

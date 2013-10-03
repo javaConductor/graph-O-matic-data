@@ -23,6 +23,7 @@
         /// get the categories and types that make of this context or context area
         var relTypes = contextObject.RelationshipTypes;
         var relCategories = contextObject.RelationshipCategories;
+        var viewTypes = contextObject.ViewTypes;
         var itemTypes = contextObject.ItemTypes;
         var itemCategories = contextObject.ItemCategories;
 
@@ -153,6 +154,41 @@
                         else
                             logger.debug("Done Loading " + contextName + '.' + areaName + " RelationshipCategories");
                         callback(err);
+                    });
+            },
+            /// View Types ///
+            /// View Types ///
+            function (callback) {
+                async.forEach(viewTypes,
+                    function (viewType, cb) {
+                        viewType.origin = [];
+                        viewType.origin.push({
+                            context: contextName,
+                            area: areaName
+                        });
+                        //var values = [];
+
+                        model.saveViewType(viewType, function (err, vtype) {
+                            if (err) {
+                                return cb(err, null);
+                            }
+                            fDetail({context: contextName, area: areaName, type: 'Viewtype', name: vtype.name});
+                            typeNames.push(vtype.name);
+                            cb(err, vtype);
+                        });
+                    },
+                    function (err, values) {
+                        if (err) {
+                            logger.error("Error Loading " + contextName + '.' + areaName + " Viewtypes:" + JSON.stringify(err));
+                            console.error("Error Loading " + contextName + '.' + areaName + " Viewtypes:" + JSON.stringify(err));
+                        } else
+                            logger.debug("Done Loading " + contextName + '.' + areaName + " Viewtypes");
+
+                        if (err) {
+                            logger.error("Exiting: " + JSON.stringify(err));
+                            process.exit(-2);
+                        } else
+                            callback(null, values);
                     });
             },
             /// Item Categories ///

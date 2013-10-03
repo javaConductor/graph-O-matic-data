@@ -4,6 +4,11 @@
 			"name": "baseRT"
 		}
 	],
+	"ViewTypes": [
+		{
+			"name": "baseVT"
+		}
+	],
 	"RelationshipCategories": [
 		{
 			"name": "baseRC"

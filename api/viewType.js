@@ -7,23 +7,21 @@
 
 (function(model, utils){
 
-    var beforeSave = function(v){return v;};
-    var afterRead = function(v){ return v;};
-    exports.saveView = function(req, res){
-        var viewData = req.body;
-        model.saveView(beforeSave(viewData), function(err, v){
-            if ( err )
-                return utils.sendError(res,"Error: "+err);
-            res.send(afterRead(v));
-        });
-    };
+
+        exports.saveView = function(req, res){
+            var viewData = req.body;
+
+            model.saveView(viewData, function(err, v){
+                res.send(v);
+            });
+        };
 
     exports.getView = function(req, res){
         var viewId = req.params.id;
-        model.getView(viewId, function(err, v){
+        model.getView(viewId,function(err, v){
             if ( err )
                 return utils.sendError(res,"no such view:"+viewId);
-            res.send(afterRead(v));
+            res.send(v);
         });
     };
 
@@ -31,18 +29,18 @@
         //var viewId = req.params.id;
         model.getViews(function(err, v){
             if ( err )
-                return utils.sendError(res,"error reading views:"+err);
-            res.send(afterRead(v));
+                return utils.sendError(res,"no such view:"+viewId);
+            res.send(v);
         });
     };
 
     exports.updateView = function(req, res){
             var viewData = req.body;
-            model.updateView(beforeSave(viewData), function(err, v){
+            model.updateView(viewData, function(err, v){
                 if ( err )
                     return utils.sendError(res,"Error: "+err);
 
-                res.send(afterRead(v));
+                res.send(v);
             });
         };
 
