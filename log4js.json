@@ -3,14 +3,14 @@
 		{
 			"type": "file",
 			"filename": "logs/graph-o-matic.log",
-			"maxLogSize": 20480,
+			"maxLogSize": 2048000,
 			"backups": 10,
 			"category": "graph-o-matic"
 		},
 		{
 			"type": "file",
 			"filename": "logs/adapter.log",
-			"maxLogSize": 20480,
+			"maxLogSize": 2048000,
 			"backups": 10,
 			"category": "db-adapter"
 		}

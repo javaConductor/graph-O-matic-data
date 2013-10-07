@@ -33,11 +33,9 @@
 				itemToUpdate[fieldName].push(nameMap[nameInMap]);
 				return fSave(itemToUpdate, f);
 			}
-		}
+		};
 
 		var relTypeNameMap = {}, relCatNameMap = {}, itemTypeNameMap = {}, itemCatNameMap = {};
-		/// Get name maps to resolve references
-		//	model.nameMaps(function (err, relTypeNameMap, relCatNameMap,itemTypeNameMap, itemCatNameMap) {
 
 		async.series([
 			/// Items ///
@@ -66,12 +64,8 @@
 						  if (err) {
 							  return cb(err, saved);
 						  }
-						 // itemCatNameMap[cat.name] = cat;
-						 // typeNames.push(cat.name);
-						  //values.push(cat);
-						  cb(err, cat);
+						  return cb(err, cat);
 					  });
-
 				  },
 				  function (err, values) {
 					  if (err) {
