@@ -12,7 +12,6 @@
 	var le = [] 	;
 
 	var done = function( ){
-
 		le.forEach(function(loadedElement){
 			console.log('Loaded -> %s -> %s -> %s -> %s', loadedElement.context,loadedElement.area, loadedElement.type, loadedElement.name );
 		});
@@ -33,11 +32,9 @@
 	}
 
 
-
     exports.loadDefaultContexts = function loadDefaultContexts(fDone, fDetail) {
         logger.debug("loader.loadDefaultContexts");
         loader.loadContext(null, 'contexts/default', fDone, fDetail);
     };
-
 
 })(require("./contextLoader.js"), require('optimist'), require('fs'), require('../logger'));

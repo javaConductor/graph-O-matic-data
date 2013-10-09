@@ -1,17 +1,13 @@
 {
 	"RelationshipTypes":[
 	],
-	"RelationshipCategories":[
-		{
-		"name": "Family"
-		}
-	],
-	"ItemCategories":[
+	"Categories":[
+		{ "name": "Family", "parent":"People"},
 		{ "name": "People" },
 		{ "name": "Business"},
 		{ "name": "Multimedia"},
-		{ "name": "Audio"},
-		{ "name": "Video"},
+		{ "name": "Audio", "parent":"Multimedia"},
+		{ "name": "Video", "parent":"Multimedia"},
 		{ "name": "Locations"}
 	],
 	"ItemTypes":[

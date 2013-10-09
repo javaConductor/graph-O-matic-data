@@ -7,11 +7,6 @@
 
 (function (persistence) {
 
-	//////  Relationship Category //////
-	//////  Relationship Category //////
-	this.saveRelationshipCategory = persistence.saveRelationshipCategory;
-	this.getRelationshipCategories = persistence.getRelationshipCategories;
-
 	//////  RelationshipType //////
 	//////  RelationshipType //////
 	this.saveRelationshipType = persistence.saveRelationshipType;
@@ -19,38 +14,19 @@
 	this.getRelationshipTypes = persistence.getRelationshipTypes;
 	this.getRelationshipTypeById = persistence.getRelationshipTypeById;
 
-	//////  Item Category //////
-	//////  Item Category //////
-	this.saveItemCategory = persistence.saveItemCategory;
-	this.getItemCategories = persistence.getItemCategories;
-	this.itemCategoryNameMap = function(f){
-		getItemCategories(function(err, iCats){
-			if (err){ return f(err, null);}
-			var m = {};
-			iCats.forEach(function(iCat){
-				m[iCat.name] = iCat;
-			});
-			return f(null, m);
-		});
-	};
+	//////  Category //////
+	//////  Category //////
+	this.saveCategory = persistence.saveCategory;
+	this.getCategory = persistence.getCategory;
+	this.getCategories = persistence.getCategories;
 
-	//////  ItemType  //////
+    //////  ItemType  //////
 	//////  ItemType  //////
 	this.saveItemType = persistence.saveItemType;
 	this.getItemType = persistence.getItemType;
 	this.getItemTypes = persistence.getItemTypes;
 	this.updateItemType = persistence.updateItemType;
     this.getItemTypeByName = persistence.getItemTypeByName;
-	this.itemTypeNameMap = function(f){
-		getItemTypes(function(err, iCats){
-			if (err){ return f(err, null);}
-			var m = {};
-			iCats.forEach(function(iCat){
-				m[iCat.name] = iCat;
-			});
-			return f(null, m);
-		});
-	};
 	this.getItemTypeById = persistence.getItemTypeById;
 
 	//////  Item  //////
@@ -86,16 +62,14 @@
 	/////////// EXPORTS ////////////
 	/////////// EXPORTS ////////////
 
-	exports.saveRelationshipCategory = this.saveRelationshipCategory;
-	exports.getRelationshipCategories = this.getRelationshipCategories;
-
 	exports.saveRelationshipType = this.saveRelationshipType;
 	exports.updateRelationshipType = this.updateRelationshipType;
 	exports.getRelationshipType = this.getRelationshipType;
+    exports.getRelationshipTypes = this.getRelationshipTypes;
 
-	exports.saveItemCategory = this.saveItemCategory;
-	exports.getItemCategory = this.getItemCategory;
-
+	exports.saveCategory = this.saveCategory;
+	exports.getCategory = this.getCategory;
+    exports.getCategories = this.getCategories;
 
 	exports.saveItemType = this.saveItemType;
     exports.getItemType = this.getItemType;
@@ -105,6 +79,12 @@
 	exports.getItemTypeById = this.getItemTypeById;
 
     exports.saveItemType = this.saveItemType;
+    exports.getItemType = this.getItemType;
+    exports.getItemTypes = this.getItemTypes;
+
+    exports.saveViewType = this.saveViewType;
+    exports.getViewType = this.getViewType;
+    exports.getViewTypes = this.getViewTypes;
 
     exports.saveItem = this.saveItem;
     exports.getItem = this.getItem;

@@ -8,11 +8,7 @@
 var application_root = __dirname,
   express = require("express"),
   path = require("path"),
-//    viewApi = require('./api/view.js'),
-  //  viewItemApi = require('./api/viewItem.js'),
-    //itemApi = require('./api/item.js'),
-    //itemTypeApi = require('./api/itemType.js'),
-    api = require('./api')
+  api = require('./api')
     ;
 
   mongoose = require('mongoose');

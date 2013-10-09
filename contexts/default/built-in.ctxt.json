@@ -9,20 +9,15 @@
 			"name": "baseVT"
 		}
 	],
-	"RelationshipCategories": [
+	"Categories": [
 		{
-			"name": "baseRC"
-		}
-	],
-	"ItemCategories": [
-		{
-			"name": "baseIC"
+			"name": "baseC"
 		}
 	],
 	"ItemTypes": [
 		{
 			"name": "baseIT",
-			"category": "baseIC",
+			"category": "baseC",
 			"allowExtraProperties": true,
 			"description": ""
 		}
