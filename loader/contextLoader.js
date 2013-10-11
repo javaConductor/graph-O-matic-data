@@ -48,6 +48,7 @@
                 typeNames.push(saved.name);
                 cb(null, saved);
             });};
+
         var writeCategory = function (cat, cb) {
             cat.origin = [];
             cat.origin.push({
