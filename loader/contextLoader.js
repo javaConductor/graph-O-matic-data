@@ -34,8 +34,7 @@
         var typeNames = [];
         var relTypeNameMap = {};
         var writeItemType = function (itemType, cb) {
-            itemType.origin = [];
-            itemType.origin.push({
+            itemType.origin=({
                 context: contextName,
                 area: areaName
             });
@@ -50,8 +49,7 @@
             });};
 
         var writeCategory = function (cat, cb) {
-            cat.origin = [];
-            cat.origin.push({
+            cat.origin =({
                 context: contextName,
                 area: areaName
             });
@@ -66,8 +64,7 @@
             });
         };
         var writeViewType = function (viewType, cb) {
-            viewType.origin = [];
-            viewType.origin.push({
+            viewType.origin =({
                 context: contextName,
                 area: areaName
             });
@@ -83,8 +80,7 @@
             });
         };
         var writeRelationshipType = function (relType, cb) {
-            relType.origin = [];
-            relType.origin.push({
+            relType.origin = ({
                 context: contextName,
                 area: areaName
             });

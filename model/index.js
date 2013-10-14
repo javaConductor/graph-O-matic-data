@@ -6,8 +6,7 @@
  */
 
 (function (persistence, ts) {
-    console.log("model/index.js");
-
+    console.log(["model/index.js",ts]);
 
     var wrapFunctionWithCallback = function (fn, xformInFn, xformOutFn) {
         var cbFor = function (cb) {
@@ -20,28 +19,35 @@
         };
         return function () {
             // replace the last arg with our function that uses the
-            var lidx = arguments.length - 1;
-            arguments[lidx] = cbFor(arguments[lidx]);
-            if (lidx != 0) {
-                arguments[0] = xformInFn(arguments[0]);
+            var args = Array.prototype.slice.call(arguments);
+            var lidx = args.length - 1;
+            if(xformOutFn)
+                args[lidx] = cbFor(args[lidx]);
+            if (lidx != 0 && xformInFn) {
+                args[0] = xformInFn(args[0]);
             }
-            fn.call(arguments);
+            switch (args.length){
+                case 1: fn(args[0]);break;
+                case 2: fn(args[0],args[1]);break;
+                case 3: fn(args[0],args[1],args[2]);break;
+                case 4: fn(args[0],args[1],args[2],args[3]);break;
+                case 5: fn(args[0],args[1],args[2],args[3],args[4]);break;
+                case 6: fn(args[0],args[1],args[2],args[3],args[4],args[5]);break;
+            }
+
         };
-
     };
-
 
     var identity = function (x) {
         return x;
     };
     var beforeWrite = {
-        view: ts.resolveView,
-        item: ts.resolveItem,
+        view: ts.unresolveView,
+        item: ts.unresolveItem,
         viewItem: identity,
-        relationship: ts.resolveRelationship,
+        relationship: ts.unresolveRelationship,
 
-        itemCategory: identity,
-        relationshipCategory: identity,
+        category: identity,
 
         itemType: identity,
         relationshipType: identity,
@@ -51,13 +57,12 @@
         "*": identity
     };
     var afterRead = {
-        view: ts.unresolveView,
+        view: ts.resolveView,
         item: ts.resolveItem,
         viewItem: identity,
-        relationship: ts.unresolveRelationship,
+        relationship: ts.resolveRelationship,
 
-        itemCategory: identity,
-        relationshipCategory: identity,
+        category: identity,
 
         itemType: identity,
         relationshipType: identity,
@@ -70,49 +75,48 @@
     //////  RelationshipType //////
     //////  RelationshipType //////
     this.saveRelationshipType = wrapFunctionWithCallback(persistence.saveRelationshipType, beforeWrite.relationshipType, afterRead.relationshipType);
-    this.getRelationshipType = persistence.getRelationshipType;
-    this.getRelationshipTypes = persistence.getRelationshipTypes;
-    this.getRelationshipTypeById = persistence.getRelationshipTypeById;
+    this.getRelationshipType = wrapFunctionWithCallback(persistence.getRelationshipType, identity, afterRead.relationshipType);
+    this.getRelationshipTypes = wrapFunctionWithCallback(persistence.getRelationshipTypes, identity, function(a){ return a.map(afterRead.relationshipType);});
+    this.getRelationshipTypeById = wrapFunctionWithCallback(persistence.getRelationshipTypeById, identity, afterRead.relationshipType);
 
     //////  Category //////
     //////  Category //////
-    this.saveCategory = persistence.saveCategory;
-    this.getCategory = persistence.getCategory;
-    this.getCategories = persistence.getCategories;
+    this.saveCategory = wrapFunctionWithCallback(persistence.saveCategory, beforeWrite.category, afterRead.category);
+    this.getCategory = wrapFunctionWithCallback(persistence.getCategory, identity, afterRead.category);
+    this.getCategories = wrapFunctionWithCallback(persistence.getCategories, identity, function(a){ return a.map(afterRead.category);})
 
     //////  ItemType  //////
     //////  ItemType  //////
-    this.saveItemType = persistence.saveItemType;
-    this.getItemType = persistence.getItemType;
-    this.getItemTypes = persistence.getItemTypes;
-    this.updateItemType = persistence.updateItemType;
-    this.getItemTypeByName = persistence.getItemTypeByName;
-    this.getItemTypeById = persistence.getItemTypeById;
+    this.saveItemType = wrapFunctionWithCallback(persistence.saveItemType, beforeWrite.itemType, afterRead.itemType);
+    this.getItemType = wrapFunctionWithCallback(persistence.getItemType, identity, afterRead.itemType);
+    this.getItemTypes = wrapFunctionWithCallback(persistence.getItemTypes, identity, function(a){ return a.map(afterRead.itemType);});
+    this.updateItemType = wrapFunctionWithCallback(persistence.updateItemType, beforeWrite.itemType, afterRead.itemType);
+    this.getItemTypeByName = wrapFunctionWithCallback(persistence.getItemTypeByName, identity, afterRead.itemType);
+    this.getItemTypeById = wrapFunctionWithCallback(persistence.getItemTypeById, identity, afterRead.itemType);
 
     //////  Item  //////
     //////  Item  //////
-    this.saveItem = persistence.saveItem;
-    this.getItem = persistence.getItem;
+    this.saveItem = wrapFunctionWithCallback(persistence.saveItem, beforeWrite.item, afterRead.item);
+    this.getItem = wrapFunctionWithCallback(persistence.getItem, beforeWrite.item, afterRead.item);
     this.deleteItem = persistence.deleteItem;
 
     //////  View Item //////
     //////  View Item //////
-    this.getViewItem = persistence.getViewItem;
-    this.saveViewItem = persistence.saveViewItem;
-    this.updateViewItemPosition = persistence.updateViewItemPosition;
-
+    this.getViewItem = wrapFunctionWithCallback(persistence.getViewItem, identity, afterRead.viewItem);
+    this.saveViewItem = wrapFunctionWithCallback(persistence.saveViewItem, beforeWrite.viewItem, afterRead.viewItem);
+    this.updateViewItemPosition = wrapFunctionWithCallback(persistence.getViewItem,identity, afterRead.viewItem);
 
     //////  View Type //////
     //////  View Type //////
-    this.saveViewType = persistence.saveViewType;
-    this.getViewTypes = persistence.getViewTypes;
+    this.saveViewType = wrapFunctionWithCallback(persistence.saveViewType, beforeWrite.viewType,  afterRead.viewType );
+    this.getViewTypes =  wrapFunctionWithCallback(persistence.getViewTypes, identity, function(a){ return a.map(afterRead.viewType);});
 
     //////  View //////
     //////  View //////
-    this.getView = persistence.getView;
-    this.getViews = persistence.getViews;
-    this.saveView = persistence.saveView;
-    this.updateView = persistence.updateView;
+    this.getView = wrapFunctionWithCallback(persistence.getView, identity,  afterRead.view );
+    this.getViews = wrapFunctionWithCallback(persistence.getViews, identity, function(a){ return a.map(afterRead.view);});
+    this.saveView = wrapFunctionWithCallback(persistence.saveView, beforeWrite.view,  afterRead.view );
+    this.updateView = wrapFunctionWithCallback(persistence.getView, beforeWrite.view,  afterRead.view );
 
     //////  Context //////
     //////  Context //////

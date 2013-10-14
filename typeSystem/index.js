@@ -6,7 +6,8 @@
  * Time: 2:16 AM
  */
 (function (model, async, wu) {
-    console.log("typeSystem/index.js");
+    console.dir(["typeSystem/index.js: model:",model]);
+
     console.dir(model);
     console.dir(async);
     console.dir(wu);
@@ -15,10 +16,10 @@
     var createHierarchy = function createHierarchy(typesByName, typeMap) {
         for (var name in  typesByName) {
             var t = typesByName[name];
-            console.log("createHierarchy: " + name);
+           // console.log("createHierarchy: " + name);
             ret[name] = getHierarchy(typesByName, typeMap, name);
-        }
-        ;
+            console.log("Type: "+name+"->"+JSON.stringify(ret[name]));
+        };
         return ret;
     };
 
@@ -45,6 +46,55 @@
                 return reportError("No such kind:" + kind);
         }
     };
+    var typeNameFromType = function (type) {
+        return type.origin.context + "." + type.origin.area + "." + type.name;
+    };
+    var isType=function(thing){ return !!thing.origin;}
+    var isData=function(thing){ return !isType(thing);}
+    /**
+     * Resolves the type 'name' and uses a scope object as the context for the type.
+     *
+     * @param typesByName
+     * @param name
+     * @param scopeObj
+
+     * @returns full type name
+     */
+    var resolveTypeNameWithScope = function (typesByName, name, scopeObj) {
+        var parts = ( name.split('.', 3));
+
+        /// if its already in the full form try to resolve name as is
+        if( parts.length >= 3 )
+            return typesByName[name] ? name : null;
+
+        //we need to resolve to full type name
+        /// try:
+        //          scopeObj.origin.context +  scopeObj.origin.area + name
+        //      then
+        //          'default' + 'common' +  name
+        //      then
+        //      'default' + 'built-in' +  name
+
+        var tries = [];// list of names to try
+        if (isType(scopeObj)){
+            tries.push(scopeObj.origin.context +'.'+ scopeObj.origin.area+'.' + name);
+        }
+        if (isData(scopeObj)){
+            tries.push(scopeObj.type.origin.context +'.'+ scopeObj.type.origin.area+'.' + name);
+        }
+        tries.push("default.common." + name);
+        tries.push("default.built-in." + name);
+
+        for ( var x in tries){
+           // console.log("Resolving: "+name + " trying "+ tries[x]);
+            if ( typesByName[tries[x]]){
+                console.log("Resolving: "+name + " matched  "+ tries[x]);
+                return tries[x];
+            }
+        }
+        console.log("Could not resolve: "+name);
+        return null;
+    };
 
     /**
      *
@@ -65,11 +115,15 @@
                     listSoFar.push(defaultForType);
                 return listSoFar;
             }
+            parent = resolveTypeNameWithScope(typesByName,parent, t);
+            if (!parent){
+                return reportError( "No such type: " + t.parent);
+            }
             listSoFar.push(parent);
             return getHierarchy(typesByName, typeMap, parent, listSoFar);
         }
         else
-            return reportError({error: "No such type: " + type});
+            return reportError( "No such type: " + type);
     };
 
     async.series([
@@ -100,9 +154,6 @@
             var kindMap = {};
             var itemTypesByName = {};
 
-            var typeNameFromType = function (type) {
-                return type.origin[0].context + "." + type.origin[0].area + "." + type.name;
-            };
 
             results[0].forEach(function (it) {
                 var nm = typeNameFromType(it);
@@ -119,8 +170,17 @@
                 kindMap[nm] = "relationshipType";
             });
 
-            var viewTypesByName = {};
+
+            var categoriesByName = {};
             results[2].forEach(function (vt) {
+                var nm = typeNameFromType(vt);
+                categoriesByName[nm] = vt;
+                allTypesByName[nm] = vt;
+                kindMap[nm] = "category";
+            });
+
+            var viewTypesByName = {};
+            results[3].forEach(function (vt) {
                 var nm = typeNameFromType(vt);
                 viewTypesByName[nm] = vt;
                 allTypesByName[nm] = vt;
@@ -128,6 +188,9 @@
             });
 
             var typeOf = (function typeOf(typesByName, entity) {
+                if (isType(entity))
+                    return entity;
+
                 return typesByName[typeNameFromType(entity.type)];
             }  );
 
@@ -198,39 +261,6 @@
                 return thing;
             };
 
-            /**
-             * Resolves the type 'name' and uses a scope object as the context for the type.
-             *
-             * @param typesByName
-             * @param name
-             * @param scopeObj
-
-             * @returns full type name
-             */
-            var resolveTypeNameWithScope = function (typesByName, name, scopeObj) {
-                var parts = ( scopeObj.split('.', 3));
-                    //we need to resolve to full type name
-                    /// try:
-                    //          scopeObj.origin.context +  scopeObj.origin.area + name
-                    //      then
-                    //          'default' + 'common' +  name
-                    //      then
-                    //      'default' + 'built-in' +  name
-
-                if( parts.length >= 3 )
-                    return typesByName[name] ? name : null;
-
-                var tries = scopeObj ?  [scopeObj.origin.context + scopeObj.origin.area + name] : [];
-                tries.push("default.common" + name);
-                tries.push("default.built-in" + name);
-
-                for ( var x in tries){
-                    if ( typesByName[tries[x]])
-                    return tries[x];
-                }
-                return null;
-            };
-
             module.exports = {
                 typeOf: wu.curry(typeOf, allTypesByName),// (item|relationship|view) -> (ItemType| RelationshipType| ViewType)
                 isA: wu.curry(isA, deps),// (entity,type) => boolean
@@ -244,4 +274,5 @@
                 resolveTypeName: wu.curry(resolveTypeNameWithScope, allTypesByName)
             };
         });
-})(require("mongoAdapter"), require("async"), require("wu").wu);
+
+})(require("../persistence"), require("async"), require("wu").wu);
