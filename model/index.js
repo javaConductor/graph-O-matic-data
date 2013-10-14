@@ -5,8 +5,10 @@
  * Time: 1:58 PM
  */
 
-(function (persistence, ts) {
-    console.log(["model/index.js",ts]);
+(function (typeSystem,persistence) {
+    console.dir(["model/index.js: ts=", typeSystem]);
+
+    typeSystem(function(e, ts){
 
     var wrapFunctionWithCallback = function (fn, xformInFn, xformOutFn) {
         var cbFor = function (cb) {
@@ -98,6 +100,9 @@
     //////  Item  //////
     this.saveItem = wrapFunctionWithCallback(persistence.saveItem, beforeWrite.item, afterRead.item);
     this.getItem = wrapFunctionWithCallback(persistence.getItem, beforeWrite.item, afterRead.item);
+    this.getItems = wrapFunctionWithCallback(persistence.getItems, identity, function(a){
+        return a.map(afterRead.item);
+    });
     this.deleteItem = persistence.deleteItem;
 
     //////  View Item //////
@@ -142,16 +147,13 @@
     exports.updateItemType = this.updateItemType;
     exports.getItemTypeById = this.getItemTypeById;
 
-    exports.saveItemType = this.saveItemType;
-    exports.getItemType = this.getItemType;
-    exports.getItemTypes = this.getItemTypes;
-
     exports.saveViewType = this.saveViewType;
     exports.getViewType = this.getViewType;
     exports.getViewTypes = this.getViewTypes;
 
     exports.saveItem = this.saveItem;
     exports.getItem = this.getItem;
+    exports.getItems = this.getItems;
     exports.deleteItem = this.deleteItem;
 
     exports.saveViewItem = this.saveViewItem;
@@ -166,6 +168,6 @@
     exports.getContext = this.getContext;
     exports.saveContext = this.saveContext;
     console.log("model/index.js: END!");
-
+    });
     //exports.nameMaps = this.nameMaps;
-})(require("../persistence"), require("../typeSystem"));
+})( require("../typeSystem"),require("../persistence"));

@@ -8,7 +8,7 @@
 var mergeModule = function(modPath){
     var pa = require( modPath );
 
-    console.dir(["Loaded "+modPath+" ==>",   (pa)]);
+//    console.dir(["Loaded "+modPath+" ==>",   (pa)]);
     for (var name in pa)
     {
        // console.log("Adding "+name+" to module.");

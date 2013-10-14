@@ -1,6 +1,6 @@
 [{
     "title": "Rent",
-    "type": "test.finance.Account",
+    "typeName": "test.finance.Account",
     "data": [
         {
             "name":"accountNumber",
@@ -8,7 +8,7 @@
         }]
 },{
     "title": "Light Bill",
-    "type": "test.finance.Account",
+    "typeName": "test.finance.Account",
     "data": [
         {
             "name":"ComED",

@@ -6,13 +6,18 @@
  * Time: 2:16 AM
  */
 (function (model, async, wu) {
-    console.dir(["typeSystem/index.js: model:",model]);
-
-    console.dir(model);
-    console.dir(async);
-    console.dir(wu);
+    console.dir(["typeSystem/index.js: model=",model]);
 
     var ret = {};
+    function reportError(msg) {
+        throw  new Error(msg);
+    };
+
+///
+    ////////////////////////////////////////////////////////////////////////////////////////////
+    // Hierarchy
+    ////////////////////////////////////////////////////////////////////////////////////////////
+
     var createHierarchy = function createHierarchy(typesByName, typeMap) {
         for (var name in  typesByName) {
             var t = typesByName[name];
@@ -22,10 +27,36 @@
         };
         return ret;
     };
-
-    function reportError(msg) {
-        throw  new Error(msg);
+    /**
+     *
+     * @param typesByName
+     * @param typeMap
+     * @param type
+     * @param listSoFar
+     * @returns {*}
+     */
+    var getHierarchy = function getHierarchy(typesByName, typeMap, type, listSoFar) {
+        listSoFar = listSoFar || [type];
+        var t = typesByName[type];
+        if (t) {
+            var parent = (t.parentName);
+            if (!parent) {
+                var defaultForType = defaultParentForKind(typeMap[type]);
+                if (listSoFar.indexOf(defaultForType) == -1)
+                    listSoFar.push(defaultForType);
+                return listSoFar;
+            }
+            parent = resolveTypeNameWithScope(typesByName,parent, t);
+            if (!parent){
+                return reportError( "No such type: " + t.parentName);
+            }
+            listSoFar.push(parent);
+            return getHierarchy(typesByName, typeMap, parent, listSoFar);
+        }
+        else
+            return reportError( "No such type: " + type);
     };
+
 
     var defaultParentForKind = function defaultParentForKind(kind) {
         switch (kind) {
@@ -77,7 +108,7 @@
 
         var tries = [];// list of names to try
         if (isType(scopeObj)){
-            tries.push(scopeObj.origin.context +'.'+ scopeObj.origin.area+'.' + name);
+            tries.push( scopeObj.origin.context +'.'+ scopeObj.origin.area+'.' + name);
         }
         if (isData(scopeObj)){
             tries.push(scopeObj.type.origin.context +'.'+ scopeObj.type.origin.area+'.' + name);
@@ -96,35 +127,8 @@
         return null;
     };
 
-    /**
-     *
-     * @param typesByName
-     * @param typeMap
-     * @param type
-     * @param listSoFar
-     * @returns {*}
-     */
-    var getHierarchy = function getHierarchy(typesByName, typeMap, type, listSoFar) {
-        listSoFar = listSoFar || [type];
-        var t = typesByName[type];
-        if (t) {
-            var parent = (t.parent);
-            if (!parent) {
-                var defaultForType = defaultParentForKind(typeMap[type]);
-                if (listSoFar.indexOf(defaultForType) == -1)
-                    listSoFar.push(defaultForType);
-                return listSoFar;
-            }
-            parent = resolveTypeNameWithScope(typesByName,parent, t);
-            if (!parent){
-                return reportError( "No such type: " + t.parent);
-            }
-            listSoFar.push(parent);
-            return getHierarchy(typesByName, typeMap, parent, listSoFar);
-        }
-        else
-            return reportError( "No such type: " + type);
-    };
+
+    module.exports = function( cb ){
 
     async.series([
         function (callback) {
@@ -147,14 +151,12 @@
 // optional callback
         function (err, results) {
             if (err)
-                throw err;
+                return cb(err);
 
             //// Create the byName maps for lookup
             var allTypesByName = {};
             var kindMap = {};
             var itemTypesByName = {};
-
-
             results[0].forEach(function (it) {
                 var nm = typeNameFromType(it);
                 itemTypesByName[nm] = it;
@@ -169,7 +171,6 @@
                 allTypesByName[nm] = it;
                 kindMap[nm] = "relationshipType";
             });
-
 
             var categoriesByName = {};
             results[2].forEach(function (vt) {
@@ -261,7 +262,7 @@
                 return thing;
             };
 
-            module.exports = {
+            cb(null, {
                 typeOf: wu.curry(typeOf, allTypesByName),// (item|relationship|view) -> (ItemType| RelationshipType| ViewType)
                 isA: wu.curry(isA, deps),// (entity,type) => boolean
                 hierarchy: wu.curry(getHierarchy, allTypesByName, kindMap),
@@ -272,7 +273,10 @@
                 unresolveView: (unresolve),
                 unresolveRelationship: (unresolve),
                 resolveTypeName: wu.curry(resolveTypeNameWithScope, allTypesByName)
-            };
+            });
         });
 
+    };
+
+    console.dir(["typeSystem/index.js: END!",exports]);
 })(require("../persistence"), require("async"), require("wu").wu);

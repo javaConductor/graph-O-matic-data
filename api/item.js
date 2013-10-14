@@ -4,9 +4,8 @@
  * Date: 6/23/13
  * Time: 10:45 AM
  */
-
 (function( model, utils ){
-
+console.dir(["api/item.js"]);
     var reqToItem = function(req){
         var o= {};
         o.type =  req.type;
@@ -20,55 +19,50 @@
         return req.body.map( reqToItem );
     };
 
-    var prepItem = function(item, f){
-        if ("string" == typeof  item.type ){
-            model.getItemTypeByName(item.type, function(e, itype){
-                if (e)
-                    return f(e, null);
-                console.log("prepItem(): "+item.type + "==>>"+ JSON.stringify( itype));
-                item.type = itype;
-                return f( null, item );
-            });
-        }
+    var prepItemRead = function(item){
+        return (item);
+//
+//        if ("string" == typeof  item.type ){
+//            model.getItemTypeByName(item.type, function(e, itype){
+//                if (e)
+//                    return f(e, null);
+//                console.log("prepItem(): "+item.type + "==>>"+ JSON.stringify( itype));
+//                item.type = itype;
+//                return f( null, item );
+//            });
+//        }
     };
 
-    var prepItems= function prepItems(items, f, itemsPrepped){
-        itemsPrepped = itemsPrepped || [];
-        var err = null;
-        /// if no more items - we're done!
-        if (items.length == 0)
-            return f(null, itemsPrepped);
-        var item = items[0];
-        return prepItem(item,function(e,itm){
-            if(e){
-                return f(e, null);
-            }
-            var nuItems = items.slice(1);
-            itemsPrepped.push(itm);
-            return prepItems(nuItems,f,itemsPrepped);
-        });
+    var prepItemsRead= function prepItems(items){
+        return items.map( prepItemRead );
+    };
+
+    var prepItemWrite = function(item){
+        return item;
+    };
+
+    var prepItemsWrite= function prepItems(items){
+        return items.map( prepItemWrite );
     };
 
     exports.saveItem = function(req, res){
-        prepItem( reqToItem(req.body), function(err, item){
-            model.saveItem(item, function(err, itm){
+        var item = prepItemWrite(req.body);
+        model.saveItem(item, function(err, itm){
                 if(err)
                     return utils.sendError(res, JSON.stringify(itm));
                 res.send(itm);
-            });
+
         });
     };
 
     exports.loadItems = function(req, res){
-        var itemList = reqToItemList( req );
-        prepItems( itemList, function(err, items){
+        var items = prepItemsWrite(( req.body) );
             items.forEach(function(item){
                 model.saveItem(item, function(err, itm){
                     if(err)
-                        return utils.sendError(res, JSON.stringify(itm));
+                        return utils.sendError(res, JSON.stringify(err));
                     res.send(itm);
                 });
-            });
         });
     };
 
@@ -76,6 +70,13 @@
         var id = req.params.id;
         model.getItem(id, function(err, itm){
             res.send(itm);
+        });
+    };
+
+    exports.getItems = function(req, res){
+        var id = req.params.id;
+        model.getItems( function(err, itms){
+            res.send(itms);
         });
     };
 
@@ -93,4 +94,4 @@
         });
 	};
 
-})( require("../model"), require("./utils.js") );
+})( require("../model"), require("./utils.js"));

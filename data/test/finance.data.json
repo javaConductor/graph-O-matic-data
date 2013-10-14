@@ -2,7 +2,7 @@
     "Items" : [
         {
             "name": "Rent",
-            "itemType": "test.finance.Account",
+            "typeName": "test.finance.Account",
             "data": {
                 "accountNumber": "7819Laflin60620",
                 "title":"Rent"
@@ -10,7 +10,7 @@
         },
         {
             "name": "David School Supplies",
-            "itemType": "test.finance.Account",
+            "typeName": "test.finance.Account",
             "relatedImage": "",
             "relationships": [],
             "data": {

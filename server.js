@@ -35,7 +35,7 @@ app.get('/views', api.getViews);
 app.put('/views', api.saveView);
 app.post('/views/:id', api.updateView);
 
-// View Item Resourc
+// View Item Resource
 app.get('/view-items/:id', api.getViewItem);
 app.put('/view-items/:viewId/:itemId/:x/:y', api.createViewItem);
 app.post('/view-items/:id/position/:x/:y', api.updateViewItemPosition);
@@ -47,6 +47,7 @@ app.get('/item-types', api.getItemTypes);
 
 // Item Resource
 app.get('/items/:id', api.getItem);
+app.get('/items', api.getItems);
 app.put('/items', api.saveItem);
 app.put('/items/load', api.loadItems);
 

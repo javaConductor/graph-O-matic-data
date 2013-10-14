@@ -104,7 +104,7 @@
 			"name": "AudioFile",
 			"category": "Audio",
 			"description" : "Audio File",
-			"parent": "MediaFile",
+			"parentName": "MediaFile",
 			"defaults": [
 				{
 					"name": "format",
@@ -117,7 +117,7 @@
 			"name": "VideoFile",
 			"category": "Video",
 			"description" : "video file",
-			"parent": "MediaFile",
+			"parentName": "MediaFile",
 			"defaults": [
 				{
 					"name": "format",
@@ -129,7 +129,7 @@
 			"name": "ImageFile",
 			"category": "Video",
 			"description" : "image file",
-			"parent": "MediaFile",
+			"parentName": "MediaFile",
 			"defaults": [
 				{
 					"name": "format",
