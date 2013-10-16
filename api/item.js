@@ -74,7 +74,7 @@ console.dir(["api/item.js"]);
     };
 
     exports.getItems = function(req, res){
-        var id = req.params.id;
+       // var id = req.params.id;
         model.getItems( function(err, itms){
             res.send(itms);
         });

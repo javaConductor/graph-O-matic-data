@@ -206,7 +206,7 @@
 
             var resolveItem = function (typesByName, kindMap, item) {
                 //TODO :
-                var itemDef = "default.built-in.BaseIT";
+                var itemDef = "default.built-in.baseIT";
                 var tn = item.typeName || itemDef;
                 var t = typesByName[tn];
 

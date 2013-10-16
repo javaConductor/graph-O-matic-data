@@ -8,6 +8,7 @@
 var application_root = __dirname,
   express = require("express"),
   path = require("path"),
+  cors = require('cors'),
   api = require('./api')
     ;
 
@@ -16,27 +17,35 @@ var application_root = __dirname,
 var app = express();
 
 // Config
+var corsConfig = {
 
+};
 app.configure(function () {
 	app.use(express.bodyParser());
 	app.use(express.methodOverride());
 	app.use(app.router);
-	app.use(express.static(path.join(application_root, "public")));
+    app.use(express.logger('dev'));
+    app.use(express.static(path.join(application_root, "public")));
 	app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+
 });
+
+app.all('*', cors());
 
 app.get('/api', function (req, res) {
 	res.send('graph-o-matic-data REST API is running');
 });
 
 // View Resource
-app.get('/views/:id', api.getView);
+//app.options('/views/:id', cors());
+app.options('/views', cors());
+app.get('/views/:id',  api.getView);
 app.get('/views', api.getViews);
 app.put('/views', api.saveView);
 app.post('/views/:id', api.updateView);
 
 // View Item Resource
-app.get('/view-items/:id', api.getViewItem);
+app.get('/view-items/:id',  api.getViewItem);
 app.put('/view-items/:viewId/:itemId/:x/:y', api.createViewItem);
 app.post('/view-items/:id/position/:x/:y', api.updateViewItemPosition);
 
@@ -47,7 +56,7 @@ app.get('/item-types', api.getItemTypes);
 
 // Item Resource
 app.get('/items/:id', api.getItem);
-app.get('/items', api.getItems);
+app.get('/items', cors(), api.getItems);
 app.put('/items', api.saveItem);
 app.put('/items/load', api.loadItems);
 

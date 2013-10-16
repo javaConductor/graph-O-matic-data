@@ -2,20 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="23b8520e-8397-4718-a457-abae1f30f47b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contexts/default/common.ctxt.json" afterPath="$PROJECT_DIR$/contexts/default/common.ctxt.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contexts/test/finance.ctxt.json" afterPath="$PROJECT_DIR$/contexts/test/finance.ctxt.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/finance.data.json" afterPath="$PROJECT_DIR$/data/test/finance.data.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/index.js" afterPath="$PROJECT_DIR$/api/index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/index.js" afterPath="$PROJECT_DIR$/model/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/mongoAdapter/index.js" afterPath="$PROJECT_DIR$/node_modules/mongoAdapter/index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/typeSystem/index.js" afterPath="$PROJECT_DIR$/typeSystem/index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/item.js" afterPath="$PROJECT_DIR$/api/item.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/loadtestdata.sh" afterPath="$PROJECT_DIR$/test/loadtestdata.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/mongoAdapter/model.js" afterPath="$PROJECT_DIR$/node_modules/mongoAdapter/model.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contexts/multimedia/multimedia.ctxt.json" afterPath="$PROJECT_DIR$/contexts/multimedia/multimedia.ctxt.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/rent.json" afterPath="$PROJECT_DIR$/test/rent.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.js" afterPath="$PROJECT_DIR$/server.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/testList.json" afterPath="$PROJECT_DIR$/test/testList.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="ab4472db-35bb-403b-9afc-3d326a5a41b2" name="New changelist" comment="New changelist">
@@ -23,14 +13,14 @@
     </list>
     <ignored path="graph-O-matic-data.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1381764332506" ignored="false" />
-    <file path="/server.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1381773050598" ignored="false" />
+    <file path="/Dummy.txt" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1381949646704" ignored="false" />
+    <file path="/server.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1381965224896" ignored="false" />
     <file path="/index.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1381789289562" ignored="false" />
     <file path="/itemTypes.txt" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1371708609211" ignored="false" />
     <file path="$PROJECT_DIR$/../graph-O-matic/docs/itemTypes.txt" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1371708610586" ignored="false" />
     <file path="/models.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1372901828605" ignored="false" />
     <file path="/test.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1376962112917" ignored="false" />
-    <file path="/fragment.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1381772178328" ignored="false" />
+    <file path="/fragment.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1381951009379" ignored="false" />
     <file path="$PROJECT_DIR$/../sword-express/routes/api.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1372477101636" ignored="false" />
     <file path="/a.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1374199841845" ignored="false" />
     <file path="/private/var/folders/mx/17smv6gx63zbt_v7d130dzk80000gn/T/nodeunit-intellij-starter.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1373267098676" ignored="false" />
@@ -50,7 +40,7 @@
     <file path="$PROJECT_DIR$/../graph-O-matic/public/js/services/model.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1374156312767" ignored="false" />
     <file path="$PROJECT_DIR$/../graph-O-matic/routes/rest-api.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1377117637347" ignored="false" />
     <file path="$PROJECT_DIR$/../graph-O-matic/public/js/services/persistence.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1374157262706" ignored="false" />
-    <file path="/persistence.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1380669856480" ignored="false" />
+    <file path="/persistence.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1381865887315" ignored="false" />
     <file path="/dataLoader.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1381080984733" ignored="false" />
     <file path="/a.lua" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1374199804666" ignored="false" />
     <file path="/a.xml" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1374199839590" ignored="false" />
@@ -87,7 +77,7 @@
     <file path="/finance.ctxt.json" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1381767141180" ignored="false" />
     <file path="/graph-o-matic.log" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1376978317534" ignored="false" />
     <file path="/finance.data.json" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1381771060319" ignored="false" />
-    <file path="$PROJECT_DIR$/../graph-O-matic/public/js/app/services/persistence.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1380670035235" ignored="false" />
+    <file path="$PROJECT_DIR$/../graph-O-matic/public/js/app/services/persistence.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1381950016806" ignored="false" />
     <file path="$PROJECT_DIR$/../graph-O-matic/app.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1377117719523" ignored="false" />
     <file path="$USER_HOME$/stuff/projects/jsonMaker/index.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1377122655426" ignored="false" />
     <file path="$USER_HOME$/stuff/projects/jsonMaker/package.json" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1377123334357" ignored="false" />
@@ -113,12 +103,12 @@
     <file path="/loadtestdata.sh" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1381772923196" ignored="false" />
     <file path="/rent.json" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1381771371155" ignored="false" />
     <file path="$PROJECT_DIR$/../graph-O-matic/config.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1377296233975" ignored="false" />
-    <file path="$PROJECT_DIR$/../graph-O-matic/public/js/app/services/config.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1377298284542" ignored="false" />
+    <file path="$PROJECT_DIR$/../graph-O-matic/public/js/app/services/config.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1381813380364" ignored="false" />
     <file path="/services.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1377499097261" ignored="false" />
     <file path="$PROJECT_DIR$/../graph-O-matic/public/js/app/services/services.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1377499099804" ignored="false" />
     <file path="$PROJECT_DIR$/../graph-O-matic/public/js/app.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1379916281599" ignored="false" />
-    <file path="$PROJECT_DIR$/../graph-O-matic/public/js/app/controllers.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1380670594409" ignored="false" />
-    <file path="/controllers.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1380670586185" ignored="false" />
+    <file path="$PROJECT_DIR$/../graph-O-matic/public/js/app/controllers.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1381790851790" ignored="false" />
+    <file path="/controllers.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1381790840750" ignored="false" />
     <file path="$PROJECT_DIR$/../graph-O-matic/public/js/app/services/world.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1380669709120" ignored="false" />
     <file path="$PROJECT_DIR$/../graph-O-matic/public/js/app/services/view.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1377576229382" ignored="false" />
     <file path="/testView.ejs" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1379918109158" ignored="false" />
@@ -177,14 +167,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="index.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="98" column="24" selection-start="3917" selection-end="3917" vertical-scroll-proportion="0.14201184">
-              <folding>
-                <element signature="e#1360#1385#0" expanded="false" />
-                <element signature="e#1409#1728#0" expanded="false" />
-              </folding>
+            <state line="18" column="0" selection-start="462" selection-end="462" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="wu.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file:///usr/lib/node_modules/wu/lib/wu.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="468" column="0" selection-start="16410" selection-end="16410" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -192,7 +188,7 @@
       <file leaf-file-name="index.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/node_modules/mongoAdapter/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="331" column="0" selection-start="12348" selection-end="12348" vertical-scroll-proportion="-6.4375">
+            <state line="331" column="0" selection-start="12348" selection-end="12348" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -201,21 +197,16 @@
       <file leaf-file-name="finance.ctxt.json" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/contexts/test/finance.ctxt.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
-              <folding>
-                <element signature="e#99#5175#0" expanded="false" />
-                <element signature="e#103#1351#0" expanded="false" />
-                <element signature="e#2636#3458#0" expanded="false" />
-                <element signature="e#3659#5167#0" expanded="false" />
-              </folding>
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="item.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="item.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/api/item.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="25" selection-start="144" selection-end="144" vertical-scroll-proportion="0.0">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -224,7 +215,16 @@
       <file leaf-file-name="server.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="21" selection-start="889" selection-end="889" vertical-scroll-proportion="0.0">
+            <state line="58" column="17" selection-start="1501" selection-end="1501" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="module.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/.WebStorm6/system/extLibs/nodejs-v0.10.16-src/core-modules-sources/lib/module.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="337" column="14" selection-start="9525" selection-end="9525" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -242,7 +242,7 @@
       <file leaf-file-name="rent.json" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/rent.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="0" selection-start="175" selection-end="175" vertical-scroll-proportion="-6.387097">
+            <state line="9" column="0" selection-start="175" selection-end="175" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -251,7 +251,7 @@
       <file leaf-file-name="testList.json" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/testList.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="13" selection-start="218" selection-end="218" vertical-scroll-proportion="-7.096774">
+            <state line="10" column="13" selection-start="218" selection-end="218" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -269,25 +269,8 @@
       <file leaf-file-name="index.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/typeSystem/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="265" column="0" selection-start="8713" selection-end="8713" vertical-scroll-proportion="-6.4375">
-              <folding>
-                <element signature="e#560#870#0" expanded="false" />
-                <element signature="e#876#1005#0" expanded="false" />
-                <element signature="e#1090#1864#0" expanded="false" />
-                <element signature="e#1935#2386#0" expanded="false" />
-                <element signature="e#2913#4149#0" expanded="false" />
-                <element signature="e#4208#4717#0" expanded="false" />
-                <element signature="e#5029#5216#0" expanded="false" />
-                <element signature="e#5310#5513#0" expanded="false" />
-                <element signature="e#5601#5789#0" expanded="false" />
-                <element signature="e#5876#6063#0" expanded="false" />
-                <element signature="e#6130#6284#0" expanded="false" />
-                <element signature="e#6414#6749#0" expanded="false" />
-                <element signature="e#6820#7361#0" expanded="false" />
-                <element signature="e#7432#7973#0" expanded="false" />
-                <element signature="e#8051#8559#0" expanded="false" />
-                <element signature="e#8607#8687#0" expanded="false" />
-              </folding>
+            <state line="276" column="0" selection-start="9472" selection-end="9472" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -304,7 +287,7 @@
       <file leaf-file-name="finance.data.json" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data/test/finance.data.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="18" selection-start="196" selection-end="196" vertical-scroll-proportion="-4.967742">
+            <state line="7" column="18" selection-start="196" selection-end="196" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -313,7 +296,7 @@
       <file leaf-file-name="adapter.log" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/logs/adapter.log">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="49448" column="0" selection-start="1000580" selection-end="1000580" vertical-scroll-proportion="0.0">
+            <state line="60678" column="0" selection-start="1225595" selection-end="1225595" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -331,11 +314,8 @@
       <file leaf-file-name="model.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/node_modules/mongoAdapter/model.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="160" column="28" selection-start="3982" selection-end="3982" vertical-scroll-proportion="-10.6875">
-              <folding>
-                <element signature="e#2629#3063#0" expanded="false" />
-                <element signature="e#3101#3531#0" expanded="false" />
-              </folding>
+            <state line="160" column="28" selection-start="3982" selection-end="3982" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -371,18 +351,18 @@
         <option value="$PROJECT_DIR$/contexts/default/common.ctxt.json" />
         <option value="$PROJECT_DIR$/contexts/multimedia/multimedia.ctxt.json" />
         <option value="$PROJECT_DIR$/node_modules/mongoAdapter/model.js" />
-        <option value="$PROJECT_DIR$/v8.log" />
         <option value="$PROJECT_DIR$/api/index.js" />
         <option value="$PROJECT_DIR$/contexts/test/finance.ctxt.json" />
         <option value="$PROJECT_DIR$/data/test/finance.data.json" />
         <option value="$PROJECT_DIR$/test/rent.json" />
         <option value="$PROJECT_DIR$/test/testList.json" />
         <option value="$PROJECT_DIR$/test/loadtestdata.sh" />
-        <option value="$PROJECT_DIR$/server.js" />
         <option value="$PROJECT_DIR$/node_modules/mongoAdapter/index.js" />
+        <option value="$PROJECT_DIR$/model/index.js" />
+        <option value="$PROJECT_DIR$/v8.log" />
         <option value="$PROJECT_DIR$/api/item.js" />
         <option value="$PROJECT_DIR$/typeSystem/index.js" />
-        <option value="$PROJECT_DIR$/model/index.js" />
+        <option value="$PROJECT_DIR$/server.js" />
       </list>
     </option>
   </component>
@@ -446,26 +426,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="graph-O-matic-data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="graph-O-matic-data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="graph-O-matic-data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="Scope">
         <subPane subId="All">
           <PATH>
@@ -582,20 +542,40 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graph-O-matic-data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graph-O-matic-data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graph-O-matic-data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="54" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="68" />
     <property name="options.splitter.main.proportions" value="0.15586117" />
-    <property name="recentsLimit" value="5" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="51" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="recentsLimit" value="5" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/logs/graph-o-matic.log" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="71" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="680" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="666" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="680" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="72" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="69" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -655,10 +635,6 @@
       <setting name="preferredDebugBrowser" value="CHROME" />
       <method />
     </configuration>
-    <configuration default="true" type="NodeJSRemoteDebug" factoryName="Node.js Remote Debug">
-      <node-js-remote-debug />
-      <method />
-    </configuration>
     <configuration default="true" type="NodeunitConfigurationType" factoryName="Nodeunit">
       <setting name="nodePath" value="/usr/local/bin/node" />
       <envs />
@@ -667,6 +643,10 @@
       <setting name="workingDirectory" value="$PROJECT_DIR$" />
       <setting name="testType" value="DIRECTORY" />
       <setting name="directory" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSRemoteDebug" factoryName="Node.js Remote Debug">
+      <node-js-remote-debug />
       <method />
     </configuration>
     <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" working-dir="$PROJECT_DIR$">
@@ -747,9 +727,9 @@
       <item index="2" class="java.lang.String" itemvalue="Node.js.server.js" />
       <item index="3" class="java.lang.String" itemvalue="Node.js.Loader" />
       <item index="4" class="java.lang.String" itemvalue="Node.js.Test Type Loader" />
-      <item index="5" class="java.lang.String" itemvalue="Node.js.test.js" />
-      <item index="6" class="java.lang.String" itemvalue="Nodeunit.NodeUnitTests" />
-      <item index="7" class="java.lang.String" itemvalue="Nodeunit.graph-o-matic-data-test" />
+      <item index="5" class="java.lang.String" itemvalue="Nodeunit.NodeUnitTests" />
+      <item index="6" class="java.lang.String" itemvalue="Nodeunit.graph-o-matic-data-test" />
+      <item index="7" class="java.lang.String" itemvalue="Node.js.test.js" />
     </list>
     <recent_temporary>
       <list size="2">
@@ -880,7 +860,11 @@
       <created>1381764359630</created>
       <updated>1381764359630</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Type System now returns a function(f) where f is f(e, typeSystem).&#10;Resolves OK!">
+      <created>1381789917556</created>
+      <updated>1381789917556</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -888,21 +872,21 @@
     <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32985386" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22025052" sideWeight="0.4997233" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3058455" sideWeight="0.76369673" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Mongo Runner" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24634655" sideWeight="0.4991699" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.43006262" sideWeight="0.23630327" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.22748092" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32776618" sideWeight="0.4997233" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32985386" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.12672938" sideWeight="0.38517746" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19701162" sideWeight="0.75365347" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12672938" sideWeight="0.75365347" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19661388" sideWeight="0.6941545" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12672938" sideWeight="0.69519836" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30480167" sideWeight="0.76369673" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.22748092" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.43006262" sideWeight="0.23630327" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Mongo Runner" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24634655" sideWeight="0.4991699" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37473905" sideWeight="0.57000554" order="3" side_tool="false" content_ui="tabs" x="13" y="118" width="1254" height="535" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32776618" sideWeight="0.4997233" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22025052" sideWeight="0.4997233" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32985386" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -951,7 +935,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Type System accessing MongoAdapter directly - this must stop!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Type System now returns a function(f) where f is f(e, typeSystem).&#10;Resolves OK!" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -979,6 +963,7 @@
     <MESSAGE value="added code for type system" />
     <MESSAGE value="Added Type System stuff" />
     <MESSAGE value="Type System accessing MongoAdapter directly - this must stop!" />
+    <MESSAGE value="Type System now returns a function(f) where f is f(e, typeSystem).&#10;Resolves OK!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1024,24 +1009,24 @@
           <option name="timeStamp" value="650" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/model/index.js</url>
-          <line>103</line>
-          <option name="timeStamp" value="651" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/typeSystem/index.js</url>
-          <line>264</line>
-          <option name="timeStamp" value="652" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/model/index.js</url>
-          <line>12</line>
-          <option name="timeStamp" value="653" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/node_modules/mongoAdapter/index.js</url>
           <line>331</line>
           <option name="timeStamp" value="654" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/typeSystem/index.js</url>
+          <line>218</line>
+          <option name="timeStamp" value="658" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/api/item.js</url>
+          <line>76</line>
+          <option name="timeStamp" value="659" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/api/item.js</url>
+          <line>78</line>
+          <option name="timeStamp" value="660" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -1056,38 +1041,10 @@
           <properties />
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="655" />
+      <option name="time" value="664" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///usr/lib/node_modules/wu/lib/wu.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="459" column="36" selection-start="16191" selection-end="16191" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/express/lib/router/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="160" column="0" selection-start="3469" selection-end="3469" vertical-scroll-proportion="0.33283132">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/testList.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="13" selection-start="218" selection-end="218" vertical-scroll-proportion="-7.096774">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/mongoAdapter/logger.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="20" selection-start="189" selection-end="189" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/logs/graph-o-matic.log">
       <provider selected="true" editor-type-id="text-editor">
         <state line="1935" column="0" selection-start="101240" selection-end="101240" vertical-scroll-proportion="0.0">
@@ -1104,11 +1061,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/mongoAdapter/model.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="160" column="28" selection-start="3982" selection-end="3982" vertical-scroll-proportion="-10.6875">
-          <folding>
-            <element signature="e#2629#3063#0" expanded="false" />
-            <element signature="e#3101#3531#0" expanded="false" />
-          </folding>
+        <state line="160" column="28" selection-start="3982" selection-end="3982" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1119,23 +1073,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="21" selection-start="889" selection-end="889" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/test/finance.data.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="18" selection-start="196" selection-end="196" vertical-scroll-proportion="-4.967742">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/item.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="25" selection-start="144" selection-end="144" vertical-scroll-proportion="0.0">
+        <state line="7" column="18" selection-start="196" selection-end="196" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -1154,44 +1094,66 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/v8.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/lib/node_modules/wu/lib/wu.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="468" column="0" selection-start="16410" selection-end="16410" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contexts/test/finance.ctxt.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.WebStorm6/system/extLibs/nodejs-v0.10.16-src/core-modules-sources/lib/module.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="337" column="14" selection-start="9525" selection-end="9525" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/typeSystem/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="265" column="0" selection-start="8713" selection-end="8713" vertical-scroll-proportion="-6.4375">
-          <folding>
-            <element signature="e#560#870#0" expanded="false" />
-            <element signature="e#876#1005#0" expanded="false" />
-            <element signature="e#1090#1864#0" expanded="false" />
-            <element signature="e#1935#2386#0" expanded="false" />
-            <element signature="e#2913#4149#0" expanded="false" />
-            <element signature="e#4208#4717#0" expanded="false" />
-            <element signature="e#5029#5216#0" expanded="false" />
-            <element signature="e#5310#5513#0" expanded="false" />
-            <element signature="e#5601#5789#0" expanded="false" />
-            <element signature="e#5876#6063#0" expanded="false" />
-            <element signature="e#6130#6284#0" expanded="false" />
-            <element signature="e#6414#6749#0" expanded="false" />
-            <element signature="e#6820#7361#0" expanded="false" />
-            <element signature="e#7432#7973#0" expanded="false" />
-            <element signature="e#8051#8559#0" expanded="false" />
-            <element signature="e#8607#8687#0" expanded="false" />
-          </folding>
+        <state line="276" column="0" selection-start="9472" selection-end="9472" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="58" column="17" selection-start="1501" selection-end="1501" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/mongoAdapter/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="331" column="0" selection-start="12348" selection-end="12348" vertical-scroll-proportion="-6.4375">
+        <state line="331" column="0" selection-start="12348" selection-end="12348" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/model/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="98" column="24" selection-start="3917" selection-end="3917" vertical-scroll-proportion="0.14201184">
-          <folding>
-            <element signature="e#1360#1385#0" expanded="false" />
-            <element signature="e#1409#1728#0" expanded="false" />
-          </folding>
+        <state line="18" column="0" selection-start="462" selection-end="462" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/item.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
