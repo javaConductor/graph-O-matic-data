@@ -12,8 +12,10 @@
     exports.saveView = function(req, res){
         var viewData = req.body;
         model.saveView(beforeSave(viewData), function(err, v){
-            if ( err )
+            if ( err ){
                 return utils.sendError(res,"Error: "+err);
+
+            }
             res.send(afterRead(v));
         });
     };
@@ -22,17 +24,17 @@
         var viewId = req.params.id;
         model.getView(viewId, function(err, v){
             if ( err )
-                return utils.sendError(res,"no such view:"+viewId);
+                return utils.sendError(res,"No such view:"+viewId);
             res.send(afterRead(v));
         });
     };
 
     exports.getViews = function(req, res){
         //var viewId = req.params.id;
-        model.getViews(function(err, v){
+        model.getViews(function(err, av){
             if ( err )
                 return utils.sendError(res,"error reading views:"+err);
-            res.send(afterRead(v));
+            res.send( av.map(afterRead));
         });
     };
 
@@ -41,7 +43,6 @@
             model.updateView(beforeSave(viewData), function(err, v){
                 if ( err )
                     return utils.sendError(res,"Error: "+err);
-
                 res.send(afterRead(v));
             });
         };

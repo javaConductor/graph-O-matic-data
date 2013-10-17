@@ -38,11 +38,11 @@ app.get('/api', function (req, res) {
 
 // View Resource
 //app.options('/views/:id', cors());
-app.options('/views', cors());
-app.get('/views/:id',  api.getView);
-app.get('/views', api.getViews);
-app.put('/views', api.saveView);
-app.post('/views/:id', api.updateView);
+//app.options('/views', cors());
+app.get('/views/:id',  cors(),api.getView);
+app.get('/views', cors(), api.getViews);
+app.put('/views', cors(), api.saveView);
+app.post('/views/:id', cors(),api.updateView);
 
 // View Item Resource
 app.get('/view-items/:id',  api.getViewItem);

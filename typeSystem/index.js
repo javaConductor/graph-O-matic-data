@@ -77,9 +77,11 @@
                 return reportError("No such kind:" + kind);
         }
     };
+
     var typeNameFromType = function (type) {
         return type.origin.context + "." + type.origin.area + "." + type.name;
     };
+
     var isType=function(thing){ return !!thing.origin;}
     var isData=function(thing){ return !isType(thing);}
     /**
@@ -224,7 +226,7 @@
 
             var resolveView = function (typesByName, kindMap, view) {
                 //TODO :
-                var viewDef = "default.built-in.BaseVT";
+                var viewDef = "default.built-in.baseVT";
                 var tn = view.typeName || viewDef;
                 var t = typesByName[tn];
 

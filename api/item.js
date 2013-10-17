@@ -21,16 +21,6 @@ console.dir(["api/item.js"]);
 
     var prepItemRead = function(item){
         return (item);
-//
-//        if ("string" == typeof  item.type ){
-//            model.getItemTypeByName(item.type, function(e, itype){
-//                if (e)
-//                    return f(e, null);
-//                console.log("prepItem(): "+item.type + "==>>"+ JSON.stringify( itype));
-//                item.type = itype;
-//                return f( null, item );
-//            });
-//        }
     };
 
     var prepItemsRead= function prepItems(items){
