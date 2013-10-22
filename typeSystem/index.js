@@ -43,14 +43,15 @@
             });
         return d.promise;
     };
+
     /**
      *
-     * @param typesByNameP
-     * @param kindMapP
-     * @param typeP
-     * @param listSoFar
+     * @param typesByNameP - promise(typesByName)
+     * @param kindMapP - promise(kindMap)
+     * @param typeP - promise(type) | type
+     * @param listSoFar - Array( promise(typeName) | typeName)
      *
-     * @returns
+     * @returns promise (Array( promise(typeName) | typeName))
      */
     var getHierarchy = function getHierarchy(typesByNameP, kindMapP, typeP, listSoFar) {
         q.when(typesByNameP, function (typesByName) {
@@ -82,11 +83,15 @@
                         return reportError("No such type: " + type);
                     }
                 })
+                    .error(function(e){
+                        d.reject("TypeSystem.getHierarchy(): " + e);
+                    })
             })
         })
             .error(function (e) {
                 d.reject(e);
-            })
+            });
+        return d.promise;
     };
 
     var defaultParentForKind = function defaultParentForKind(kind) {
@@ -115,10 +120,11 @@
 
     var isType = function (thing) {
         return ( thing && !!thing.origin);
-    }
+    };
     var isData = function (thing) {
         return !isType(thing);
-    }
+    };
+
     /**
      * Resolves the type 'name' and uses a scope object as the context for the type.
      *
@@ -183,9 +189,6 @@
     //// Create the byName maps for lookup
     var allTypesByName = {};
     var kindMap = {};
-    var relationshipTypesByName = {}
-    var categoriesByName = {};
-    var viewTypesByName = {};
 
     var itP = function (itemTypesP) {
         var d = q.defer();
@@ -206,6 +209,8 @@
     }(itemTypesP);
     var rtP = function (relationshipTypesP) {
         var d = q.defer();
+
+        var relationshipTypesByName = {};
         relationshipTypesP.then(function (relationshipTypes) {
             relationshipTypes.forEach(function (it) {
                 var nm = typeNameFromType(it);
@@ -222,6 +227,7 @@
     }(relationshipTypesP);
     var catP = function (categoriesP) {
         var d = q.defer();
+        var categoriesByName = {};
         categoriesP.then(function (categories) {
             categories.forEach(function (it) {
                 var nm = typeNameFromType(it);
@@ -236,9 +242,9 @@
             });
         return d.promise;
     }(categoryP);
-
     var vtP = function (viewTypesP) {
         var d = q.defer();
+        var viewTypesByName = {};
         viewTypesP.then(function (viewTypes) {
             viewTypes.forEach(function (it) {
                 var nm = typeNameFromType(it);
@@ -272,6 +278,11 @@
             })
         return d.promise;
     }(itP, rtP, catP, vtP);
+
+    /**
+     *
+     * @type { promise(kindMap) }
+     */
     var kindMapP = function (itP, rtP, catP, vtP) {
         var d = q.defer();
         var allP = q.all([itP, rtP, catP, vtP]);
@@ -328,20 +339,30 @@
         return d.promise;
     }; // () -> promise(typeObj)
 
-    var deps = createHierarchy(allByNameP, kindMapP);//promise( hierarchy)
+    var hierarchyP = createHierarchy(allByNameP, kindMapP);//promise( hierarchy)
     /**
      *
-     * @param deps
-     * @param entity
-     * @param typeName
+     * @param hierarchyP - promise( hierarchy) | heirarchy
+     * @param entityP - promise(entity) | entity
+     * @param typeName - name of type with which to check compatibility
      * @returns {*}
      */
-    var isA = function isA(entity, typeName) {
-        var entityTypeName = typeNameFromType(entity.type);
-        var hierarchy = getHierarchy(allTypesByName, kindMap, entityTypeName);
-        if (!hierarchy)
-            return reportError("No such type: " + entityTypeName);
-        return hierarchy.indexOf(typeName) != -1;
+    var isA = function isA(hierarchyP , entityP, typeName) {
+        var d = q.defer();
+        q.when(hierarchyP,function(hierarchy){
+            q.when(entityP,function(entity){
+                var entityTypeName = typeNameFromType(entity.type);
+                var hierarchyP = getHierarchy(allTypesByName, kindMap, entityTypeName);
+                hierarchyP
+                    .then(function(hierarchy){
+                        if ( !hierarchy )
+                            d.reject("No such type: " + entityTypeName);
+                        else
+                            d.resolve( !!hierarchy.indexOf(typeName) != -1);
+                    });
+            });
+        });
+        return d.promise;
     };
 
     /**
@@ -452,25 +473,19 @@
 
     var tsObj =  (  {
         typeOf: wu.curry(typeOf, allByNameP),// (item|relationship|view) -> promise(ItemType| RelationshipType| ViewType)
-        isA: wu.curry(isA),// (entity,type) => promise(boolean)
-        hierarchy: wu.curry(getHierarchy, allByNameP, kindMapP),
-        resolveItem: wu.curry(resolveItem, allByNameP, kindMapP),
-        resolveView: wu.curry(resolveView, allByNameP, kindMapP),
-        resolveRelationship: wu.curry(resolveRelationship, allByNameP, kindMapP),
+        isA: wu.curry(isA, hierarchyP),// (entity, type) => promise(boolean)
+        hierarchy: wu.curry(getHierarchy, allByNameP, kindMapP),// promise(Array( promise(typeName) | typeName)
+        resolveItem: wu.curry(resolveItem, allByNameP, kindMapP),//{ promise (item) }
+        resolveView: wu.curry(resolveView, allByNameP, kindMapP),//{ promise (view) }
+        resolveRelationship: wu.curry(resolveRelationship, allByNameP, kindMapP), //{ promise (relationship) }
         unresolveItem: (unresolve),
         unresolveView: (unresolve),
         unresolveRelationship: (unresolve),
-        resolveTypeName: wu.curry(resolveTypeNameWithScope, allByNameP)
+        resolveTypeName: wu.curry(resolveTypeNameWithScope, allByNameP)//// promise( full type name )
     });
 
     // everything exported
     exports = tsObj;
-
-    var wtf = function (err) {
-        if (err)
-            return cb(err);
-    };
-    //  };
 
     console.dir(["typeSystem/index.js: END!", exports]);
 })(require("../persistence"), require("async"), require("wu").wu, require("q"));
