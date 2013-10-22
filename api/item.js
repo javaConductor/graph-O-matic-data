@@ -41,7 +41,6 @@ console.dir(["api/item.js"]);
                 if(err)
                     return utils.sendError(res, JSON.stringify(itm));
                 res.send(itm);
-
         });
     };
 

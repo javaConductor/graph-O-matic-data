@@ -7,6 +7,7 @@
 (function (loader, optimist, fs, logger) {
 	var argv = optimist.argv;
 
+//    process.nextTick(function(){
 	logger.setLevel('DEBUG');
 	logger.debug('Argv:'+JSON.stringify(argv));
 	var le = [] 	;
@@ -31,10 +32,9 @@
 		logger.error('Error in params:'+JSON.stringify(argv));
 	}
 
-
     exports.loadDefaultContexts = function loadDefaultContexts(fDone, fDetail) {
         logger.debug("loader.loadDefaultContexts");
         loader.loadContext(null, 'contexts/default', fDone, fDetail);
     };
-
+//});
 })(require("./contextLoader.js"), require('optimist'), require('fs'), require('../logger'));

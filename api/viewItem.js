@@ -37,7 +37,7 @@
                     return utils.sendError(res, err);
                 vitem.position.x = x;
 				vitem.position.y = y;
-				res.send(item);
+				res.send(vitem);
 			});
 		};
 

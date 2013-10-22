@@ -5,10 +5,11 @@
  * Date: 8/4/13
  * Time: 2:16 AM
  */
-(function (model, async, wu) {
-    console.dir(["typeSystem/index.js: model=",model]);
+(function (model, async, wu, q) {
+    console.dir(["typeSystem/index.js: model=", model]);
 
     var ret = {};
+
     function reportError(msg) {
         throw  new Error(msg);
     };
@@ -17,46 +18,76 @@
     ////////////////////////////////////////////////////////////////////////////////////////////
     // Hierarchy
     ////////////////////////////////////////////////////////////////////////////////////////////
-
-    var createHierarchy = function createHierarchy(typesByName, typeMap) {
-        for (var name in  typesByName) {
-            var t = typesByName[name];
-           // console.log("createHierarchy: " + name);
-            ret[name] = getHierarchy(typesByName, typeMap, name);
-            console.log("Type: "+name+"->"+JSON.stringify(ret[name]));
-        };
-        return ret;
+    /**
+     *
+     * @param typesByNameP
+     * @param kindMapP
+     * @returns promise(typeName -> promise(hierarchy))
+     */
+    var createHierarchy = function createHierarchy(typesByNameP, kindMapP) {
+        var d = q.defer();
+        var ret = {};
+        typesByNameP
+            .then(function (typesByName) {
+                for (var name in  typesByName) {
+                    var t = typesByName[name];
+                    // console.log("createHierarchy: " + name);
+                    ret[name] = getHierarchy(typesByNameP, kindMapP, name);
+                    console.log("Type: " + name + "->" + JSON.stringify(ret[name]).state);
+                }
+                ;
+                d.resolve(ret);
+            })
+            .error(function (e) {
+                d.reject(e);
+            });
+        return d.promise;
     };
     /**
      *
-     * @param typesByName
-     * @param typeMap
-     * @param type
+     * @param typesByNameP
+     * @param kindMapP
+     * @param typeP
      * @param listSoFar
-     * @returns {*}
+     *
+     * @returns
      */
-    var getHierarchy = function getHierarchy(typesByName, typeMap, type, listSoFar) {
-        listSoFar = listSoFar || [type];
-        var t = typesByName[type];
-        if (t) {
-            var parent = (t.parentName);
-            if (!parent) {
-                var defaultForType = defaultParentForKind(typeMap[type]);
-                if (listSoFar.indexOf(defaultForType) == -1)
-                    listSoFar.push(defaultForType);
-                return listSoFar;
-            }
-            parent = resolveTypeNameWithScope(typesByName,parent, t);
-            if (!parent){
-                return reportError( "No such type: " + t.parentName);
-            }
-            listSoFar.push(parent);
-            return getHierarchy(typesByName, typeMap, parent, listSoFar);
-        }
-        else
-            return reportError( "No such type: " + type);
-    };
+    var getHierarchy = function getHierarchy(typesByNameP, kindMapP, typeP, listSoFar) {
+        q.when(typesByNameP, function (typesByName) {
 
+            q.when(kindMapP, function (kindMap) {
+
+                q.when(typeP, function (type) {
+
+                    type = resolveTypeNameWithScope(typesByNameP, type);
+                    listSoFar = listSoFar || [type];
+                    var t = typesByName[type];
+                    if (t) {
+                        var parent = (t.parentName);
+                        if (!parent) {
+                            var defaultForType = defaultParentForKind(kindMap[type]);
+                            if (listSoFar.indexOf(defaultForType) === -1)
+                                listSoFar.push(defaultForType);
+                            return d.resolve(listSoFar);
+                        }
+                        parent = resolveTypeNameWithScope(typesByNameP, parent, t);
+                        if (!parent) {
+                            return d.reject("No such type: " + t.parentName);
+                        }
+                        listSoFar.push(parent);
+                        return getHierarchy(typesByName, kindMap, parent, listSoFar);
+                    }
+                    else {
+                        d.reject("No such type: " + type);
+                        return reportError("No such type: " + type);
+                    }
+                })
+            })
+        })
+            .error(function (e) {
+                d.reject(e);
+            })
+    };
 
     var defaultParentForKind = function defaultParentForKind(kind) {
         switch (kind) {
@@ -82,203 +113,364 @@
         return type.origin.context + "." + type.origin.area + "." + type.name;
     };
 
-    var isType=function(thing){ return !!thing.origin;}
-    var isData=function(thing){ return !isType(thing);}
+    var isType = function (thing) {
+        return ( thing && !!thing.origin);
+    }
+    var isData = function (thing) {
+        return !isType(thing);
+    }
     /**
      * Resolves the type 'name' and uses a scope object as the context for the type.
      *
-     * @param typesByName
+     * @param typesByNameP
      * @param name
      * @param scopeObj
 
-     * @returns full type name
+     * @returns promise(full type name)
      */
-    var resolveTypeNameWithScope = function (typesByName, name, scopeObj) {
-        var parts = ( name.split('.', 3));
+    var resolveTypeNameWithScope = function (typesByNameP, name, scopeObj) {
+        var d = q.defer();
+        return typesByNameP.then(function (typesByName) {
 
-        /// if its already in the full form try to resolve name as is
-        if( parts.length >= 3 )
-            return typesByName[name] ? name : null;
+            var parts = ( name.split('.', 3));
 
-        //we need to resolve to full type name
-        /// try:
-        //          scopeObj.origin.context +  scopeObj.origin.area + name
-        //      then
-        //          'default' + 'common' +  name
-        //      then
-        //      'default' + 'built-in' +  name
+            /// if its already in the full form try to resolve name as is
+            if (parts.length >= 3)
+                return typesByName[name] ? name : null;
 
-        var tries = [];// list of names to try
-        if (isType(scopeObj)){
-            tries.push( scopeObj.origin.context +'.'+ scopeObj.origin.area+'.' + name);
-        }
-        if (isData(scopeObj)){
-            tries.push(scopeObj.type.origin.context +'.'+ scopeObj.type.origin.area+'.' + name);
-        }
-        tries.push("default.common." + name);
-        tries.push("default.built-in." + name);
+            //we need to resolve to full type name
+            /// try:
+            //          scopeObj.origin.context +  scopeObj.origin.area + name
+            //      then
+            //          'default' + 'common' +  name
+            //      then
+            //      'default' + 'built-in' +  name
 
-        for ( var x in tries){
-           // console.log("Resolving: "+name + " trying "+ tries[x]);
-            if ( typesByName[tries[x]]){
-                console.log("Resolving: "+name + " matched  "+ tries[x]);
-                return tries[x];
+            var tries = [];// list of names to try
+            if (scopeObj && isType(scopeObj)) {
+                tries.push(scopeObj.origin.context + '.' + scopeObj.origin.area + '.' + name);
             }
-        }
-        console.log("Could not resolve: "+name);
-        return null;
+            if (scopeObj && isData(scopeObj)) {
+                tries.push(scopeObj.type.origin.context + '.' + scopeObj.type.origin.area + '.' + name);
+            }
+            tries.push("default.common." + name);
+            tries.push("default.built-in." + name);
+
+            var matches = tries.filter(function (t) {
+                // console.log("Resolving: "+name + " trying "+ tries[x]);
+                return typesByName[t];
+            });
+
+            if (matches.length) {
+                console.log("Resolving: " + name + " matched  " + matches[0]);
+                d.resolve(matches[0]);
+            }
+            else {
+                console.log("Could not resolve: " + name);
+                d.reject("Could not resolve: " + name);
+            }
+            return d.promise;
+        });
     };
 
+    var itemTypesP = model.getItemTypes();
+    var relationshipTypesP = model.getItemTypes();
+    var categoryP = model.getCategories();
+    var viewTypesP = model.getViewTypes();
 
-    module.exports = function( cb ){
+    var d = q.defer();
 
-    async.series([
-        function (callback) {
-            model.getItemTypes(callback);
-            //callback(null, [])
-        },
-        function (callback) {
-            model.getRelationshipTypes(callback);
-            //        callback(null, [])
-        },
-        function (callback) {
-            model.getCategories(callback);
-            //          callback(null, [])
-        },
-        function (callback) {
-            model.getViewTypes(callback);
-            //           callback(null, []);
-        }
-    ],
-// optional callback
-        function (err, results) {
-            if (err)
-                return cb(err);
+    //// Create the byName maps for lookup
+    var allTypesByName = {};
+    var kindMap = {};
+    var relationshipTypesByName = {}
+    var categoriesByName = {};
+    var viewTypesByName = {};
 
-            //// Create the byName maps for lookup
-            var allTypesByName = {};
-            var kindMap = {};
-            var itemTypesByName = {};
-            results[0].forEach(function (it) {
+    var itP = function (itemTypesP) {
+        var d = q.defer();
+        var itemTypesByName = {};
+        itemTypesP.then(function (itemTypes) {
+            itemTypes.forEach(function (it) {
                 var nm = typeNameFromType(it);
                 itemTypesByName[nm] = it;
                 allTypesByName[nm] = it;
                 kindMap[nm] = "itemType";
             });
-
-            var relationshipTypesByName = {}
-            results[1].forEach(function (it) {
+            d.resolve(itemTypesByName)
+        })
+            .error(function (e) {
+                d.reject(e);
+            });
+        return d.promise;
+    }(itemTypesP);
+    var rtP = function (relationshipTypesP) {
+        var d = q.defer();
+        relationshipTypesP.then(function (relationshipTypes) {
+            relationshipTypes.forEach(function (it) {
                 var nm = typeNameFromType(it);
                 relationshipTypesByName[nm] = it;
                 allTypesByName[nm] = it;
-                kindMap[nm] = "relationshipType";
+                kindMap[nm] = "itemType";
             });
-
-            var categoriesByName = {};
-            results[2].forEach(function (vt) {
-                var nm = typeNameFromType(vt);
-                categoriesByName[nm] = vt;
-                allTypesByName[nm] = vt;
+            d.resolve(relationshipTypesByName)
+        })
+            .error(function (e) {
+                d.reject(e);
+            });
+        return d.promise;
+    }(relationshipTypesP);
+    var catP = function (categoriesP) {
+        var d = q.defer();
+        categoriesP.then(function (categories) {
+            categories.forEach(function (it) {
+                var nm = typeNameFromType(it);
+                categoriesByName[nm] = it;
+                allTypesByName[nm] = it;
                 kindMap[nm] = "category";
             });
+            d.resolve(categoriesByName);
+        })
+            .error(function (e) {
+                d.reject(e);
+            });
+        return d.promise;
+    }(categoryP);
 
-            var viewTypesByName = {};
-            results[3].forEach(function (vt) {
-                var nm = typeNameFromType(vt);
-                viewTypesByName[nm] = vt;
-                allTypesByName[nm] = vt;
+    var vtP = function (viewTypesP) {
+        var d = q.defer();
+        viewTypesP.then(function (viewTypes) {
+            viewTypes.forEach(function (it) {
+                var nm = typeNameFromType(it);
+                viewTypesByName[nm] = it;
+                allTypesByName[nm] = it;
                 kindMap[nm] = "viewType";
             });
-
-            var typeOf = (function typeOf(typesByName, entity) {
-                if (isType(entity))
-                    return entity;
-
-                return typesByName[typeNameFromType(entity.type)];
-            }  );
-
-            var deps = createHierarchy(allTypesByName, kindMap);
-            var isA = function isA(deps, entity, typeName) {
-                var entityTypeName = typeNameFromType(entity.type);
-                var hierarchy = getHierarchy(allTypesByName, kindMap, entityTypeName);
-                if (!hierarchy)
-                    return reportError("No such type: " + entityTypeName);
-                return hierarchy.indexOf(typeName) != -1;
-            };
-
-            var resolveItem = function (typesByName, kindMap, item) {
-                //TODO :
-                var itemDef = "default.built-in.baseIT";
-                var tn = item.typeName || itemDef;
-                var t = typesByName[tn];
-
-                if (!t) {
-                    t = typesByName[itemDef];
-                    console.log("No such Type: " + tn + " using " + itemDef)
-                }
-
-                if (!t) {
-                    throw Error("Internal error: " + itemDef + " not found ");
-                }
-                item.type = t;
-                return item;
-            };
-
-            var resolveView = function (typesByName, kindMap, view) {
-                //TODO :
-                var viewDef = "default.built-in.baseVT";
-                var tn = view.typeName || viewDef;
-                var t = typesByName[tn];
-
-                if (!t) {
-                    t = typesByName[viewDef];
-                    console.log("No such Type: " + tn + " using " + viewDef)
-                }
-
-                if (!t) {
-                    throw Error("Internal error: " + viewDef + " not found ");
-                }
-                view.type = t;
-                return view;
-            };
-
-            var resolveRelationship = function (typesByName, kindMap, rel) {
-                var relDef = "default.built-in.BaseRT";
-                var tn = rel.typeName || relDef;
-                var t = typesByName[tn];
-
-                if (!t) {
-                    t = typesByName[relDef];
-                    console.log("No such Type: " + tn + " using " + relDef)
-                }
-
-                if (!t) {
-                    throw Error("Internal error: " + relDef + " not found ");
-                }
-                rel.type = t;
-                return rel;
-            };
-
-            var unresolve = function (thing) {
-                thing.type = null;
-                return thing;
-            };
-
-            cb(null, {
-                typeOf: wu.curry(typeOf, allTypesByName),// (item|relationship|view) -> (ItemType| RelationshipType| ViewType)
-                isA: wu.curry(isA, deps),// (entity,type) => boolean
-                hierarchy: wu.curry(getHierarchy, allTypesByName, kindMap),
-                resolveItem: wu.curry(resolveItem, allTypesByName, kindMap),
-                resolveView: wu.curry(resolveView, allTypesByName, kindMap),
-                resolveRelationship: wu.curry(resolveRelationship, allTypesByName, kindMap),
-                unresolveItem: (unresolve),
-                unresolveView: (unresolve),
-                unresolveRelationship: (unresolve),
-                resolveTypeName: wu.curry(resolveTypeNameWithScope, allTypesByName)
+            d.resolve(viewTypesByName);
+        })
+            .error(function (e) {
+                d.reject(e);
             });
-        });
+        return d.promise;
+    }(viewTypesP);
+    var allByNameP = function (itP, rtP, catP, vtP) {
+        var d = q.defer();
+        var allP = q.all([itP, rtP, catP, vtP]);
 
+        allP.then(function (allMaps) {
+            /// loop thru list copying everything retObj
+            var retObj = {};
+            allMaps.forEach(function (m) {
+                for (var nm in m) {
+                    retObj[nm] = m[nm];
+                }
+            });
+            d.resolve(retObj);
+        })
+            .error(function (e) {
+                d.reject(e);
+            })
+        return d.promise;
+    }(itP, rtP, catP, vtP);
+    var kindMapP = function (itP, rtP, catP, vtP) {
+        var d = q.defer();
+        var allP = q.all([itP, rtP, catP, vtP]);
+
+        allP.then(function (allMaps) {
+            var retObj = {};
+            var its = allMaps[0];
+            var rts = allMaps[1];
+            var cats = allMaps[2];
+            var vts = allMaps[3];
+
+            for (var nm in its) {
+                retObj[nm] = "itemType";
+            }
+
+            for (nm in rts) {
+                retObj[nm] = "relationshipType";
+            }
+
+            for (nm in cats) {
+                retObj[nm] = "category";
+            }
+
+            for (nm in vts) {
+                retObj[nm] = "viewType";
+            }
+            d.resolve(retObj);
+
+        })
+            .error(function (e) {
+                d.reject(e);
+            });
+        return d.promise;
+    }(itP, rtP, catP, vtP);
+
+    /**
+     *
+     * @param typesByNameP - promise(typesByName)
+     * @param entityP - promise(entity) | entity
+     * @returns {promise|Q.promise}
+     */
+    var typeOf = function typeOf(typesByNameP, entityP) {
+        var d = q.defer();
+        typesByNameP.then(function (typesByName) {
+            q.when(entityP,function (entity) {
+                if (isType(entity))
+                    d.resolve(entity);
+                else
+                    d.resolve(typesByName[typeNameFromType(entity.type)]);
+            }).error(function (e) {
+                    d.reject(e);
+                })
+        });
+        return d.promise;
+    }; // () -> promise(typeObj)
+
+    var deps = createHierarchy(allByNameP, kindMapP);//promise( hierarchy)
+    /**
+     *
+     * @param deps
+     * @param entity
+     * @param typeName
+     * @returns {*}
+     */
+    var isA = function isA(entity, typeName) {
+        var entityTypeName = typeNameFromType(entity.type);
+        var hierarchy = getHierarchy(allTypesByName, kindMap, entityTypeName);
+        if (!hierarchy)
+            return reportError("No such type: " + entityTypeName);
+        return hierarchy.indexOf(typeName) != -1;
     };
 
-    console.dir(["typeSystem/index.js: END!",exports]);
-})(require("../persistence"), require("async"), require("wu").wu);
+    /**
+     *
+     * @param typesByNameP - promise(typeByName)
+     * @param kindMapP - promise(kindMap)
+     * @param itemP  promise(item)
+     * @returns { promise(item) }
+     */
+    var resolveItem = function (typesByNameP, kindMapP, itemP) {
+        var d = q.defer();
+        typesByNameP.then(function (typesByName) {
+            kindMapP.then(function (kindMap) {
+                q.when(itemP, function (item) {
+                    var itemDef = "default.built-in.baseIT";
+                    var tn = item.typeName || itemDef;
+                    var t = typesByName[tn];
+
+                    if (!t) {
+                        t = typesByName[itemDef];
+                        console.log("No such Type: " + tn + " using " + itemDef);
+                    }
+                    if (!t) {
+                        d.reject("Internal error: " + itemDef + " not found ");
+//                              throw Error("Internal error: " + itemDef + " not found ");
+                    } else {
+                        item.type = t;
+                        d.resolve(item);
+                    }
+                    return item;
+                });
+            });
+        });
+        return d.promise;
+    };
+    /**
+     *
+     * @param typesByNameP - promise(typeByName)
+     * @param kindMapP - promise(kindMap)
+     * @param viewP  -  { view | promise(view)
+     * @returns promise(view}
+     */
+    var resolveView = function (typesByNameP, kindMapP, viewP) {
+        var d = q.defer();
+        typesByNameP.then(function (typesByName) {
+            kindMapP.then(function (kindMap) {
+                q.when(viewP, function (view) {
+                    var viewDef = "default.built-in.baseVT";
+                    var tn = view.typeName || viewDef;
+                    var t = typesByName[tn];
+
+                    if (!t) {
+                        t = typesByName[viewDef];
+                        console.log("No such Type: " + tn + " using " + viewDef)
+                    }
+                    if (!t) {
+                        d.reject("Internal error: " + viewDef + " not found ");
+//                              throw Error("Internal error: " + viewDef + " not found ");
+                    } else {
+                        view.type = t;
+                        d.resolve(view);
+                    }
+                });//when
+            });
+        });
+        return d.promise;
+    };
+
+    /**
+     *
+     * @param typesByNameP - promise(typeByName)
+     * @param kindMapP - promise(kindMap)
+     * @param relP - promise (relationship)
+     * @returns { promise (relationship) }
+     */
+    var resolveRelationship = function (typesByNameP, kindMapP, relP) {
+        var d = q.defer();
+        typesByNameP.then(function (typesByName) {
+            kindMapP.then(function (kindMap) {
+                q.when(relP, function (rel) {
+                    var relDef = "default.built-in.BaseRT";
+                    var tn = rel.typeName || relDef;
+                    var t = typesByName[tn];
+
+                    if (!t) {
+                        t = typesByName[relDef];
+                        console.log("No such Type: " + tn + " using " + relDef)
+                    }
+
+                    if (!t) {
+                        d.reject("Internal error: " + relDef + " not found ");
+                    } else {
+                        rel.type = t;
+                        d.resolve(rel);
+                    }
+                });
+            });
+        });
+        return d.promise;
+    };
+
+    var unresolve = function (thing) {
+        var d = q.defer();
+        thing.type = null;
+        d.resolve(thing);
+        return d.promise;
+    };
+
+    var tsObj =  (  {
+        typeOf: wu.curry(typeOf, allByNameP),// (item|relationship|view) -> promise(ItemType| RelationshipType| ViewType)
+        isA: wu.curry(isA),// (entity,type) => promise(boolean)
+        hierarchy: wu.curry(getHierarchy, allByNameP, kindMapP),
+        resolveItem: wu.curry(resolveItem, allByNameP, kindMapP),
+        resolveView: wu.curry(resolveView, allByNameP, kindMapP),
+        resolveRelationship: wu.curry(resolveRelationship, allByNameP, kindMapP),
+        unresolveItem: (unresolve),
+        unresolveView: (unresolve),
+        unresolveRelationship: (unresolve),
+        resolveTypeName: wu.curry(resolveTypeNameWithScope, allByNameP)
+    });
+
+    // everything exported
+    exports = tsObj;
+
+    var wtf = function (err) {
+        if (err)
+            return cb(err);
+    };
+    //  };
+
+    console.dir(["typeSystem/index.js: END!", exports]);
+})(require("../persistence"), require("async"), require("wu").wu, require("q"));

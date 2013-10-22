@@ -5,48 +5,84 @@
  * Time: 12:21 AM
  */
 
-(function(model, utils){
+(function (model, utils, q) {
 
-    var beforeSave = function(v){return v;};
-    var afterRead = function(v){ return v;};
-    exports.saveView = function(req, res){
+    var beforeSave = function (v) {
+        return v;
+    };
+    var afterRead = function (v) {
+        return v;
+    };
+    exports.saveViewAsync = function (req, res) {
         var viewData = req.body;
-        model.saveView(beforeSave(viewData), function(err, v){
-            if ( err ){
-                return utils.sendError(res,"Error: "+err);
-
+        model.saveView(beforeSave(viewData), function (err, v) {
+            if (err) {
+                return utils.sendError(res, "Error: " + err);
             }
             res.send(afterRead(v));
         });
     };
 
-    exports.getView = function(req, res){
+    exports.saveView = function (req, res) {
+        var viewData = req.body;
+        var p = model.saveView(beforeSave(viewData));
+        p.then(function (v) {
+            res.send(afterRead(v));
+        }).error(function (err) {
+                utils.sendError(res, "Error: " + err);
+            });
+    };
+
+    exports.getViewAsync = function (req, res) {
         var viewId = req.params.id;
-        model.getView(viewId, function(err, v){
-            if ( err )
-                return utils.sendError(res,"No such view:"+viewId);
+        model.getView(viewId, function (err, v) {
+            if (err)
+                return utils.sendError(res, "No such view:" + viewId);
             res.send(afterRead(v));
         });
     };
 
-    exports.getViews = function(req, res){
+
+    exports.getView = function (req, res) {
+        var viewId = req.params.id;
+        var p = model.getView(viewId);
+
+        p
+            .then(function(v){
+                res.send(afterRead(v));
+            })
+            .error(function(err){
+                return utils.sendError(res, "No such view:" + viewId);
+            });
+
+    };
+
+    exports.getViews = function (req, res) {
         //var viewId = req.params.id;
-        model.getViews(function(err, av){
-            if ( err )
-                return utils.sendError(res,"error reading views:"+err);
-            res.send( av.map(afterRead));
+        var p = model.getViews();
+        p.then(function (av) {
+            res.send(av.map(afterRead));
+        }).error(function (err) {
+                utils.sendError(res, "error reading views:" + err);
+            });
+    };
+    exports.getViewsAsync = function (req, res) {
+        //var viewId = req.params.id;
+        model.getViews(function (err, av) {
+            if (err)
+                return utils.sendError(res, "error reading views:" + err);
+            res.send(av.map(afterRead));
         });
     };
 
-    exports.updateView = function(req, res){
-            var viewData = req.body;
-            model.updateView(beforeSave(viewData), function(err, v){
-                if ( err )
-                    return utils.sendError(res,"Error: "+err);
-                res.send(afterRead(v));
-            });
-        };
+    exports.updateView = function (req, res) {
+        var viewData = req.body;
+        model.updateView(beforeSave(viewData), function (err, v) {
+            if (err)
+                return utils.sendError(res, "Error: " + err);
+            res.send(afterRead(v));
+        });
+    };
 
-    console.log("viewApi:"+JSON.stringify(exports));
-})( require("../model"),require("./utils.js") );
-
+    console.log("viewApi:" + JSON.stringify(exports));
+})(require("../model"), require("./utils.js"), require("q"));

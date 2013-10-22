@@ -6,7 +6,7 @@
  * Time: 1:03 AM
  */
 (function (findit, fs, path, model, async, logger) {
-
+console.dir("contextLoader: model=",model);
     logger.setLevel("DEBUG");
     var suffix = ".ctxt.json";
     var endsWith = function (text, suffix) {
@@ -47,7 +47,6 @@
                 typeNames.push(saved.name);
                 cb(null, saved);
             });};
-
         var writeCategory = function (cat, cb) {
             cat.origin =({
                 context: contextName,
@@ -100,12 +99,10 @@
             writeCategory(categories[i], function(e,d){
             } );
         }
-
         for( var i in relTypes){
             writeRelationshipType(relTypes[i], function(e,d){
             } );
         }
-
         for( var i in itemTypes){
             writeItemType(itemTypes[i], function(e,d){
             } );
@@ -128,7 +125,7 @@
                 console.log("Context loaded! \ncontext ->", JSON.stringify(saved));
                 //callback(null, saved);
                 //fDone("Done!")
-                fDone({context: contextName, area: areaName, type: 'Viewtype'});
+                fDone({context: contextName, area: areaName, type: 'Context'});
             }
         });
 
@@ -136,9 +133,6 @@
 
     var checkForContextLoaded = function checkForContextLoaded(contextName, areaName, f) {
         logger.debug("checkForContextLoaded", arguments);
-
-       // if (true)return f(null, false);
-
         model.getContext(contextName, areaName, function (err, ctxt) {
             var b = (ctxt) ? true : false;
             f(err, b);
@@ -151,8 +145,7 @@
         if (!fs.existsSync(file)) {
             logger.error("Context Area File: [" + file + "](" + (file) + ") does not exist.");
             return f("File not found: " + file);
-        }
-        ;
+        };
 
         var onAreaFile = function (data) {
             logger.debug("loader.loadArea: Area: read file: " + file);
@@ -229,7 +222,6 @@
             exports.loadContext(path.basename(dir), dir, f, fDetail);
         });
     }
-
 })(require('findit'), require('fs'),
         require('path'), require('../model'),
         require('async'), require('../logger'));
