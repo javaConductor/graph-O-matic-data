@@ -5,10 +5,10 @@
  * Time: 1:58 PM
  */
 
-(function (typeSystem, persistence, q) {
-//    console.dir(["model/index.js: ts=", typeSystem]);
+(function (ts, persistence, q) {
+    console.dir(["model/index.js: ts=", ts]);
 
-    typeSystem(function (e, ts) {
+  //  typeSystem(function (e, ts) {
 
         var wrapFunctionWithCallback = function (fn, xformInFn, xformOutFn) {
             return function () {
@@ -63,10 +63,6 @@
             };
         };
 
-        var defBeforeFn = function(x){
-        };
-        var defAfterFn = function(x){};
-
         var identity = function (x) {
             return x;
         };
@@ -101,77 +97,77 @@
             "*": identity
         };
 
-        var theModel = {
+        exports = {
 
-        //////  RelationshipType //////
-        //////  RelationshipType //////
-        saveRelationshipType : wrapFunctionWithCallback(persistence.saveRelationshipType, beforeWrite.relationshipType, afterRead.relationshipType),
-        getRelationshipType : wrapFunctionWithCallback(persistence.getRelationshipType, identity, afterRead.relationshipType),
-        getRelationshipTypes : wrapFunctionWithCallback(persistence.getRelationshipTypes, identity, function (a) {
-            return a.map(afterRead.relationshipType);
-        }),
-        getRelationshipTypeById: wrapFunctionWithCallback(persistence.getRelationshipTypeById, identity, afterRead.relationshipType),
+            //////  RelationshipType //////
+            //////  RelationshipType //////
+            saveRelationshipType : wrapFunctionWithCallback(persistence.saveRelationshipType, beforeWrite.relationshipType, afterRead.relationshipType),
+            getRelationshipType : wrapFunctionWithCallback(persistence.getRelationshipType, identity, afterRead.relationshipType),
+            getRelationshipTypes : wrapFunctionWithCallback(persistence.getRelationshipTypes, identity, function (a) {
+                return a.map(afterRead.relationshipType);
+            }),
+            getRelationshipTypeById: wrapFunctionWithCallback(persistence.getRelationshipTypeById, identity, afterRead.relationshipType),
 
-        //////  Category //////
-        //////  Category //////
-        saveCategory : wrapFunctionWithCallback(persistence.saveCategory, beforeWrite.category, afterRead.category),
-        getCategory : wrapFunctionWithCallback(persistence.getCategory, identity, afterRead.category),
-        getCategories : wrapFunctionWithCallback(persistence.getCategories, identity, function (a) {
-            return a.map(afterRead.category);
-        }),
+            //////  Category //////
+            //////  Category //////
+            saveCategory : wrapFunctionWithCallback(persistence.saveCategory, beforeWrite.category, afterRead.category),
+            getCategory : wrapFunctionWithCallback(persistence.getCategory, identity, afterRead.category),
+            getCategories : wrapFunctionWithCallback(persistence.getCategories, identity, function (a) {
+                return a.map(afterRead.category);
+            }),
 
-        //////  ItemType  //////
-        //////  ItemType  //////
-        saveItemType : wrapFunctionWithCallback(persistence.saveItemType, beforeWrite.itemType, afterRead.itemType),
-        getItemType : wrapFunctionWithCallback(persistence.getItemType, identity, afterRead.itemType),
-        getItemTypes : wrapFunctionWithCallback(persistence.getItemTypes, identity, function (a) {
-            return a.map(afterRead.itemType);
-        }),
-        updateItemType : wrapFunctionWithCallback(persistence.updateItemType, beforeWrite.itemType, afterRead.itemType),
-        getItemTypeByName : wrapFunctionWithCallback(persistence.getItemTypeByName, identity, afterRead.itemType),
-        getItemTypeById : wrapFunctionWithCallback(persistence.getItemTypeById, identity, afterRead.itemType),
+            //////  ItemType  //////
+            //////  ItemType  //////
+            saveItemType : wrapFunctionWithCallback(persistence.saveItemType, beforeWrite.itemType, afterRead.itemType),
+            getItemType : wrapFunctionWithCallback(persistence.getItemType, identity, afterRead.itemType),
+            getItemTypes : wrapFunctionWithCallback(persistence.getItemTypes, identity, function (a) {
+                return a.map(afterRead.itemType);
+            }),
+            updateItemType : wrapFunctionWithCallback(persistence.updateItemType, beforeWrite.itemType, afterRead.itemType),
+            getItemTypeByName : wrapFunctionWithCallback(persistence.getItemTypeByName, identity, afterRead.itemType),
+            getItemTypeById : wrapFunctionWithCallback(persistence.getItemTypeById, identity, afterRead.itemType),
 
-        //////  Item  //////
-        //////  Item  //////
-        saveItem : wrapFunctionWithCallback(persistence.saveItem, beforeWrite.item, afterRead.item),
-        getItem : wrapFunctionWithCallback(persistence.getItem, beforeWrite.item, afterRead.item),
-        getItems : wrapFunctionWithCallback(persistence.getItems, identity, function (a) {
-            return a.map(afterRead.item);
-        }),
-        deleteItem : persistence.deleteItem,
+            //////  Item  //////
+            //////  Item  //////
+            saveItem : wrapFunctionWithCallback(persistence.saveItem, beforeWrite.item, afterRead.item),
+            getItem : wrapFunctionWithCallback(persistence.getItem, beforeWrite.item, afterRead.item),
+            getItems : wrapFunctionWithCallback(persistence.getItems, identity, function (a) {
+                return a.map(afterRead.item);
+            }),
+            deleteItem : wrapFunctionWithCallback(persistence.deleteItem, identity, identity),
 
-        //////  View Item //////
-        //////  View Item //////
-        getViewItem : wrapFunctionWithCallback(persistence.getViewItem, identity, afterRead.viewItem),
-        saveViewItem : wrapFunctionWithCallback(persistence.saveViewItem, beforeWrite.viewItem, afterRead.viewItem),
-        updateViewItemPosition : wrapFunctionWithCallback(persistence.getViewItem, identity, afterRead.viewItem),
+            //////  View Item //////
+            //////  View Item //////
+            getViewItem : wrapFunctionWithCallback(persistence.getViewItem, identity, afterRead.viewItem),
+            saveViewItem : wrapFunctionWithCallback(persistence.saveViewItem, beforeWrite.viewItem, afterRead.viewItem),
+            updateViewItemPosition : wrapFunctionWithCallback(persistence.getViewItem, identity, afterRead.viewItem),
 
-        //////  View Type //////
-        //////  View Type //////
-        saveViewType : wrapFunctionWithCallback(persistence.saveViewType, beforeWrite.viewType, afterRead.viewType),
-        getViewTypes : wrapFunctionWithCallback(persistence.getViewTypes, identity, function (a) {
-            return a.map(afterRead.viewType);
-        }),
+            //////  View Type //////
+            //////  View Type //////
+            saveViewType : wrapFunctionWithCallback(persistence.saveViewType, beforeWrite.viewType, afterRead.viewType),
+            getViewTypes : wrapFunctionWithCallback(persistence.getViewTypes, identity, function (a) {
+                return a.map(afterRead.viewType);
+            }),
 
-        //////  View //////
-        //////  View //////
-        getView : wrapFunctionWithCallback(persistence.getView, identity, afterRead.view),
-        getViews : wrapFunctionWithCallback(persistence.getViews, identity, function (a) {
-            return a.map(afterRead.view);
-        }),
-        saveView : wrapFunctionWithCallback(persistence.saveView, beforeWrite.view, afterRead.view),
-        updateView : wrapFunctionWithCallback(persistence.getView, beforeWrite.view, afterRead.view),
+            //////  View //////
+            //////  View //////
+            getView : wrapFunctionWithCallback(persistence.getView, identity, afterRead.view),
+            getViews : wrapFunctionWithCallback(persistence.getViews, identity, function (a) {
+                return a.map(afterRead.view);
+            }),
+            saveView : wrapFunctionWithCallback(persistence.saveView, beforeWrite.view, afterRead.view),
+            updateView : wrapFunctionWithCallback(persistence.getView, beforeWrite.view, afterRead.view),
 
-        //////  Context //////
-        //////  Context //////
-        getContext : persistence.getContext,
-        saveContext : persistence.saveContext
-    };
+            //////  Context //////
+            //////  Context //////
+            getContext : wrapFunctionWithCallback(persistence.getContext, identity, identity),
+            saveContext : wrapFunctionWithCallback(persistence.saveContext, identity, afterRead.context)
+            //saveContext :persistence.saveContext
+        };
         /////////// EXPORTS ////////////
         /////////// EXPORTS ////////////
-
-        exports  = theModel;
+        //exports  = theModel;
         console.log("model/index.js: END!");
-    });
+//    });
     //exports.nameMaps = this.nameMaps;
 })(require("../typeSystem"), require("../persistence"), require("q"));

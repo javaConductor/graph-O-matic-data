@@ -23,14 +23,19 @@
 		console.log('Context:%s Area:%s Type:%s Name:%s', loadedElement.context,loadedElement.area, loadedElement.type, loadedElement.name );
 		le.push(loadedElement);
 	};
-
+var p = null;
 	if (argv.context && argv.area && argv.file ){
 			loader.loadArea( argv.context, argv.area, argv.file, done , detail);
 	}else if ( argv.path ){
-			loader.loadContext(argv.context, argv.path, done , detail)
+			 loader.loadContext(argv.context, argv.path, done , detail)
 	}else{
 		logger.error('Error in params:'+JSON.stringify(argv));
+        return;
 	}
+//
+//    p.then(function(results){
+//        logger.debug("Loader Results: "+ JSON.stringify((results)))
+//    });
 
     exports.loadDefaultContexts = function loadDefaultContexts(fDone, fDetail) {
         logger.debug("loader.loadDefaultContexts");

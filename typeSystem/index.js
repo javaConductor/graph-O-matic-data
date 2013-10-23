@@ -5,10 +5,8 @@
  * Date: 8/4/13
  * Time: 2:16 AM
  */
-(function (model, async, wu, q) {
+(function (model, wu, q) {
     console.dir(["typeSystem/index.js: model=", model]);
-
-    var ret = {};
 
     function reportError(msg) {
         throw  new Error(msg);
@@ -38,7 +36,7 @@
                 ;
                 d.resolve(ret);
             })
-            .error(function (e) {
+            .catch(function (e) {
                 d.reject(e);
             });
         return d.promise;
@@ -83,12 +81,12 @@
                         return reportError("No such type: " + type);
                     }
                 })
-                    .error(function(e){
+                    .catch(function (e) {
                         d.reject("TypeSystem.getHierarchy(): " + e);
                     })
             })
         })
-            .error(function (e) {
+            .catch(function (e) {
                 d.reject(e);
             });
         return d.promise;
@@ -180,7 +178,7 @@
     };
 
     var itemTypesP = model.getItemTypes();
-    var relationshipTypesP = model.getItemTypes();
+    var relationshipTypesP = model.getRelationshipTypes();
     var categoryP = model.getCategories();
     var viewTypesP = model.getViewTypes();
 
@@ -202,7 +200,7 @@
             });
             d.resolve(itemTypesByName)
         })
-            .error(function (e) {
+            .catch(function (e) {
                 d.reject(e);
             });
         return d.promise;
@@ -220,7 +218,7 @@
             });
             d.resolve(relationshipTypesByName)
         })
-            .error(function (e) {
+            .catch(function (e) {
                 d.reject(e);
             });
         return d.promise;
@@ -237,7 +235,7 @@
             });
             d.resolve(categoriesByName);
         })
-            .error(function (e) {
+            .catch(function (e) {
                 d.reject(e);
             });
         return d.promise;
@@ -254,7 +252,7 @@
             });
             d.resolve(viewTypesByName);
         })
-            .error(function (e) {
+            .catch(function (e) {
                 d.reject(e);
             });
         return d.promise;
@@ -273,7 +271,7 @@
             });
             d.resolve(retObj);
         })
-            .error(function (e) {
+            .catch(function (e) {
                 d.reject(e);
             })
         return d.promise;
@@ -312,7 +310,7 @@
             d.resolve(retObj);
 
         })
-            .error(function (e) {
+            .catch(function (e) {
                 d.reject(e);
             });
         return d.promise;
@@ -332,7 +330,7 @@
                     d.resolve(entity);
                 else
                     d.resolve(typesByName[typeNameFromType(entity.type)]);
-            }).error(function (e) {
+            }).catch(function (e) {
                     d.reject(e);
                 })
         });
@@ -347,18 +345,18 @@
      * @param typeName - name of type with which to check compatibility
      * @returns {*}
      */
-    var isA = function isA(hierarchyP , entityP, typeName) {
+    var isA = function isA(hierarchyP, entityP, typeName) {
         var d = q.defer();
-        q.when(hierarchyP,function(hierarchy){
-            q.when(entityP,function(entity){
+        q.when(hierarchyP, function (hierarchy) {
+            q.when(entityP, function (entity) {
                 var entityTypeName = typeNameFromType(entity.type);
                 var hierarchyP = getHierarchy(allTypesByName, kindMap, entityTypeName);
                 hierarchyP
-                    .then(function(hierarchy){
-                        if ( !hierarchy )
+                    .then(function (hierarchy) {
+                        if (!hierarchy)
                             d.reject("No such type: " + entityTypeName);
                         else
-                            d.resolve( !!hierarchy.indexOf(typeName) != -1);
+                            d.resolve(!!hierarchy.indexOf(typeName) != -1);
                     });
             });
         });
@@ -471,7 +469,7 @@
         return d.promise;
     };
 
-    var tsObj =  (  {
+    var tsObj = (  {
         typeOf: wu.curry(typeOf, allByNameP),// (item|relationship|view) -> promise(ItemType| RelationshipType| ViewType)
         isA: wu.curry(isA, hierarchyP),// (entity, type) => promise(boolean)
         hierarchy: wu.curry(getHierarchy, allByNameP, kindMapP),// promise(Array( promise(typeName) | typeName)
@@ -486,6 +484,5 @@
 
     // everything exported
     exports = tsObj;
-
-    console.dir(["typeSystem/index.js: END!", exports]);
-})(require("../persistence"), require("async"), require("wu").wu, require("q"));
+    console.dir(["typeSystem/index.js: defined as:", (tsObj)]);
+})(require("../persistence"), require("wu").wu, require("q"));

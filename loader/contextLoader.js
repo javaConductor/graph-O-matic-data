@@ -5,8 +5,8 @@
  * Date: 7/1/13
  * Time: 1:03 AM
  */
-(function (findit, fs, path, model, async, logger) {
-console.dir("contextLoader: model=",model);
+(function (findit, fs, path, model, wu, logger, q) {
+    console.dir("contextLoader: model=", (model));
     logger.setLevel("DEBUG");
     var suffix = ".ctxt.json";
     var endsWith = function (text, suffix) {
@@ -18,6 +18,15 @@ console.dir("contextLoader: model=",model);
         exports.loadContext(null, 'contexts/default', fDone, fDetail);
     };
 
+    /**
+     *
+     * @param contextName
+     * @param areaName
+     * @param contextObject
+     * @param fDone
+     * @param fDetail
+     * @returns {promise(Context)}
+     */
     exports.loadContextObject = function loadContextObject(contextName, areaName, contextObject, fDone, fDetail) {
         logger.debug("loader.loadContextObject");
 
@@ -31,115 +40,98 @@ console.dir("contextLoader: model=",model);
             logger.error('%s %j', msg, err);
         };
 
-        var typeNames = [];
-        var relTypeNameMap = {};
-        var writeItemType = function (itemType, cb) {
-            itemType.origin=({
-                context: contextName,
-                area: areaName
-            });
+        var typeNames = categories.concat(relTypes, itemTypes, viewTypes).map(function (t) {
+            return typeNames.push(contextName + "." + areaName + "." + t.name);
+        });
 
-            model.saveItemType(itemType, function (err, saved) {
-                if (err) {
-                    return cb(err, saved);
-                }
-                fDetail({context: contextName, area: areaName, type: 'ItemType', name: saved.name});
-                typeNames.push(saved.name);
-                cb(null, saved);
-            });};
-        var writeCategory = function (cat, cb) {
-            cat.origin =({
+        var writeKind = function (writeTypeFn, type) {
+            type.origin = ({
                 context: contextName,
                 area: areaName
             });
+            var d = q.defer();
+            var p = writeTypeFn(type);
+            p.then(function (saved) {
+                fDetail({context: contextName, area: areaName, type: 'Category', name: type.name});
+            })
+                .error(function (e) {
+                    d.reject(e);
+                })
 
-            model.saveCategory(cat, function (err, cat) {
-                if (err) {
-                    return cb(err, cat);
-                }
-                fDetail({context: contextName, area: areaName, type: 'Category', name: cat.name});
-                typeNames.push(cat.name);
-                cb(err, cat);
-            });
-        };
-        var writeViewType = function (viewType, cb) {
-            viewType.origin =({
-                context: contextName,
-                area: areaName
-            });
-            //var values = [];
-
-            model.saveViewType(viewType, function (err, vtype) {
-                if (err) {
-                    return cb(err, null);
-                }
-                fDetail({context: contextName, area: areaName, type: 'Viewtype', name: vtype.name});
-                typeNames.push(vtype.name);
-                cb(err, vtype);
-            });
-        };
-        var writeRelationshipType = function (relType, cb) {
-            relType.origin = ({
-                context: contextName,
-                area: areaName
-            });
-            relType.reciprocalRelationship = null;
-            model.saveRelationshipType(relType, function (err, saved) {
-                if (err) {
-                    return cb(err, saved);
-                }
-                relTypeNameMap[saved.name] = saved;
-                fDetail({context: contextName, area: areaName, type: 'RelationshipType', name: saved.name})
-                typeNames.push(saved.name);
-                cb(null, saved);
-            });
         };
 
-        for( var i in categories){
-            writeCategory(categories[i], function(e,d){
-            } );
-        }
-        for( var i in relTypes){
-            writeRelationshipType(relTypes[i], function(e,d){
-            } );
-        }
-        for( var i in itemTypes){
-            writeItemType(itemTypes[i], function(e,d){
-            } );
-        }
+        var writeItemType = wu.curry(writeKind, model.saveItemType);
+        var writeCategory = wu.curry(writeKind, model.saveCategory);
+        var writeRelType = wu.curry(writeKind, model.saveRelationshipType);
+        var writeViewType = wu.curry(writeKind, model.saveViewType);
 
-        for( var i in viewTypes){
-            writeViewType(viewTypes[i], function(e,d){
-            } );
-        }
+        var pAll = function (list, writeFn) {
+            var a = list.map(writeFn);
+            return q.all(a);
+        };
 
-        model.saveContext(contextName, areaName, typeNames, function (err, saved) {
-            if (err) {
+        var pAllItemTypes = pAll(itemTypes, writeItemType);
+        var pAllRelationshipTypes = pAll(relTypes, writeRelType);
+        var pAllCategories = pAll(categories, writeCategory);
+        var pAllViewTypes = pAll(viewTypes, writeViewType);
+
+        var d = q.defer();
+        q.all([pAllCategories, pAllItemTypes, pAllRelationshipTypes, pAllViewTypes])
+
+            .then(function (savedTypeLists) {
+                model.saveContext(contextName, areaName, typeNames)
+                    .then(function(ctxt){
+                        logger.debug("Context loaded! ->", JSON.stringify(ctxt));
+                        console.log("Context loaded! \ncontext ->", JSON.stringify(ctxt));
+                        fDone({context: contextName, area: areaName, type: 'Context'});
+                        d.resolve(ctxt);
+                    })
+                   .error(function(e){
+                        d.reject(e);
+                    });
+
+                return savedTypeLists;
+            })
+            .error(function (e) {
+                d.reject("Error saving Context:"
+                    + contextName + "."
+                    + areaName + ": "
+                    + JSON.stringify(e));
                 logger.error("Error saving Context:"
                     + contextName + "."
                     + areaName + ": "
-                    + JSON.stringify(err));
-                //callback(err);
-            } else {
-                logger.debug("Context loaded! ->", JSON.stringify(saved));
-                console.log("Context loaded! \ncontext ->", JSON.stringify(saved));
-                //callback(null, saved);
-                //fDone("Done!")
-                fDone({context: contextName, area: areaName, type: 'Context'});
-            }
-        });
+                    + JSON.stringify(e));
+            })
 
+    return d.promise;
     };
 
-    var checkForContextLoaded = function checkForContextLoaded(contextName, areaName, f) {
+    /**
+     *
+     * @param contextName
+     * @param areaName
+     * @param f
+     *
+     * @returns promise( boolean )
+     */
+    var checkForContextLoaded = function checkForContextLoaded(contextName, areaName) {
         logger.debug("checkForContextLoaded", arguments);
-        model.getContext(contextName, areaName, function (err, ctxt) {
-            var b = (ctxt) ? true : false;
-            f(err, b);
-        });
+        return model.getContext(contextName, areaName).then (function (ctxt) {
+            return (ctxt) ? true : false;
+        })
+    };
+
+    var doBoolPromise = function(p, trueFn, falseFn, errFn){
+        p.then(function(b){
+            (b ? trueFn : falseFn)();
+        })
+            .error(function(e){
+                errFn(e);
+            })
     };
 
     exports.loadArea = function loadArea(contextName, areaName, file, f, fDetail) {
+        var d = q.defer();
         logger.debug("loader.loadArea: Area: " + contextName + "." + areaName + ": " + fs.realpathSync(file));
         file = fs.realpathSync(file);
         if (!fs.existsSync(file)) {
@@ -152,24 +144,37 @@ console.dir("contextLoader: model=",model);
             logger.debug("loader.loadArea: Area: not parsed: " + data);
             data = JSON.parse(data);
             logger.debug("loader.loadArea: Area: parsed: " + JSON.stringify(data));
-            checkForContextLoaded(contextName, areaName, function (err, alreadyLoaded) {
-                if (!alreadyLoaded) {
-                    logger.debug("loader.loadArea: Area:  " + areaName + " not already loaded.");
-                    exports.loadContextObject(contextName, areaName, data, f, fDetail);
-                } else {
+            var p = checkForContextLoaded(contextName, areaName);
+            doBoolPromise( p,
+                function(){
                     logger.error("loader.loadArea: Area: " + contextName + "." + areaName + " is already loaded.");
                     console.log("loader.loadArea: Area: " + contextName + "." + areaName + " is already loaded.");
                     f("loader.loadArea: Area: " + contextName + "." + areaName + " is already loaded.");
-                }
+            }, function(){
+                    logger.debug("loader.loadArea: Area:  " + areaName + " not already loaded.");
+                    exports.loadContextObject(contextName, areaName, data, f, fDetail)
+                        .then(function(ctxt){
+                            console.log("loader.loadArea: Area: " + contextName + "." + areaName + " is loaded.");
+                            f("loader.loadArea: Area: " + contextName + "." + areaName + " is loaded.");
+                        })
+                        .error(function(e){
+                            logger.error("loader.loadArea: Area: " + contextName + "." + areaName + ": Error checking for context: "+e);
+                        });
+            }, function(e){
+                    logger.error("loader.loadArea: Area: " + contextName + "." + areaName + ": Error checking for context: "+e);
             });
+            return p;
         };
 
         try {
             var dd = fs.readFileSync(file, {encoding: 'utf8'});
-            onAreaFile(dd);
+            return onAreaFile(dd);
         }
         catch (e) {
-            return logger.error("Error reading file:" + file + ": " + e);
+            //TODO: FIX this !!
+            d.promise.thenReject("Error reading file:" + file + ": " + e);
+            logger.error("Error reading file:" + file + ": " + e);
+            return d.promise;
         }
     };
 
@@ -189,28 +194,21 @@ console.dir("contextLoader: model=",model);
                 flist.push({name: fname, file: file});
             }
         });
-
+        var loadFileList = function doList(contextName, list, f, values) {
+            values = values || [];
+            if (!list || list.length == 0) {
+                logger.debug("loader.loadContext(): " + contextName + "@" + contextDirectory + " DONE!");
+                return q.all(values);
+            }
+            var fobj = list[0];
+            logger.debug("loader.loadContext: loading Area: " + fobj.name + ' file:' + fobj.file);
+            var pArea = exports.loadArea(contextName, fobj.name, fobj.file);
+            return doList(contextName, list.slice(1), f, values.concat(pArea));
+        };
         finder.on('end', function () {
-            (function doList(contextName, list, f, values) {
-                values = values || [];
-                if (!list || list.length == 0) {
-                    logger.debug("loader.loadContext(): " + contextName + "@" + contextDirectory + " DONE!");
-                    return f(null, values);
-                }
-                var fobj = list[0];
-                logger.debug("loader.loadContext: loading Area: " + fobj.name + ' file:' + fobj.file);
-                exports.loadArea(contextName, fobj.name, fobj.file, function (err, value) {
-                    if (err) {
-                        logger.debug("loader.loadContext: error loading Area: " + fobj.name + ' file:' + fobj.file + ": " + err);
-                        return doList(contextName, list.slice(1), f, values);
-//                        return f(err);
-                    }
-                    return doList(contextName, list.slice(1), f, values.concat(value));
-                }, fDetail);
-            })(contextName, flist, f);
-            logger.debug("loader.loadContext(): " + contextName + "@" + contextDirectory + " DONE!");
+            (loadFileList)(contextName, flist, f);
+           // logger.debug("loader.loadContext(): " + contextName + "@" + contextDirectory + " DONE!");
         });
-
     };
 
     exports.loadContexts = function loadContexts(contextRoot, f, fDetail) {
@@ -221,7 +219,9 @@ console.dir("contextLoader: model=",model);
             logger.debug('Directory: ' + dir + '/');
             exports.loadContext(path.basename(dir), dir, f, fDetail);
         });
-    }
+    };
+    console.dir("contextLoader: END!");
+
 })(require('findit'), require('fs'),
         require('path'), require('../model'),
-        require('async'), require('../logger'));
+        require('wu').wu, require('../logger'), require("q"));
