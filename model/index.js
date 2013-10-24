@@ -8,8 +8,6 @@
 (function (ts, persistence, q) {
     console.dir(["model/index.js: ts=", ts]);
 
-  //  typeSystem(function (e, ts) {
-
         var wrapFunctionWithCallback = function (fn, xformInFn, xformOutFn) {
             return function () {
                 // replace the last arg with our function that uses the
@@ -55,7 +53,7 @@
                         var x = xformOutFn? xformOutFn(d): d;
                         deferred.resolve(x);
                     })
-                    .error(function(e){
+                    .catch(function(e){
                         deferred.reject(e);
                     });
 
@@ -97,7 +95,7 @@
             "*": identity
         };
 
-        exports = {
+        var theModel = {
 
             //////  RelationshipType //////
             //////  RelationshipType //////
@@ -166,8 +164,7 @@
         };
         /////////// EXPORTS ////////////
         /////////// EXPORTS ////////////
-        //exports  = theModel;
-        console.log("model/index.js: END!");
+    module.exports = require("xtend")( theModel);
+        console.dir(["model/index.js: model defined as: ", module.exports]);
 //    });
-    //exports.nameMaps = this.nameMaps;
 })(require("../typeSystem"), require("../persistence"), require("q"));

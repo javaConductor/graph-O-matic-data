@@ -133,15 +133,12 @@
      * @returns promise(full type name)
      */
     var resolveTypeNameWithScope = function (typesByNameP, name, scopeObj) {
-        var d = q.defer();
         return typesByNameP.then(function (typesByName) {
 
             var parts = ( name.split('.', 3));
-
             /// if its already in the full form try to resolve name as is
-            if (parts.length >= 3)
-                return typesByName[name] ? name : null;
-
+            if (parts.length >= 3 && typesByName[name] )
+                return (typesByName[name] );
             //we need to resolve to full type name
             /// try:
             //          scopeObj.origin.context +  scopeObj.origin.area + name
@@ -149,7 +146,6 @@
             //          'default' + 'common' +  name
             //      then
             //      'default' + 'built-in' +  name
-
             var tries = [];// list of names to try
             if (scopeObj && isType(scopeObj)) {
                 tries.push(scopeObj.origin.context + '.' + scopeObj.origin.area + '.' + name);
@@ -164,16 +160,15 @@
                 // console.log("Resolving: "+name + " trying "+ tries[x]);
                 return typesByName[t];
             });
-
             if (matches.length) {
                 console.log("Resolving: " + name + " matched  " + matches[0]);
-                d.resolve(matches[0]);
+                return (matches[0]);
             }
             else {
                 console.log("Could not resolve: " + name);
-                d.reject("Could not resolve: " + name);
+                throw new Error("Could not resolve: " + name);
             }
-            return d.promise;
+
         });
     };
 
@@ -182,68 +177,50 @@
     var categoryP = model.getCategories();
     var viewTypesP = model.getViewTypes();
 
-    var d = q.defer();
+//    var d = q.defer();
 
     //// Create the byName maps for lookup
     var allTypesByName = {};
     var kindMap = {};
 
     var itP = function (itemTypesP) {
-        var d = q.defer();
-        var itemTypesByName = {};
+         var itemTypesByName = {};
         itemTypesP.then(function (itemTypes) {
             itemTypes.forEach(function (it) {
                 var nm = typeNameFromType(it);
                 itemTypesByName[nm] = it;
-                allTypesByName[nm] = it;
-                kindMap[nm] = "itemType";
             });
-            d.resolve(itemTypesByName)
-        })
-            .catch(function (e) {
-                d.reject(e);
-            });
-        return d.promise;
+            return (itemTypesByName)
+        });
     }(itemTypesP);
     var rtP = function (relationshipTypesP) {
-        var d = q.defer();
-
-        var relationshipTypesByName = {};
-        relationshipTypesP.then(function (relationshipTypes) {
+         var relationshipTypesByName = {};
+        return relationshipTypesP.then(function (relationshipTypes) {
             relationshipTypes.forEach(function (it) {
                 var nm = typeNameFromType(it);
                 relationshipTypesByName[nm] = it;
                 allTypesByName[nm] = it;
                 kindMap[nm] = "itemType";
             });
-            d.resolve(relationshipTypesByName)
-        })
-            .catch(function (e) {
-                d.reject(e);
-            });
-        return d.promise;
+            return (relationshipTypesByName);
+        });
     }(relationshipTypesP);
     var catP = function (categoriesP) {
-        var d = q.defer();
         var categoriesByName = {};
-        categoriesP.then(function (categories) {
+        return categoriesP.then(function (categories) {
             categories.forEach(function (it) {
                 var nm = typeNameFromType(it);
                 categoriesByName[nm] = it;
                 allTypesByName[nm] = it;
                 kindMap[nm] = "category";
             });
-            d.resolve(categoriesByName);
-        })
-            .catch(function (e) {
-                d.reject(e);
-            });
-        return d.promise;
+            return (categoriesByName);
+        });
     }(categoryP);
     var vtP = function (viewTypesP) {
         var d = q.defer();
         var viewTypesByName = {};
-        viewTypesP.then(function (viewTypes) {
+        return viewTypesP.then(function (viewTypes) {
             viewTypes.forEach(function (it) {
                 var nm = typeNameFromType(it);
                 viewTypesByName[nm] = it;
@@ -251,17 +228,13 @@
                 kindMap[nm] = "viewType";
             });
             d.resolve(viewTypesByName);
-        })
-            .catch(function (e) {
-                d.reject(e);
-            });
-        return d.promise;
+        });
     }(viewTypesP);
+
     var allByNameP = function (itP, rtP, catP, vtP) {
-        var d = q.defer();
         var allP = q.all([itP, rtP, catP, vtP]);
 
-        allP.then(function (allMaps) {
+        return allP.then(function (allMaps) {
             /// loop thru list copying everything retObj
             var retObj = {};
             allMaps.forEach(function (m) {
@@ -269,12 +242,9 @@
                     retObj[nm] = m[nm];
                 }
             });
-            d.resolve(retObj);
-        })
-            .catch(function (e) {
-                d.reject(e);
-            })
-        return d.promise;
+            return (retObj);
+        });
+
     }(itP, rtP, catP, vtP);
 
     /**
@@ -287,10 +257,10 @@
 
         allP.then(function (allMaps) {
             var retObj = {};
-            var its = allMaps[0];
-            var rts = allMaps[1];
-            var cats = allMaps[2];
-            var vts = allMaps[3];
+            var its = allMaps[0] || [];
+            var rts = allMaps[1] || [];
+            var cats = allMaps[2] || [];
+            var vts = allMaps[3] || [];
 
             for (var nm in its) {
                 retObj[nm] = "itemType";
@@ -372,7 +342,7 @@
      */
     var resolveItem = function (typesByNameP, kindMapP, itemP) {
         var d = q.defer();
-        typesByNameP.then(function (typesByName) {
+        return typesByNameP.then(function (typesByName) {
             kindMapP.then(function (kindMap) {
                 q.when(itemP, function (item) {
                     var itemDef = "default.built-in.baseIT";
@@ -384,18 +354,16 @@
                         console.log("No such Type: " + tn + " using " + itemDef);
                     }
                     if (!t) {
-                        d.reject("Internal error: " + itemDef + " not found ");
-//                              throw Error("Internal error: " + itemDef + " not found ");
-                    } else {
-                        item.type = t;
-                        d.resolve(item);
+                        console.error("Internal error: " + itemDef + " not found ");
+                        throw  new Error("Internal error: " + itemDef + " not found ");
                     }
+                    item.type = t;
                     return item;
-                });
-            });
-        });
-        return d.promise;
+                });//when
+            });//then
+        });//then
     };
+
     /**
      *
      * @param typesByNameP - promise(typeByName)

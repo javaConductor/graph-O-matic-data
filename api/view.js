@@ -28,7 +28,7 @@
         var p = model.saveView(beforeSave(viewData));
         p.then(function (v) {
             res.send(afterRead(v));
-        }).error(function (err) {
+        }).catch(function (err) {
                 utils.sendError(res, "Error: " + err);
             });
     };
@@ -51,7 +51,7 @@
             .then(function(v){
                 res.send(afterRead(v));
             })
-            .error(function(err){
+            .catch(function(err){
                 return utils.sendError(res, "No such view:" + viewId);
             });
 
@@ -62,7 +62,7 @@
         var p = model.getViews();
         p.then(function (av) {
             res.send(av.map(afterRead));
-        }).error(function (err) {
+        }).catch(function (err) {
                 utils.sendError(res, "error reading views:" + err);
             });
     };

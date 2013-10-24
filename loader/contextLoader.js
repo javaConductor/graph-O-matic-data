@@ -41,7 +41,7 @@
         };
 
         var typeNames = categories.concat(relTypes, itemTypes, viewTypes).map(function (t) {
-            return typeNames.push(contextName + "." + areaName + "." + t.name);
+            return contextName + "." + areaName + "." + t.name;
         });
 
         var writeKind = function (writeTypeFn, type) {
@@ -49,15 +49,11 @@
                 context: contextName,
                 area: areaName
             });
-            var d = q.defer();
             var p = writeTypeFn(type);
-            p.then(function (saved) {
+            return p.then(function (saved) {
                 fDetail({context: contextName, area: areaName, type: 'Category', name: type.name});
-            })
-                .error(function (e) {
-                    d.reject(e);
-                })
-
+                return  (saved);
+            });
         };
 
         var writeItemType = wu.curry(writeKind, model.saveItemType);
@@ -86,13 +82,13 @@
                         fDone({context: contextName, area: areaName, type: 'Context'});
                         d.resolve(ctxt);
                     })
-                   .error(function(e){
+                   .catch(function(e){
                         d.reject(e);
                     });
 
                 return savedTypeLists;
             })
-            .error(function (e) {
+            .catch(function (e) {
                 d.reject("Error saving Context:"
                     + contextName + "."
                     + areaName + ": "
@@ -112,7 +108,7 @@
      * @param areaName
      * @param f
      *
-     * @returns promise( boolean )
+     * @returns promise( boolean ) true if the context loaded else false
      */
     var checkForContextLoaded = function checkForContextLoaded(contextName, areaName) {
         logger.debug("checkForContextLoaded", arguments);
@@ -122,12 +118,14 @@
     };
 
     var doBoolPromise = function(p, trueFn, falseFn, errFn){
+        console.dir(["doBoolPromise: ", p.inspect()]);
         p.then(function(b){
             (b ? trueFn : falseFn)();
         })
-            .error(function(e){
+            .catch(function(e){
+                console.dir(["doBoolPromise: Promise failed:"+e+" ->",p.inspect()]);
                 errFn(e);
-            })
+            }).done();
     };
 
     exports.loadArea = function loadArea(contextName, areaName, file, f, fDetail) {
@@ -149,15 +147,15 @@
                 function(){
                     logger.error("loader.loadArea: Area: " + contextName + "." + areaName + " is already loaded.");
                     console.log("loader.loadArea: Area: " + contextName + "." + areaName + " is already loaded.");
-                    f("loader.loadArea: Area: " + contextName + "." + areaName + " is already loaded.");
+                   // f("loader.loadArea: Area: " + contextName + "." + areaName + " is already loaded.");
             }, function(){
                     logger.debug("loader.loadArea: Area:  " + areaName + " not already loaded.");
                     exports.loadContextObject(contextName, areaName, data, f, fDetail)
                         .then(function(ctxt){
                             console.log("loader.loadArea: Area: " + contextName + "." + areaName + " is loaded.");
-                            f("loader.loadArea: Area: " + contextName + "." + areaName + " is loaded.");
+                           // f("loader.loadArea: Area: " + contextName + "." + areaName + " is loaded.");
                         })
-                        .error(function(e){
+                        .catch(function(e){
                             logger.error("loader.loadArea: Area: " + contextName + "." + areaName + ": Error checking for context: "+e);
                         });
             }, function(e){
@@ -174,6 +172,7 @@
             //TODO: FIX this !!
             d.promise.thenReject("Error reading file:" + file + ": " + e);
             logger.error("Error reading file:" + file + ": " + e);
+            console.error("Error reading file:" + file + ": " + e);
             return d.promise;
         }
     };
@@ -201,12 +200,15 @@
                 return q.all(values);
             }
             var fobj = list[0];
+            var pArea = exports.loadArea(  contextName, fobj.name, fobj.file );
             logger.debug("loader.loadContext: loading Area: " + fobj.name + ' file:' + fobj.file);
-            var pArea = exports.loadArea(contextName, fobj.name, fobj.file);
+            console.dir(["loader.loadContext: loadArea promise: " , pArea.inspect()]);
             return doList(contextName, list.slice(1), f, values.concat(pArea));
         };
         finder.on('end', function () {
-            (loadFileList)(contextName, flist, f);
+            (loadFileList)(contextName, flist, f).then(function(values){
+                console.dir(["loader.loadContext.loadFileList", values]);
+            });
            // logger.debug("loader.loadContext(): " + contextName + "@" + contextDirectory + " DONE!");
         });
     };
