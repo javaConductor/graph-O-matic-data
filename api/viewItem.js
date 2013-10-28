@@ -7,31 +7,58 @@
 
 (function( utils, model ){
 
-    exports.getViewItem = function(req, res){
-        var  itemId = req.params.id;
-        model.getViewItem(itemId, function(err, vItem){
-            if (err)
-                return utils.sendError(res, err);
-            res.send(vItem);
-        });
+    var beforeSave = function (v) {
+        return v;
     };
+    var afterRead = function (v) {
+        return v;
+    };
+
+    exports.saveViewItem = function (req, res) {
+        var viewItemData = req.body;
+        var p = model.saveViewItem(beforeSave(viewItemData));
+        p.then(function (v) {
+            res.send(afterRead(v));
+        }).catch(function (err) {
+                utils.sendError(res, "Error: " + err);
+            });
+    };
+
+    exports.getViewItem = function (req, res) {
+        var viewItemId = req.params.id;
+        var p = model.getViewItem(viewItemId);
+
+        p
+            .then(function(v){
+                res.send(afterRead(v));
+            })
+            .catch(function(err){
+                return utils.sendError(res, "No such viewItem:" + viewItemId);
+            });
+
+    };
+
 
     exports.createViewItem = function(req, res){
         var  itemId = req.params.itemId;
         var posX = req.params.x;
         var posY = req.params.y;
         var viewId= req.params.viewId;
-        model.createViewItem(viewId,itemId, posX, posY, function(err, vItem){
-            if (err)
-                return utils.sendError(res, err);
-            res.send(vItem);
-        });
+        var p = model.createViewItem(viewId,itemId, posX, posY);
+        p
+            .then(function(v){
+                res.send(afterRead(v));
+            })
+            .catch(function(err){
+                return utils.sendError(res, "Could not createNo such viewItem:" + viewItemId);
+            });
+
     };
 
     exports.updateViewItemPosition = function(req, res){
 			var x = req.params.x;
 			var y = req.params.y;
-			var vid = req.params.viewItemId;
+			var vid = req.params.id;
             model.updateViewItemPosition(vid,x,y, function(err, vitem){
                 if (err)
                     return utils.sendError(res, err);

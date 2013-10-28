@@ -33,16 +33,6 @@
             });
     };
 
-    exports.getViewAsync = function (req, res) {
-        var viewId = req.params.id;
-        model.getView(viewId, function (err, v) {
-            if (err)
-                return utils.sendError(res, "No such view:" + viewId);
-            res.send(afterRead(v));
-        });
-    };
-
-
     exports.getView = function (req, res) {
         var viewId = req.params.id;
         var p = model.getView(viewId);
@@ -66,22 +56,15 @@
                 utils.sendError(res, "error reading views:" + err);
             });
     };
-    exports.getViewsAsync = function (req, res) {
-        //var viewId = req.params.id;
-        model.getViews(function (err, av) {
-            if (err)
-                return utils.sendError(res, "error reading views:" + err);
-            res.send(av.map(afterRead));
-        });
-    };
 
     exports.updateView = function (req, res) {
         var viewData = req.body;
-        model.updateView(beforeSave(viewData), function (err, v) {
-            if (err)
-                return utils.sendError(res, "Error: " + err);
-            res.send(afterRead(v));
-        });
+        var p = model.updateView(beforeSave(viewData));
+        p.then(function (v) {
+            res.send((afterRead(v)));
+        }).catch(function (err) {
+                utils.sendError(res, "Error updating viewType:" + err);
+            });
     };
 
     console.log("viewApi:" + JSON.stringify(exports));

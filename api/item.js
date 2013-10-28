@@ -4,7 +4,7 @@
  * Date: 6/23/13
  * Time: 10:45 AM
  */
-(function( model, utils ){
+(function( model, utils, q, wu ){
 console.dir(["api/item.js"]);
     var reqToItem = function(req){
         var o= {};
@@ -19,68 +19,88 @@ console.dir(["api/item.js"]);
         return req.body.map( reqToItem );
     };
 
-    var prepItemRead = function(item){
-        return (item);
+    var beforeSave = function (v) {
+        return v;
     };
-
-    var prepItemsRead= function prepItems(items){
-        return items.map( prepItemRead );
-    };
-
-    var prepItemWrite = function(item){
-        return item;
-    };
-
-    var prepItemsWrite= function prepItems(items){
-        return items.map( prepItemWrite );
+    var afterRead = function (v) {
+        return v;
     };
 
     exports.saveItem = function(req, res){
-        var item = prepItemWrite(req.body);
-        model.saveItem(item, function(err, itm){
-                if(err)
-                    return utils.sendError(res, JSON.stringify(itm));
-                res.send(itm);
-        });
+        var item = beforeSave(req.body);
+        var p = model.saveItem(item);
+        p.then(function (v) {
+                res.send(afterRead(v));
+            }).catch(function (err) {
+                    utils.sendError(res, "Error: " + err);
+            });
+    };
+
+    exports.getItem = function (req, res) {
+            var itemId = req.params.id;
+            var p = model.getItem(itemId);
+            p
+                .then(function(i){
+                    res.send(afterRead(i));
+            })
+                .catch(function(err){
+                    return utils.sendError(res, "No such item:" + itemId);
+            });
+
     };
 
     exports.loadItems = function(req, res){
-        var items = prepItemsWrite(( req.body) );
-            items.forEach(function(item){
-                model.saveItem(item, function(err, itm){
-                    if(err)
-                        return utils.sendError(res, JSON.stringify(err));
-                    res.send(itm);
-                });
-        });
+        var items = (( req.body) );
+
+        // get an array of promises
+        var ap = items.map(wu.curry(model.saveItem, beforeSave));
+        var pAll = q.all(ap)
+            .then(function(pList){
+                res.send(pList);
+            })
+            .catch(function(e){
+                return utils.sendError(res, JSON.stringify(err));
+            });
     };
 
-    exports.getItem = function(req, res){
-        var id = req.params.id;
-        model.getItem(id, function(err, itm){
-            res.send(itm);
-        });
+
+
+    exports.getItems = function (req, res) {
+        //var viewId = req.params.id;
+        var p = model.getItems();
+        p.then(function (items) {
+            res.send(items.map(afterRead));
+        }).catch(function (err) {
+                utils.sendError(res, "Error reading items:" + err);
+            });
     };
 
-    exports.getItems = function(req, res){
-       // var id = req.params.id;
-        model.getItems( function(err, itms){
-            res.send(itms);
-        });
-    };
 
     exports.deleteItem = function(req, res){
         var id = req.params.id;
-        model.deleteItem(id, function(err, resp){
-            res.send(resp);
-        });
+
+        var p = model.deleteItem(id);
+        p
+            .then(function(resp){
+                res.send(resp)
+            })
+            .catch(function(e){
+                utils.sendError(res, "Error deleting item:"+id+" -> " + e);
+            });
+
     };
 
     exports.findItems = function(req, res){
         var searchText = req.params.searchText;
-        model.findItems(searchText, function(err, items){
-            res.send(items);
-        });
+        var p = model.findItems(searchText);
+        p
+            .then(function(resp){
+                res.send(resp)
+            })
+            .catch(function(e){
+                utils.sendError(res, "Error finding items:"+searchText+" -> " + e);
+            });
+
 	};
 
-})( require("../model"), require("./utils.js"));
+})( require("../model"), require("./utils.js"), require("q"), require("wu").wu);

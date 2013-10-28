@@ -54,6 +54,7 @@
                         deferred.resolve(x);
                     })
                     .catch(function(e){
+                        console.log("model call error:"+e);
                         deferred.reject(e);
                     });
 

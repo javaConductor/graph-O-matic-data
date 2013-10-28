@@ -73,8 +73,9 @@
 
         var d = q.defer();
         q.all([pAllCategories, pAllItemTypes, pAllRelationshipTypes, pAllViewTypes])
-
             .then(function (savedTypeLists) {
+                logger.debug("Context loaded savedTypeLists ->", JSON.stringify(savedTypeLists));
+                console.log("Context loaded savedTypeLists \ncontext ->", JSON.stringify(savedTypeLists));
                 model.saveContext(contextName, areaName, typeNames)
                     .then(function(ctxt){
                         logger.debug("Context loaded! ->", JSON.stringify(ctxt));
@@ -85,7 +86,6 @@
                    .catch(function(e){
                         d.reject(e);
                     });
-
                 return savedTypeLists;
             })
             .catch(function (e) {
@@ -97,8 +97,7 @@
                     + contextName + "."
                     + areaName + ": "
                     + JSON.stringify(e));
-            })
-
+            });
     return d.promise;
     };
 

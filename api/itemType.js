@@ -5,28 +5,57 @@
  * Time: 10:45 AM
  */
 
-(function(model){
+(function(model, utils, wu, q){
     var prepItemType = function(){
 
     };
 
-    exports.getItemType=function(req, res){
-        model.getItemType(req.params.context, req.params.area, req.params.name, function(err, itype){
-            res.send(itype);
-        });
+    var beforeSave = function (v) {
+        return v;
     };
-
-    exports.getItemTypes=function(req, res){
-        console.dir(model);
-        model.getItemTypes( function(err, itypes){
-            res.send(itypes);
-        });
+    var afterRead = function (v) {
+        return v;
     };
-
-    exports.getItemTypeById= function(req, res){
-            model.getItemTypeById(req.params.id, function(err, itype){
-                res.send(itype);
+    exports.saveItemType = function (req, res) {
+        var itemData = req.body;
+        var p = model.saveView(beforeSave(itemData));
+        p.then(function (v) {
+            res.send(afterRead(v));
+        }).catch(function (err) {
+                utils.sendError(res, "Error: " + err);
             });
     };
 
-})( require("../model") );
+    exports.getItemType = function (req, res) {
+        var itemTypeId = req.params.id;
+        var p = model.getItemType(itemTypeId);
+        p
+            .then(function(itm){
+                res.send(afterRead(itm));
+            })
+            .catch(function(err){
+                return utils.sendError(res, "No such itemType:" + itemTypeId);
+            });
+
+    };
+
+    exports.getItemTypes = function (req, res) {
+        //var itemId = req.params.id;
+        var p = model.getItemTypes();
+        p.then(function (av) {
+            res.send(av.map(afterRead));
+        }).catch(function (err) {
+                utils.sendError(res, "error reading itemTypes:" + err);
+            });
+    };
+
+    exports.updateItemType = function (req, res) {
+        var itemTypeData = req.body;
+        var p = model.updateItemType(beforeSave(itemTypeData));
+        p.then(function (v) {
+            res.send((afterRead(v)));
+        }).catch(function (err) {
+                utils.sendError(res, "Error updating itemType:" + err);
+            });
+    };
+})( require("../model"), require("./utils.js"),require("wu").wu, require("q") );

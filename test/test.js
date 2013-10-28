@@ -8,41 +8,83 @@ var should = require("should");
 var model = require('../model');
 var mongoose = require("mongoose");
 
+exports.testItemModel = function(test){
+	console.log("---------------------------------------------------------:testItemModel");
+
+	var item  = {};
+        item.typeName = "baseIT";
+        item.title = "Basic test Item ";
+        item.name = "Basic Item ";
+        item.description = "Test item.";
+
+    console.dir(["saving>>", item]);
+	var itP = model.saveItem(item);
+    itP
+        .then(function(item){
+            test.ok(item);
+            var outP = model.getItem( item.id );
+            return outP
+                .then( function(saved){
+                    test.ok(saved);
+                    return saved;
+                })
+                .catch(function(e){
+                    test.ifError(e);
+                });
+        })
+        .catch(function(e){
+            test.ifError( e );
+        }).done(function(){
+            test.done();
+        });
+};
+
+
 exports.testItemTypeModel = function(test){
 	console.log("---------------------------------------------------------:testItemTypeModel");
 
 	var itemType = {};
-	itemType.name = "BasicItem."+Math.random();
-	itemType.title = "Basic Item ";
-	itemType.description = "Test itemType: "+ new Date();
-	itemType.properties = [
+        itemType.name = "BasicItemType."+Math.random();
+        itemType.title = "Basic Item Type";
+        itemType.description = "Test itemType.";
+        itemType.properties = [
 	];
-    itemType.origin = [{context:"test", area:"test"}];
+    itemType.origin = {context:"test", area:"test"};
 	itemType.allowExtraProperties = true;
 	console.dir(["saving>>", itemType]);
-	model.saveItemType(itemType, function(err, itype){
-		test.ifError(err );
-		test.ok( itype );
-        console.dir(["Saved OK =>",itype, err]);
-		test.ok( itype.id );
-		model.getItemTypeById(itype.id , function(err, theItemType){
-			test.ifError(err);
-			test.ok(theItemType);
-			test.done();
-		});
-	});
-//	test.done();
+	var itP = model.saveItemType(itemType);
+    itP
+        .then(function(itype){
+            test.ok(itype);
+            var outP = model.getItemTypeById( itype.id );
+            return outP
+                .then( function(itype){
+                    test.ok(itype);
+                    return itype;
+                })
+                .catch(function(e){
+                    test.ifError(e);
+                });
+        })
+        .catch(function(e){
+            test.ifError( e );
+        }).done(function(){
+            test.done();
+        });
 };
 
-exports.testSaveGetItemCategory = function(test){
-	console.log("---------------------------------------------------------:testSaveGetItemCategory");
+exports.testSaveGetCategory = function(test){
+	console.log("---------------------------------------------------------:testSaveGetCategory");
 
-	var itemCategory = {};
-	itemCategory.name = 'TestItemCategory';
-	model.saveItemCategory(itemCategory,function(err, saved){
+	var category = {};
+	category.name = 'TestItemCategory';
+    category.origin = {};
+    category.origin.context = "test";
+    category.origin.area = "test";
+	model.saveCategory(category,function(err, saved){
 		test.ifError(err);
 		test.ok(saved);
-		model.getItemCategory(saved._id, function(err, theItemCat){
+		model.getCategory(saved.id, function(err, theItemCat){
             console.dir(["error>>", err]);
             console.dir(["new ItemCat>>", saved]);
 			test.ifError(err);
@@ -56,11 +98,13 @@ exports.testSaveGetItemCategory = function(test){
 
 };
 
-exports.testItemTypeWithCategory = function(test){
+var x = /*exports.testItemTypeWithCategory*/ function(test){
 console.log("---------------------------------------------------------:testItemTypeWithCategory");
-	var itemCategory = {};
-	itemCategory.name = 'TestItemCategory';
-	model.saveItemCategory(itemCategory, function(err, saved){
+	var category = {};
+	category.name = 'TestItemCategory';
+     category.origin.context = "test";
+    category.origin.area = "test";
+	model.saveCategory(category, function(err, saved){
 
 		var itemType = {};//new models.ItemType({description:"ddddddd"});
 		//itemType.id = mongoose.Types.ObjectId('4edd40c86762e0fb12000F3F');

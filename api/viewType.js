@@ -6,43 +6,55 @@
  */
 
 (function(model, utils){
-
-
-        exports.saveView = function(req, res){
-            var viewData = req.body;
-
-            model.saveView(viewData, function(err, v){
-                res.send(v);
+    var beforeSave = function (v) {
+        return v;
+    };
+    var afterRead = function (v) {
+        return v;
+    };
+    exports.saveViewType = function (req, res) {
+        var viewData = req.body;
+        var p = model.saveView(beforeSave(viewData));
+        p.then(function (v) {
+            res.send(afterRead(v));
+        }).catch(function (err) {
+                utils.sendError(res, "Error: " + err);
             });
-        };
-
-    exports.getView = function(req, res){
-        var viewId = req.params.id;
-        model.getView(viewId,function(err, v){
-            if ( err )
-                return utils.sendError(res,"no such view:"+viewId);
-            res.send(v);
-        });
     };
 
-    exports.getViews = function(req, res){
+
+    exports.getViewType = function (req, res) {
+        var viewTypeId = req.params.id;
+        var p = model.getViewType(viewTypeId);
+        p
+            .then(function(v){
+                res.send(afterRead(v));
+            })
+            .catch(function(err){
+                return utils.sendError(res, "No such viewType:" + viewTypeId);
+            });
+
+    };
+
+    exports.getViewTypes = function (req, res) {
         //var viewId = req.params.id;
-        model.getViews(function(err, v){
-            if ( err )
-                return utils.sendError(res,"no such view:"+viewId);
-            res.send(v);
-        });
+        var p = model.getViewTypes();
+        p.then(function (av) {
+            res.send(av.map(afterRead));
+        }).catch(function (err) {
+                utils.sendError(res, "error reading viewTypes:" + err);
+            });
     };
 
-    exports.updateView = function(req, res){
-            var viewData = req.body;
-            model.updateView(viewData, function(err, v){
-                if ( err )
-                    return utils.sendError(res,"Error: "+err);
-
-                res.send(v);
+    exports.updateViewType = function (req, res) {
+        var viewTypeData = req.body;
+        var p = model.updateViewType(beforeSave(viewTypeData));
+        p.then(function (v) {
+            res.send((afterRead(v)));
+        }).catch(function (err) {
+                utils.sendError(res, "Error updating viewType:" + err);
             });
-        };
+    };
 
     console.log("viewApi:"+JSON.stringify(exports));
 })( require("../model"),require("./utils.js") );

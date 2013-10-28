@@ -14,7 +14,7 @@ var application_root = __dirname,
 
   mongoose = require('mongoose');
 
-var app = express();
+var app =  module.exports = express();
 
 // Config
 var corsConfig = {
@@ -51,7 +51,7 @@ app.post('/view-items/:id/position/:x/:y', api.updateViewItemPosition);
 
 // Item Type Resource
 app.get('/item-types/:context/:area/:name', api.getItemType);
-app.get('/item-types/:id', api.getItemTypeById);
+app.get('/item-types/:id', api.getItemType);
 app.get('/item-types', api.getItemTypes);
 
 // Item Resource

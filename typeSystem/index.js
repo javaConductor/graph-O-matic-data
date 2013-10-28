@@ -95,6 +95,23 @@
     var defaultParentForKind = function defaultParentForKind(kind) {
         switch (kind) {
 
+            case "item":
+                return 'default.built-in.baseIT';
+
+            case "relationship":
+                return 'default.built-in.baseRT';
+
+            case "view":
+                return 'default.built-in.baseVT';
+
+            default :
+                return reportError("No such kind:" + kind);
+        }
+    };
+
+    var defaultTypeForKind = function defaultTypeForKind(kind) {
+        switch (kind) {
+
             case "itemType":
                 return 'default.built-in.baseIT';
 
@@ -113,6 +130,8 @@
     };
 
     var typeNameFromType = function (type) {
+        if(!type  || !type.origin)
+            return null;
         return type.origin.context + "." + type.origin.area + "." + type.name;
     };
 
@@ -177,12 +196,11 @@
     var categoryP = model.getCategories();
     var viewTypesP = model.getViewTypes();
 
-//    var d = q.defer();
-
     //// Create the byName maps for lookup
     var allTypesByName = {};
     var kindMap = {};
 
+    /// load all the types
     var itP = function (itemTypesP) {
          var itemTypesByName = {};
         itemTypesP.then(function (itemTypes) {
@@ -230,7 +248,7 @@
             d.resolve(viewTypesByName);
         });
     }(viewTypesP);
-
+//get them with one promise
     var allByNameP = function (itP, rtP, catP, vtP) {
         var allP = q.all([itP, rtP, catP, vtP]);
 
@@ -326,7 +344,7 @@
                         if (!hierarchy)
                             d.reject("No such type: " + entityTypeName);
                         else
-                            d.resolve(!!hierarchy.indexOf(typeName) != -1);
+                            d.resolve(!!(hierarchy.indexOf(typeName) != -1));
                     });
             });
         });
@@ -337,7 +355,7 @@
      *
      * @param typesByNameP - promise(typeByName)
      * @param kindMapP - promise(kindMap)
-     * @param itemP  promise(item)
+     * @param itemP  item || promise(item)
      * @returns { promise(item) }
      */
     var resolveItem = function (typesByNameP, kindMapP, itemP) {
@@ -451,6 +469,7 @@
     });
 
     // everything exported
-    exports = tsObj;
-    console.dir(["typeSystem/index.js: defined as:", (tsObj)]);
+    module.exports = require("xtend")( tsObj);
+
+    console.dir(["typeSystem/index.js: defined as:", (module.exports)]);
 })(require("../persistence"), require("wu").wu, require("q"));
