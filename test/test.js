@@ -39,7 +39,6 @@ exports.testItemModel = function(test){
         });
 };
 
-
 exports.testItemTypeModel = function(test){
 	console.log("---------------------------------------------------------:testItemTypeModel");
 
@@ -81,27 +80,34 @@ exports.testSaveGetCategory = function(test){
     category.origin = {};
     category.origin.context = "test";
     category.origin.area = "test";
-	model.saveCategory(category,function(err, saved){
-		test.ifError(err);
+
+	var catP = model.saveCategory(category);
+
+    catP
+        .then(function( saved){
 		test.ok(saved);
-		model.getCategory(saved.id, function(err, theItemCat){
-            console.dir(["error>>", err]);
-            console.dir(["new ItemCat>>", saved]);
-			test.ifError(err);
-			test.ok(theItemCat);
-			test.done();
-		});
-
-	});
-//	test.done();
-
-
+		var savedP = model.getCategory(saved.id);
+            savedP
+                .then( function( theItemCat){
+                    test.ok(theItemCat);
+		        })
+                .catch(function(err){
+                    test.ifError(err);
+                })
+                .done(function(){
+                    test.done();
+                });
+	    })
+        .catch(function(err){
+            test.ifError(err);
+        });
 };
 
 var x = /*exports.testItemTypeWithCategory*/ function(test){
 console.log("---------------------------------------------------------:testItemTypeWithCategory");
 	var category = {};
 	category.name = 'TestItemCategory';
+    category.origin = {};
      category.origin.context = "test";
     category.origin.area = "test";
 	model.saveCategory(category, function(err, saved){

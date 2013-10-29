@@ -236,7 +236,7 @@
         });
     }(categoryP);
     var vtP = function (viewTypesP) {
-        var d = q.defer();
+        //var d = q.defer();
         var viewTypesByName = {};
         return viewTypesP.then(function (viewTypes) {
             viewTypes.forEach(function (it) {
@@ -245,7 +245,7 @@
                 allTypesByName[nm] = it;
                 kindMap[nm] = "viewType";
             });
-            d.resolve(viewTypesByName);
+            return (viewTypesByName);
         });
     }(viewTypesP);
 //get them with one promise
