@@ -27,7 +27,7 @@
      * @param fDetail
      * @returns {promise(Context)}
      */
-    exports.loadContextObject = function loadContextObject(contextName, areaName, contextObject, fDone, fDetail) {
+    exports.loadContextObject = function loadContextObject(contextName, areaName, contextObject) {
         logger.debug("loader.loadContextObject");
 
         /// get the categories and types that make of this context or context area
@@ -51,7 +51,7 @@
             });
             var p = writeTypeFn(type);
             return p.then(function (saved) {
-                fDetail({context: contextName, area: areaName, type: 'Category', name: type.name});
+                //fDetail({context: contextName, area: areaName, type: 'Category', name: type.name});
                 return  (saved);
             });
         };
@@ -80,7 +80,6 @@
                     .then(function(ctxt){
                         logger.debug("Context loaded! ->", JSON.stringify(ctxt));
                         console.log("Context loaded! \ncontext ->", JSON.stringify(ctxt));
-                        fDone({context: contextName, area: areaName, type: 'Context'});
                         d.resolve(ctxt);
                     })
                    .catch(function(e){
@@ -119,14 +118,26 @@
     var doBoolPromise = function(p, trueFn, falseFn, errFn){
         console.dir(["doBoolPromise: ", p.inspect()]);
         p.then(function(b){
-            (b ? trueFn : falseFn)();
+            return (b ? trueFn : falseFn)();
         })
             .catch(function(e){
                 console.dir(["doBoolPromise: Promise failed:"+e+" ->",p.inspect()]);
                 errFn(e);
-            }).done();
-    };
+            }).done(function(){
+                console.dir( [ "doBoolPromise: done()", p.inspect() ]);
 
+            });
+    };
+    /**
+     *
+     * @param contextName
+     * @param areaName
+     * @param file
+     * @param f
+     * @param fDetail
+     * @returns {promise}
+     *  promise ->(Context)
+     */
     exports.loadArea = function loadArea(contextName, areaName, file, f, fDetail) {
         var d = q.defer();
         logger.debug("loader.loadArea: Area: " + contextName + "." + areaName + ": " + fs.realpathSync(file));
@@ -136,31 +147,47 @@
             return f("File not found: " + file);
         };
 
+
+        /**
+         *
+         * @param data
+         * @returns {promise()}
+         *  promise ->({context: ctxtName, area:areName, types:Array(typeNames)) })
+         */
         var onAreaFile = function (data) {
             logger.debug("loader.loadArea: Area: read file: " + file);
             logger.debug("loader.loadArea: Area: not parsed: " + data);
-            data = JSON.parse(data);
-            logger.debug("loader.loadArea: Area: parsed: " + JSON.stringify(data));
+            var d= q.defer();
+
             var p = checkForContextLoaded(contextName, areaName);
-            doBoolPromise( p,
-                function(){
-                    logger.error("loader.loadArea: Area: " + contextName + "." + areaName + " is already loaded.");
-                    console.log("loader.loadArea: Area: " + contextName + "." + areaName + " is already loaded.");
-                   // f("loader.loadArea: Area: " + contextName + "." + areaName + " is already loaded.");
-            }, function(){
-                    logger.debug("loader.loadArea: Area:  " + areaName + " not already loaded.");
-                    exports.loadContextObject(contextName, areaName, data, f, fDetail)
-                        .then(function(ctxt){
-                            console.log("loader.loadArea: Area: " + contextName + "." + areaName + " is loaded.");
-                           // f("loader.loadArea: Area: " + contextName + "." + areaName + " is loaded.");
-                        })
-                        .catch(function(e){
-                            logger.error("loader.loadArea: Area: " + contextName + "." + areaName + ": Error checking for context: "+e);
-                        });
-            }, function(e){
+            p
+                .then(function(isLoaded){
+                    if(isLoaded){
+                        logger.error("loader.loadArea: Area: " + contextName + "." + areaName + " is already loaded.");
+                        console.log("loader.loadArea: Area: " + contextName + "." + areaName + " is already loaded.");
+                        d.resolve({name:contextName, area:areaName});
+                    }else
+                    {
+                        logger.debug("loader.loadArea: Area:  " + areaName + " not already loaded.");
+                        data = JSON.parse(data);
+                        logger.debug("loader.loadArea: Area: parsed: " + JSON.stringify(data));
+                        return exports.loadContextObject(contextName, areaName, data)
+                            .then(function(ctxt){
+                                console.log("loader.loadArea: Area: " + contextName + "." + areaName + " is loaded.");
+                                d.resolve(ctxt);
+                            })
+                            .catch(function(e){
+                                logger.error("loader.loadArea: Area: " + contextName + "." + areaName + ": Error checking for context: "+e);
+                                d.reject(e);
+                            });
+                    }
+                })
+                .catch(function(e){
                     logger.error("loader.loadArea: Area: " + contextName + "." + areaName + ": Error checking for context: "+e);
-            });
-            return p;
+                    d.reject(e);
+                })
+
+            return d.promise;
         };
 
         try {
@@ -175,15 +202,24 @@
             return d.promise;
         }
     };
-
+    /**
+     *
+     * @param contextName
+     * @param contextDirectory
+     * @param f
+     * @param fDetail
+     * @returns promise(Array(Context))
+     */
     exports.loadContext = function loadContext(contextName, contextDirectory, f, fDetail) {
         contextName = contextName || path.basename(contextDirectory);
         logger.debug("loader.loadContext(): " + contextName + "@" + contextDirectory);
-
+        var d = q.defer();
         /// for each *.json.ctxt file in contextDirectory
         var finder = findit.find(contextDirectory);
         var flist = [];
 
+        // gets hit with each file in dir
+        /// we collect the file names in flist
         finder.on('file', function (file) {
             //logger.debug("loader.loadContext: found contextFile:" + (file));
             if (endsWith(file, suffix)) {
@@ -192,34 +228,65 @@
                 flist.push({name: fname, file: file});
             }
         });
-        var loadFileList = function doList(contextName, list, f, values) {
+        /**
+         * Loads each file in the list of files
+         *
+         * @param contextName
+         * @param list
+         * @param values
+         * @returns promise(Array(Context))
+         */
+        var loadFileList = function doList(contextName, list, values) {
             values = values || [];
             if (!list || list.length == 0) {
                 logger.debug("loader.loadContext(): " + contextName + "@" + contextDirectory + " DONE!");
                 return q.all(values);
             }
             var fobj = list[0];
-            var pArea = exports.loadArea(  contextName, fobj.name, fobj.file );
+            var pCtxt = exports.loadArea(  contextName, fobj.name, fobj.file );
             logger.debug("loader.loadContext: loading Area: " + fobj.name + ' file:' + fobj.file);
-            console.dir(["loader.loadContext: loadArea promise: " , pArea.inspect()]);
-            return doList(contextName, list.slice(1), f, values.concat(pArea));
+            console.dir(["loader.loadContext: loadArea promise: " , pCtxt.inspect()]);
+            return doList(contextName, list.slice(1), values.concat(pCtxt));
         };
+        /// get hit when all the files in the dir have been found
+        /// flist should have the file list now
         finder.on('end', function () {
-            (loadFileList)(contextName, flist, f).then(function(values){
+            (loadFileList)(contextName, flist).then(function(values){
                 console.dir(["loader.loadContext.loadFileList", values]);
             });
            // logger.debug("loader.loadContext(): " + contextName + "@" + contextDirectory + " DONE!");
         });
     };
 
-    exports.loadContexts = function loadContexts(contextRoot, f, fDetail) {
+
+    /**
+     * Given a contextRoot directory, loads each subDirectory as an Area and the
+     * context is the contextRoot dir name.  Each Area is represented by a Context
+     * object.
+     *
+     * @param contextRoot
+     * @param fDetail
+     *
+     * @returns promise(Array(Context))
+     */
+    exports.loadContexts = function loadContexts(contextRoot, fDetail) {
+        var d= q.defer();
         logger.debug("loader.loadContexts");
         var finder = findit.find(contextRoot);
+        var ctxtList = [];
         //This listens for directories found
         finder.on('directory', function (dir) {
             logger.debug('Directory: ' + dir + '/');
-            exports.loadContext(path.basename(dir), dir, f, fDetail);
+            var ctxtP =  exports.loadContext(path.basename(dir), dir, fDetail);
+            ctxtP
+                .then(function(ctxt){
+                    ctxtList.push(ctxt);
+                })
         });
+        finder.on('end',function(){
+            d.resolve(ctxtList);
+        });
+        return d.promise;
     };
     console.dir("contextLoader: END!");
 

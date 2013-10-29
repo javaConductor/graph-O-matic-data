@@ -20,19 +20,22 @@ exports.testItemModel = function(test){
     console.dir(["saving>>", item]);
 	var itP = model.saveItem(item);
     itP
-        .then(function(item){
-            test.ok(item);
-            var outP = model.getItem( item.id );
-            return outP
-                .then( function(saved){
-                    test.ok(saved);
-                    return saved;
+        .then(function(itm){
+            test.ok(itm);
+            console.dir(["deleting >>", itm]);
+            var delP = model.deleteItem( itm.id );
+            return delP
+                .then( function(resp){
+                    test.ok(resp);
+                    return resp;
                 })
                 .catch(function(e){
+                    console.dir(["Error deleting item >>", e]);
                     test.ifError(e);
                 });
         })
         .catch(function(e){
+            console.dir(["Error Saving >>", item, e]);
             test.ifError( e );
         }).done(function(){
             test.done();
@@ -88,8 +91,8 @@ exports.testSaveGetCategory = function(test){
 		test.ok(saved);
 		var savedP = model.getCategory(saved.id);
             savedP
-                .then( function( theItemCat){
-                    test.ok(theItemCat);
+                .then( function( cat){
+                    test.ok(cat);
 		        })
                 .catch(function(err){
                     test.ifError(err);
