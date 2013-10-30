@@ -6,7 +6,7 @@
  * Time: 1:03 AM
  */
 (function (findit, fs, path, model, wu, logger, q) {
-    console.dir("contextLoader: model=", (model));
+//    console.dir("contextLoader: model=", (model));
     logger.setLevel("DEBUG");
     var suffix = ".ctxt.json";
     var endsWith = function (text, suffix) {
@@ -75,24 +75,31 @@
         q.all([pAllCategories, pAllItemTypes, pAllRelationshipTypes, pAllViewTypes])
             .then(function (savedTypeLists) {
                 logger.debug("Context loaded savedTypeLists ->", JSON.stringify(savedTypeLists));
-                console.log("Context loaded savedTypeLists \ncontext ->", JSON.stringify(savedTypeLists));
+              //  console.log("Context loaded savedTypeLists \ncontext ->", JSON.stringify(savedTypeLists));
                 model.saveContext(contextName, areaName, typeNames)
                     .then(function(ctxt){
                         logger.debug("Context loaded! ->", JSON.stringify(ctxt));
-                        console.log("Context loaded! \ncontext ->", JSON.stringify(ctxt));
+                        //console.log("Context loaded! \ncontext ->", JSON.stringify(ctxt));
                         d.resolve(ctxt);
                     })
                    .catch(function(e){
-                        d.reject(e);
+                        d.reject("Error saving Context:"
+                            + contextName + "."
+                            + areaName + ": "
+                            + JSON.stringify(e));
+                        logger.error("Error saving Context:"
+                            + contextName + "."
+                            + areaName + ": "
+                            + JSON.stringify(e));
                     });
                 return savedTypeLists;
             })
             .catch(function (e) {
-                d.reject("Error saving Context:"
+                d.reject("Error saving Types:"
                     + contextName + "."
                     + areaName + ": "
                     + JSON.stringify(e));
-                logger.error("Error saving Context:"
+                logger.error("Error saving Types:"
                     + contextName + "."
                     + areaName + ": "
                     + JSON.stringify(e));
@@ -104,7 +111,6 @@
      *
      * @param contextName
      * @param areaName
-     * @param f
      *
      * @returns promise( boolean ) true if the context loaded else false
      */
@@ -112,20 +118,19 @@
         logger.debug("checkForContextLoaded", arguments);
         return model.getContext(contextName, areaName).then (function (ctxt) {
             return (ctxt) ? true : false;
-        })
+        });
     };
 
     var doBoolPromise = function(p, trueFn, falseFn, errFn){
-        console.dir(["doBoolPromise: ", p.inspect()]);
+        //console.dir(["doBoolPromise: ", p.inspect()]);
         p.then(function(b){
             return (b ? trueFn : falseFn)();
         })
             .catch(function(e){
-                console.dir(["doBoolPromise: Promise failed:"+e+" ->",p.inspect()]);
+                logger.debug(["doBoolPromise: Promise failed:"+e+" ->",p.inspect()]);
                 errFn(e);
             }).done(function(){
-                console.dir( [ "doBoolPromise: done()", p.inspect() ]);
-
+                logger.debug( [ "doBoolPromise: done()", p.inspect() ]);
             });
     };
     /**
@@ -152,7 +157,7 @@
          *
          * @param data
          * @returns {promise()}
-         *  promise ->({context: ctxtName, area:areName, types:Array(typeNames)) })
+         *  promise ->(Context)
          */
         var onAreaFile = function (data) {
             logger.debug("loader.loadArea: Area: read file: " + file);
@@ -164,7 +169,7 @@
                 .then(function(isLoaded){
                     if(isLoaded){
                         logger.error("loader.loadArea: Area: " + contextName + "." + areaName + " is already loaded.");
-                        console.log("loader.loadArea: Area: " + contextName + "." + areaName + " is already loaded.");
+  //                      console.log("loader.loadArea: Area: " + contextName + "." + areaName + " is already loaded.");
                         d.resolve({name:contextName, area:areaName});
                     }else
                     {
@@ -173,7 +178,7 @@
                         logger.debug("loader.loadArea: Area: parsed: " + JSON.stringify(data));
                         return exports.loadContextObject(contextName, areaName, data)
                             .then(function(ctxt){
-                                console.log("loader.loadArea: Area: " + contextName + "." + areaName + " is loaded.");
+                                logger.debug("loader.loadArea: Area: " + contextName + "." + areaName + " is loaded.");
                                 d.resolve(ctxt);
                             })
                             .catch(function(e){
@@ -245,14 +250,14 @@
             var fobj = list[0];
             var pCtxt = exports.loadArea(  contextName, fobj.name, fobj.file );
             logger.debug("loader.loadContext: loading Area: " + fobj.name + ' file:' + fobj.file);
-            console.dir(["loader.loadContext: loadArea promise: " , pCtxt.inspect()]);
+            //console.dir(["loader.loadContext: loadArea promise: " , pCtxt.inspect()]);
             return doList(contextName, list.slice(1), values.concat(pCtxt));
         };
         /// get hit when all the files in the dir have been found
         /// flist should have the file list now
         finder.on('end', function () {
             (loadFileList)(contextName, flist).then(function(values){
-                console.dir(["loader.loadContext.loadFileList", values]);
+                logger.debug(["loader.loadContext.loadFileList", values]);
             });
            // logger.debug("loader.loadContext(): " + contextName + "@" + contextDirectory + " DONE!");
         });
@@ -288,7 +293,7 @@
         });
         return d.promise;
     };
-    console.dir("contextLoader: END!");
+//    console.dir("contextLoader: END!");
 
 })(require('findit'), require('fs'),
         require('path'), require('../model'),

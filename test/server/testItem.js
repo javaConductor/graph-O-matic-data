@@ -13,8 +13,7 @@ var app = require("../../server.js");
 var itm = {
     title: "Test Item",
     typeName: "baseIT",
-    description: "This is a real testoid item.",
-    data: []
+    description: "This is a real testoid item."
 };
 
 request(app)

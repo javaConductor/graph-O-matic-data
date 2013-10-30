@@ -6,7 +6,7 @@
  */
 
 (function (ts, persistence, q) {
-    console.dir(["model/index.js: ts=", ts]);
+//    console.dir(["model/index.js: ts=", ts]);
 
         var wrapFunctionWithCallback = function (fn, xformInFn, xformOutFn) {
             return function () {
@@ -129,7 +129,7 @@
             //////  Item  //////
             //////  Item  //////
             saveItem : wrapFunctionWithCallback(persistence.saveItem, beforeWrite.item, afterRead.item),
-            getItem : wrapFunctionWithCallback(persistence.getItem, beforeWrite.item, afterRead.item),
+            getItem : wrapFunctionWithCallback(persistence.getItem, identity, afterRead.item),
             getItems : wrapFunctionWithCallback(persistence.getItems, identity, function (a) {
                 return a.map(afterRead.item);
             }),
@@ -159,9 +159,9 @@
 
             //////  Context //////
             //////  Context //////
-            getContext : wrapFunctionWithCallback(persistence.getContext, identity, identity),
+            getContext : wrapFunctionWithCallback(persistence.getContext, identity, afterRead.context),
             saveContext : wrapFunctionWithCallback(persistence.saveContext, identity, afterRead.context)
-            //saveContext :persistence.saveContext
+
         };
         /////////// EXPORTS ////////////
         /////////// EXPORTS ////////////

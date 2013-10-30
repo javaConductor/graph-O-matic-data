@@ -30,7 +30,7 @@ console.dir(["api/item.js"]);
         var item = beforeSave(req.body);
         var p = model.saveItem(item);
         p.then(function (v) {
-                res.send(afterRead(v));
+                res.json(afterRead(v));
             }).catch(function (err) {
                     utils.sendError(res, "Error: " + err);
             });

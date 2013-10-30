@@ -6,7 +6,7 @@
  * Time: 2:16 AM
  */
 (function (model, wu, q) {
-    console.dir(["typeSystem/index.js: model=", model]);
+//    console.dir(["typeSystem/index.js: model=", model]);
 
     function reportError(msg) {
         throw  new Error(msg);
@@ -130,7 +130,7 @@
     };
 
     var typeNameFromType = function (type) {
-        if(!type  || !type.origin)
+        if (!type || !type.origin)
             return null;
         return type.origin.context + "." + type.origin.area + "." + type.name;
     };
@@ -156,7 +156,7 @@
 
             var parts = ( name.split('.', 3));
             /// if its already in the full form try to resolve name as is
-            if (parts.length >= 3 && typesByName[name] )
+            if (parts.length >= 3 && typesByName[name])
                 return (typesByName[name] );
             //we need to resolve to full type name
             /// try:
@@ -202,7 +202,7 @@
 
     /// load all the types
     var itP = function (itemTypesP) {
-         var itemTypesByName = {};
+        var itemTypesByName = {};
         itemTypesP.then(function (itemTypes) {
             itemTypes.forEach(function (it) {
                 var nm = typeNameFromType(it);
@@ -212,7 +212,7 @@
         });
     }(itemTypesP);
     var rtP = function (relationshipTypesP) {
-         var relationshipTypesByName = {};
+        var relationshipTypesByName = {};
         return relationshipTypesP.then(function (relationshipTypes) {
             relationshipTypes.forEach(function (it) {
                 var nm = typeNameFromType(it);
@@ -365,18 +365,21 @@
                 q.when(itemP, function (item) {
                     var itemDef = "default.built-in.baseIT";
                     var tn = item.typeName || itemDef;
-                    var t = typesByName[tn];
 
-                    if (!t) {
-                        t = typesByName[itemDef];
-                        console.log("No such Type: " + tn + " using " + itemDef);
-                    }
-                    if (!t) {
-                        console.error("Internal error: " + itemDef + " not found ");
-                        throw  new Error("Internal error: " + itemDef + " not found ");
-                    }
-                    item.type = t;
-                    return item;
+                    resolveTypeNameWithScope(typesByNameP, tn, undefined)
+                        .then(function (tn) {
+                            var t = typesByName[tn];
+                            if (!t) {
+                                console.error("Internal error: " + itemDef + " not found ");
+                                throw  new Error("Internal error: " + itemDef + " not found ");
+                            }
+                            item.type = t;
+                            return item;
+
+                        })
+                        .catch(function (e) {
+                            console.error("No such Type: " + tn + " using " + itemDef, e);
+                        })
                 });//when
             });//then
         });//then
@@ -469,7 +472,7 @@
     });
 
     // everything exported
-    module.exports = require("xtend")( tsObj);
+    module.exports = require("xtend")(tsObj);
 
     console.dir(["typeSystem/index.js: defined as:", (module.exports)]);
 })(require("../persistence"), require("wu").wu, require("q"));
