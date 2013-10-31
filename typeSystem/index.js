@@ -5,7 +5,7 @@
  * Date: 8/4/13
  * Time: 2:16 AM
  */
-(function (model, wu, q) {
+(function (model, wu, q, logger) {
 //    console.dir(["typeSystem/index.js: model=", model]);
 
     function reportError(msg) {
@@ -203,7 +203,7 @@
     /// load all the types
     var itP = function (itemTypesP) {
         var itemTypesByName = {};
-        itemTypesP.then(function (itemTypes) {
+        return itemTypesP.then(function (itemTypes) {
             itemTypes.forEach(function (it) {
                 var nm = typeNameFromType(it);
                 itemTypesByName[nm] = it;
@@ -211,6 +211,7 @@
             return (itemTypesByName)
         });
     }(itemTypesP);
+
     var rtP = function (relationshipTypesP) {
         var relationshipTypesByName = {};
         return relationshipTypesP.then(function (relationshipTypes) {
@@ -367,18 +368,15 @@
                     var tn = item.typeName || itemDef;
 
                     resolveTypeNameWithScope(typesByNameP, tn, undefined)
-                        .then(function (tn) {
-                            var t = typesByName[tn];
-                            if (!t) {
-                                console.error("Internal error: " + itemDef + " not found ");
-                                throw  new Error("Internal error: " + itemDef + " not found ");
-                            }
+                        .then(function (t) {
+                         //   var t = typesByName[tn];
                             item.type = t;
                             return item;
-
                         })
                         .catch(function (e) {
-                            console.error("No such Type: " + tn + " using " + itemDef, e);
+                            console.error("Error resolving Type: " + tn + " using " + itemDef, e);
+                            item.type = typesByName[itemDef];
+                            return item;
                         })
                 });//when
             });//then
@@ -475,4 +473,4 @@
     module.exports = require("xtend")(tsObj);
 
     console.dir(["typeSystem/index.js: defined as:", (module.exports)]);
-})(require("../persistence"), require("wu").wu, require("q"));
+})(require("../persistence"), require("wu").wu, require("q"), require("../logger"));

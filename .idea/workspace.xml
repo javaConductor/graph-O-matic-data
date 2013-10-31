@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="23b8520e-8397-4718-a457-abae1f30f47b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/loader/contextLoader.js" afterPath="$PROJECT_DIR$/loader/contextLoader.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/index.js" afterPath="$PROJECT_DIR$/model/index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/mongoAdapter/index.js" afterPath="$PROJECT_DIR$/node_modules/mongoAdapter/index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/typeSystem/index.js" afterPath="$PROJECT_DIR$/typeSystem/index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/item.js" afterPath="$PROJECT_DIR$/api/item.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/server/testItem.js" afterPath="$PROJECT_DIR$/test/server/testItem.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/mongoAdapter/model.js" afterPath="$PROJECT_DIR$/node_modules/mongoAdapter/model.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="ab4472db-35bb-403b-9afc-3d326a5a41b2" name="New changelist" comment="New changelist">
@@ -15,9 +13,9 @@
     </list>
     <ignored path="graph-O-matic-data.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1383073454660" ignored="false" />
+    <file path="/Dummy.txt" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1383196190352" ignored="false" />
     <file path="/server.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1382914684716" ignored="false" />
-    <file path="/index.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1383075040544" ignored="false" />
+    <file path="/index.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1383253696331" ignored="false" />
     <file path="/itemTypes.txt" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1371708609211" ignored="false" />
     <file path="$PROJECT_DIR$/../graph-O-matic/docs/itemTypes.txt" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1371708610586" ignored="false" />
     <file path="/models.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1372901828605" ignored="false" />
@@ -33,7 +31,7 @@
     <file path="/model.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1383058493012" ignored="false" />
     <file path="/loader.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1373527332589" ignored="false" />
     <file path="/built-in.ctxt.json" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1380785515478" ignored="false" />
-    <file path="/a.dummy" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1383074395801" ignored="false" />
+    <file path="/a.dummy" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1383241845924" ignored="false" />
     <file path="/loaderAsync.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1374043790183" ignored="false" />
     <file path="/objectid.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1373606275686" ignored="false" />
     <file path="/people.ctxt.json" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1375082755142" ignored="false" />
@@ -73,7 +71,7 @@
     <file path="$PROJECT_DIR$/../graph-O-matic/public/templates/viewItem3.ejs" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1376452075228" ignored="false" />
     <file path="/viewItem3.ejs" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1376446634636" ignored="false" />
     <file path="$PROJECT_DIR$/../graph-O-matic/public/js/services/utilSvc.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1376690980548" ignored="false" />
-    <file path="/utilSvc.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1376690959994" ignored="false" />
+    <file path="/utilSvc.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1383201767302" ignored="false" />
     <file path="$PROJECT_DIR$/../graph-O-matic/public/js/services/view.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1376979087515" ignored="false" />
     <file path="$PROJECT_DIR$/../graph-O-matic/public/js/directives/graphView.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1376952009669" ignored="false" />
     <file path="/finance.ctxt.json" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1381767141180" ignored="false" />
@@ -100,7 +98,7 @@
     <file path="/testItem.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1383059930787" ignored="false" />
     <file path="$PROJECT_DIR$/../graph-O-matic/public/stylesheets/world.css" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1379626001871" ignored="false" />
     <file path="/world.css" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1377154121010" ignored="false" />
-    <file path="/item.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1383074333976" ignored="false" />
+    <file path="/item.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1383252328674" ignored="false" />
     <file path="/Mongo Console" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1378534587936" ignored="false" />
     <file path="/loadtestdata.sh" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1381772923196" ignored="false" />
     <file path="/rent.json" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1381771371155" ignored="false" />
@@ -145,7 +143,7 @@
     <file path="$PROJECT_DIR$/../graph-O-matic/public/templates/world.ejs" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1382239779758" ignored="false" />
     <file path="/world.ejs" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1382070612108" ignored="false" />
     <file path="/world.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1382018009874" ignored="false" />
-    <file path="/testViewNoItems.json" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1380721418913" ignored="false" />
+    <file path="/testViewNoItems.json" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1383251388574" ignored="false" />
     <file path="/common.ctxt.json" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1381766997158" ignored="false" />
     <file path="/module.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1381154050984" ignored="false" />
     <file path="/v8.log" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1381735543364" ignored="false" />
@@ -159,6 +157,7 @@
     <file path="$PROJECT_DIR$/../graph-O-matic/node_modules/supertest/example.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1382913342688" ignored="false" />
     <file path="/example.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1382913329686" ignored="false" />
     <file path="$PROJECT_DIR$/../graph-O-matic/test/server/testItem.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1383001426687" ignored="false" />
+    <file path="$PROJECT_DIR$/../graph-O-matic/public/js/app/services/utilSvc.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1383237755890" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,7 +180,16 @@
       <file leaf-file-name="index.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/node_modules/mongoAdapter/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="514" column="14" selection-start="17741" selection-end="17741" vertical-scroll-proportion="0.0">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="q.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file:///usr/lib/node_modules/q/q.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="801" column="0" selection-start="24022" selection-end="24022" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -190,10 +198,8 @@
       <file leaf-file-name="index.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="121" column="0" selection-start="4478" selection-end="4478" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#250#2125#0" expanded="false" />
-              </folding>
+            <state line="15" column="0" selection-start="424" selection-end="424" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -201,7 +207,7 @@
       <file leaf-file-name="item.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/item.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="0" selection-start="764" selection-end="764" vertical-scroll-proportion="0.0">
+            <state line="66" column="0" selection-start="1730" selection-end="1730" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -210,16 +216,7 @@
       <file leaf-file-name="adapter.log" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/logs/adapter.log">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="198" column="43" selection-start="50991" selection-end="50991" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="testItem.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/server/testItem.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="0" selection-start="458" selection-end="458" vertical-scroll-proportion="0.0">
+            <state line="290" column="0" selection-start="71449" selection-end="71449" vertical-scroll-proportion="-7.3125">
               <folding />
             </state>
           </provider>
@@ -228,20 +225,19 @@
       <file leaf-file-name="contextLoader.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/loader/contextLoader.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="115" column="7" selection-start="4387" selection-end="4387" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#1559#1919#0" expanded="false" />
-                <element signature="e#5948#7786#0" expanded="false" />
-              </folding>
+            <state line="92" column="7" selection-start="3697" selection-end="3697" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="index.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/typeSystem/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="371" column="28" selection-start="12406" selection-end="12406" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="372" column="0" selection-start="12395" selection-end="12395" vertical-scroll-proportion="0.33206832">
+              <folding>
+                <element signature="e#9127#9945#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -249,7 +245,7 @@
       <file leaf-file-name="index.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/loader/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="44" column="0" selection-start="1353" selection-end="1353" vertical-scroll-proportion="0.0">
+            <state line="45" column="0" selection-start="1446" selection-end="1446" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -258,7 +254,7 @@
       <file leaf-file-name="test.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/test.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="33" selection-start="555" selection-end="559" vertical-scroll-proportion="0.0">
+            <state line="54" column="33" selection-start="1650" selection-end="1650" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -267,16 +263,25 @@
       <file leaf-file-name="loadtestdata.sh" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/loadtestdata.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+            <state line="4" column="0" selection-start="185" selection-end="299" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="testList.json" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="testList.json" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/testList.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="12" selection-start="257" selection-end="257" vertical-scroll-proportion="0.42605633">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="testViewNoItems.json" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/testViewNoItems.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="3" column="9" selection-start="40" selection-end="40" vertical-scroll-proportion="-2.1290324">
               <folding />
             </state>
           </provider>
@@ -294,7 +299,7 @@
       <file leaf-file-name="graph-o-matic.log" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/logs/graph-o-matic.log">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+            <state line="619" column="0" selection-start="41319" selection-end="41319" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -312,7 +317,7 @@
       <file leaf-file-name="model.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/node_modules/mongoAdapter/model.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="153" column="62" selection-start="4009" selection-end="4009" vertical-scroll-proportion="0.0">
+            <state line="229" column="2" selection-start="6441" selection-end="6441" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -352,7 +357,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="feature/SeparateDataInAPI" />
       </map>
     </option>
   </component>
@@ -364,22 +369,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/api/viewType.js" />
         <option value="$PROJECT_DIR$/api/view.js" />
         <option value="$PROJECT_DIR$/api/viewItem.js" />
         <option value="$PROJECT_DIR$/api/itemType.js" />
         <option value="$PROJECT_DIR$/server.js" />
-        <option value="$PROJECT_DIR$/node_modules/mongoAdapter/model.js" />
         <option value="$PROJECT_DIR$/test/testItem.js" />
         <option value="$PROJECT_DIR$/test/test.js" />
         <option value="$PROJECT_DIR$/loader/contextLoader.js" />
         <option value="$PROJECT_DIR$/test/server/testItem.js" />
+        <option value="$PROJECT_DIR$/logs/graph-o-matic.log" />
+        <option value="$PROJECT_DIR$/model/index.js" />
+        <option value="$PROJECT_DIR$/node_modules/mongoAdapter/index.js" />
+        <option value="$PROJECT_DIR$/node_modules/mongoAdapter/model.js" />
+        <option value="$PROJECT_DIR$/logs/adapter.log" />
+        <option value="$PROJECT_DIR$/test/testViewNoItems.json" />
         <option value="$PROJECT_DIR$/api/item.js" />
         <option value="$PROJECT_DIR$/typeSystem/index.js" />
-        <option value="$PROJECT_DIR$/logs/graph-o-matic.log" />
-        <option value="$PROJECT_DIR$/logs/adapter.log" />
-        <option value="$PROJECT_DIR$/node_modules/mongoAdapter/index.js" />
-        <option value="$PROJECT_DIR$/model/index.js" />
       </list>
     </option>
   </component>
@@ -478,20 +483,6 @@
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="test">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="graph-O-matic-data">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
             <PATH_ELEMENT USER_OBJECT="node_modules">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
@@ -552,7 +543,21 @@
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="loader">
+            <PATH_ELEMENT USER_OBJECT="logger">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="graph-O-matic-data">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="api">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
@@ -585,14 +590,14 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="54" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="68" />
     <property name="options.splitter.main.proportions" value="0.15586117" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="51" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
     <property name="recentsLimit" value="5" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="51" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/test/server" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="71" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="666" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="680" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="666" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="72" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="69" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -631,7 +636,7 @@
       <recent name="$PROJECT_DIR$/test" />
     </key>
   </component>
-  <component name="RunManager" selected="Node.js.server.js">
+  <component name="RunManager" selected="Node.js.Test Type Loader">
     <configuration default="false" name="test.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="/usr/bin/node" path-to-js-file="test.js" working-dir="$PROJECT_DIR$/test">
       <RunnerSettings RunnerId="NodeJS.run" />
       <ConfigurationWrapper RunnerId="NodeJS.run" />
@@ -652,6 +657,10 @@
       <setting name="preferredDebugBrowser" value="CHROME" />
       <method />
     </configuration>
+    <configuration default="true" type="NodeJSRemoteDebug" factoryName="Node.js Remote Debug">
+      <node-js-remote-debug />
+      <method />
+    </configuration>
     <configuration default="true" type="NodeunitConfigurationType" factoryName="Nodeunit">
       <setting name="nodePath" value="/usr/local/bin/node" />
       <envs />
@@ -660,10 +669,6 @@
       <setting name="workingDirectory" value="$PROJECT_DIR$" />
       <setting name="testType" value="DIRECTORY" />
       <setting name="directory" value="" />
-      <method />
-    </configuration>
-    <configuration default="true" type="NodeJSRemoteDebug" factoryName="Node.js Remote Debug">
-      <node-js-remote-debug />
       <method />
     </configuration>
     <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" working-dir="$PROJECT_DIR$">
@@ -939,13 +944,13 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22025052" sideWeight="0.4997233" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.12672938" sideWeight="0.24843423" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19645822" sideWeight="0.6263048" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12672938" sideWeight="0.6263048" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.56993735" sideWeight="0.76369673" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19590482" sideWeight="0.5647182" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12672938" sideWeight="0.5647182" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.43528184" sideWeight="0.76369673" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.22748092" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.43006262" sideWeight="0.23630327" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Mongo Runner" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24634655" sideWeight="0.4991699" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3736952" sideWeight="0.57000554" order="3" side_tool="false" content_ui="tabs" x="13" y="118" width="1254" height="535" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37265137" sideWeight="0.57000554" order="3" side_tool="false" content_ui="tabs" x="13" y="118" width="1254" height="535" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32776618" sideWeight="0.4997233" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1040,48 +1045,43 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/loader/contextLoader.js</url>
-          <line>184</line>
+          <line>221</line>
           <option name="timeStamp" value="843" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/loader/contextLoader.js</url>
-          <line>180</line>
+          <line>215</line>
           <option name="timeStamp" value="844" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/loader/contextLoader.js</url>
-          <line>80</line>
+          <line>60</line>
           <option name="timeStamp" value="846" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/loader/contextLoader.js</url>
-          <line>78</line>
-          <option name="timeStamp" value="847" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/loader/contextLoader.js</url>
-          <line>287</line>
-          <option name="timeStamp" value="848" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/loader/contextLoader.js</url>
-          <line>291</line>
-          <option name="timeStamp" value="849" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/loader/contextLoader.js</url>
-          <line>293</line>
-          <option name="timeStamp" value="850" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/loader/contextLoader.js</url>
-          <line>285</line>
-          <option name="timeStamp" value="851" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/loader/contextLoader.js</url>
-          <line>172</line>
+          <line>200</line>
           <option name="timeStamp" value="852" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/typeSystem/index.js</url>
+          <line>371</line>
+          <option name="timeStamp" value="858" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/typeSystem/index.js</url>
+          <line>376</line>
+          <option name="timeStamp" value="859" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/api/item.js</url>
+          <line>64</line>
+          <option name="timeStamp" value="860" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/typeSystem/index.js</url>
+          <line>156</line>
+          <option name="timeStamp" value="862" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -1096,102 +1096,30 @@
           <properties />
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="853" />
+      <option name="time" value="868" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/loader/contextLoader.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="115" column="7" selection-start="4387" selection-end="4387" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#1559#1919#0" expanded="false" />
-            <element signature="e#5948#7786#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/server/testItem.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="0" selection-start="458" selection-end="458" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/testItem.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="45" selection-start="1267" selection-end="1267" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/item.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="0" selection-start="764" selection-end="764" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/typeSystem/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="371" column="28" selection-start="12406" selection-end="12406" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logs/graph-o-matic.log">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logs/adapter.log">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="198" column="43" selection-start="50991" selection-end="50991" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/mongoAdapter/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="514" column="14" selection-start="17741" selection-end="17741" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="121" column="0" selection-start="4478" selection-end="4478" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#250#2125#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/node_modules/mongoose/lib/promise.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="107" column="0" selection-start="2834" selection-end="2834" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.WebStorm6/system/extLibs/nodejs-v0.10.16-src/core-modules-sources/lib/events.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="94" column="0" selection-start="3222" selection-end="3222" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="94" column="0" selection-start="3222" selection-end="3222" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file:///usr/local/lib/node_modules/mongoose/lib/model.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2165" column="10" selection-start="61079" selection-end="61079" vertical-scroll-proportion="0.037542664">
-          <folding />
-        </state>
+        <state line="2165" column="10" selection-start="61079" selection-end="61079" vertical-scroll-proportion="0.037542664" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="33" selection-start="555" selection-end="559" vertical-scroll-proportion="0.0">
+        <state line="54" column="33" selection-start="1650" selection-end="1650" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/test/finance.data.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="0" selection-start="592" selection-end="592" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -1203,17 +1131,82 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/loadtestdata.sh">
+    <entry file="file://$PROJECT_DIR$/node_modules/mongoAdapter/model.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+        <state line="229" column="2" selection-start="6441" selection-end="6441" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/logs/graph-o-matic.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="619" column="0" selection-start="41319" selection-end="41319" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/testViewNoItems.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="9" selection-start="40" selection-end="40" vertical-scroll-proportion="-2.1290324">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/testList.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="12" selection-start="257" selection-end="257" vertical-scroll-proportion="0.42605633">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/loadtestdata.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="0" selection-start="185" selection-end="299" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/logs/adapter.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="290" column="0" selection-start="71449" selection-end="71449" vertical-scroll-proportion="-7.3125">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/mongoAdapter/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="0" selection-start="424" selection-end="424" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/item.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="66" column="0" selection-start="1730" selection-end="1730" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/lib/node_modules/q/q.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="801" column="0" selection-start="24022" selection-end="24022" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/typeSystem/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="372" column="0" selection-start="12395" selection-end="12395" vertical-scroll-proportion="0.33206832">
+          <folding>
+            <element signature="e#9127#9945#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

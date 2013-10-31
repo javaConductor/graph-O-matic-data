@@ -46,14 +46,17 @@ console.dir(["api/item.js"]);
                 .catch(function(err){
                     return utils.sendError(res, "No such item:" + itemId);
             });
-
     };
 
     exports.loadItems = function(req, res){
         var items = (( req.body) );
 
         // get an array of promises
-        var ap = items.map(wu.curry(model.saveItem, beforeSave));
+        var ap = items.map(function(itm){
+            itm = beforeSave(itm);
+            return model.saveItem(itm);
+        });
+
         var pAll = q.all(ap)
             .then(function(pList){
                 res.send(pList);
@@ -62,8 +65,6 @@ console.dir(["api/item.js"]);
                 return utils.sendError(res, JSON.stringify(err));
             });
     };
-
-
 
     exports.getItems = function (req, res) {
         //var viewId = req.params.id;
