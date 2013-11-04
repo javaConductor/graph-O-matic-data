@@ -9,8 +9,7 @@ var application_root = __dirname,
   express = require("express"),
   path = require("path"),
   cors = require('cors'),
-  api = require('./api')
-    ;
+  api = require('./api');
 
   mongoose = require('mongoose');
 
@@ -44,6 +43,11 @@ app.get('/views', cors(), api.getViews);
 app.put('/views', cors(), api.saveView);
 app.post('/views/:id', cors(),api.updateView);
 
+app.get('/view-types/:id',  cors(), api.getViewType);
+app.get('/view-types', cors(), api.getViewTypes);
+app.put('/view-types', cors(), api.saveViewType);
+app.post('/view-types/:id', cors(),api.updateViewType);
+
 // View Item Resource
 app.get('/view-items/:id',  api.getViewItem);
 app.put('/view-items/:viewId/:itemId/:x/:y', api.createViewItem);
@@ -61,5 +65,4 @@ app.put('/items', api.saveItem);
 app.put('/items/load', api.loadItems);
 
 // Launch server
-
 app.listen(4242);

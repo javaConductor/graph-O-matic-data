@@ -13,24 +13,15 @@
     var afterRead = function (v) {
         return v;
     };
-    exports.saveViewAsync = function (req, res) {
-        var viewData = req.body;
-        model.saveView(beforeSave(viewData), function (err, v) {
-            if (err) {
-                return utils.sendError(res, "Error: " + err);
-            }
-            res.send(afterRead(v));
-        });
-    };
 
     exports.saveView = function (req, res) {
         var viewData = req.body;
         var p = model.saveView(beforeSave(viewData));
         p.then(function (v) {
-            res.send(afterRead(v));
+            res.json(afterRead(v));
         }).catch(function (err) {
                 utils.sendError(res, "Error: " + err);
-            });
+        });
     };
 
     exports.getView = function (req, res) {

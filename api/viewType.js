@@ -12,6 +12,7 @@
     var afterRead = function (v) {
         return v;
     };
+
     exports.saveViewType = function (req, res) {
         var viewData = req.body;
         var p = model.saveView(beforeSave(viewData));
@@ -37,13 +38,12 @@
     };
 
     exports.getViewTypes = function (req, res) {
-        //var viewId = req.params.id;
         var p = model.getViewTypes();
         p.then(function (av) {
             res.send(av.map(afterRead));
         }).catch(function (err) {
-                utils.sendError(res, "error reading viewTypes:" + err);
-            });
+            utils.sendError(res, "error reading viewTypes:" + err);
+        });
     };
 
     exports.updateViewType = function (req, res) {
@@ -56,6 +56,6 @@
             });
     };
 
-    console.log("viewApi:"+JSON.stringify(exports));
+    console.log("viewTypeApi:"+JSON.stringify(exports));
 })( require("../model"),require("./utils.js") );
 

@@ -20,6 +20,7 @@ mergeModule( "./view.js");
 mergeModule( "./viewItem.js");
 mergeModule( "./item.js");
 mergeModule( "./itemType.js");
+mergeModule( "./viewType.js");
 
 console.dir(
     (exports)

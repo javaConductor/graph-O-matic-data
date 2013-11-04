@@ -181,7 +181,7 @@
             });
             if (matches.length) {
                 console.log("Resolving: " + name + " matched  " + matches[0]);
-                return (matches[0]);
+                return (typesByName[matches[0]]);
             }
             else {
                 console.log("Could not resolve: " + name);
