@@ -41,8 +41,12 @@
     exports.getViews = function (req, res) {
         //var viewId = req.params.id;
         var p = model.getViews();
-        p.then(function (av) {
-            res.send(av.map(afterRead));
+        p.then(function (avP) {
+
+            q.all(avP).then( function(av){
+                res.send(av.map(afterRead));
+            });
+
         }).catch(function (err) {
                 utils.sendError(res, "error reading views:" + err);
             });
