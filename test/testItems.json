@@ -1,0 +1,20 @@
+[{
+    "id": "4d6e5acebcd1b3fac9000003",
+    "title": "Test Item 1",
+    "typeName": "baseIT",
+    "data": [
+        {
+            "name" :    "value1",
+            "value":     "test val 1"
+        }]
+},{
+    "id": "507f191e810c19729de860eb",
+    "title": "Test Item 2",
+    "typeName": "baseIT",
+    "data": [
+        {
+            "name" :    "value1",
+            "value":     "test val 1"
+        }]
+}
+]

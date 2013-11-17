@@ -27,7 +27,6 @@
     exports.getView = function (req, res) {
         var viewId = req.params.id;
         var p = model.getView(viewId);
-
         p
             .then(function(v){
                 res.send(afterRead(v));
@@ -61,6 +60,23 @@
                 utils.sendError(res, "Error updating viewType:" + err);
             });
     };
+    exports.loadViews = function(req, res){
+        var views = (( req.body) );
+        // get an array of promises
+        var vp = views.map(function(vw){
+            vw = beforeSave(vw);
+            return model.saveView(vw);
+        });
+
+        q.all(vp)
+            .then(function(vList){
+                res.send(vList);
+            })
+            .catch(function(e){
+                return utils.sendError(res, JSON.stringify(e));
+            });
+    };
+
 
     console.log("viewApi:" + JSON.stringify(exports));
 })(require("../model"), require("./utils.js"), require("q"));

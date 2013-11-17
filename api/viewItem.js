@@ -38,36 +38,45 @@
 
     };
 
-
     exports.createViewItem = function(req, res){
-        var  itemId = req.params.itemId;
-        var posX = req.params.x;
-        var posY = req.params.y;
-        var viewId= req.params.viewId;
-        var p = model.createViewItem(viewId,itemId, posX, posY);
-        p
+        var  newViewItem  = req.body;
+        var p = model.createViewItem(
+            newViewItem.viewId,
+            newViewItem.item,
+            newViewItem.position )
+        .then(function(v){
+            res.send(afterRead(v));
+        })
+        .catch(function(err){
+            return utils.sendError(res, "Could not create viewItem for view:" + newViewItem.viewId);
+        });
+    };
+
+    exports.updateViewItem = function(req, res){
+        var  newViewItem  = req.body;
+        var p = model.createViewItem(
+                newViewItem.viewId,
+                newViewItem.item,
+                newViewItem.position )
             .then(function(v){
                 res.send(afterRead(v));
             })
             .catch(function(err){
-                return utils.sendError(res, "Could not createNo such viewItem:" + viewItemId);
+                return utils.sendError(res, "Could not update viewItem for view:" + newViewItem.viewId);
             });
-
     };
 
     exports.updateViewItemPosition = function(req, res){
 			var x = req.params.x;
 			var y = req.params.y;
-			var vid = req.params.id;
-            model.updateViewItemPosition(vid,x,y, function(err, vitem){
-                if (err)
-                    return utils.sendError(res, err);
-                vitem.position.x = x;
-				vitem.position.y = y;
-				res.send(vitem);
-			});
+			var itemId = req.params.id;
+            var viewItemId = req.params.viewItemId;
+            return model.updateViewItemPosition(viewItemId,x,y)
+                .then( function(err, vitem){
+                   if (err)
+                        return utils.sendError(res, err);
+                    res.send(vitem);
+			    });
 		};
-
-
 
 })( require('./utils.js'), require("../model") );

@@ -1,6 +1,7 @@
 [{
     "title": "Rent",
     "typeName": "test.finance.Account",
+
     "data": [
         {
             "name":"accountNumber",

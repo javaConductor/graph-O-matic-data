@@ -62,7 +62,7 @@ console.dir(["api/item.js"]);
                 res.send(pList);
             })
             .catch(function(e){
-                return utils.sendError(res, JSON.stringify(err));
+                return utils.sendError(res, JSON.stringify(e));
             });
     };
 

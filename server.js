@@ -42,6 +42,7 @@ app.get('/views/:id',  cors(),api.getView);
 app.get('/views', cors(), api.getViews);
 app.put('/views', cors(), api.saveView);
 app.post('/views/:id', cors(),api.updateView);
+app.put('/views/load', api.loadViews);
 
 app.get('/view-types/:id',  cors(), api.getViewType);
 app.get('/view-types', cors(), api.getViewTypes);
@@ -49,9 +50,9 @@ app.put('/view-types', cors(), api.saveViewType);
 app.post('/view-types/:id', cors(),api.updateViewType);
 
 // View Item Resource
-app.get('/view-items/:id',  api.getViewItem);
-app.put('/view-items/:viewId/:itemId/:x/:y', api.createViewItem);
-app.post('/view-items/:id/position/:x/:y', api.updateViewItemPosition);
+app.put('/views/:id/items/', api.createViewItem);
+app.post('/views/:id/items/:viewItemId', api.updateViewItem);
+app.post('/views/:id/items/:viewItemId/position/:x/:y', api.updateViewItemPosition);
 
 // Item Type Resource
 app.get('/item-types/:context/:area/:name', api.getItemType);
