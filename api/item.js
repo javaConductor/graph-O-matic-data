@@ -48,6 +48,58 @@ console.dir(["api/item.js"]);
             });
     };
 
+
+    /**
+     *
+     * @param relatedItemsObj
+     * @returns promise( varName:Array(ObjectId | object id) )
+     */
+    var loadRelatedItems = function(relatedItemsObj){
+
+        var relKeys = Object.keys(relatedItemsObj);
+        var aRelItemsP = relKeys.map(function( relKey ){
+            var relItem = relatedItemsObj[relKey];
+           return  loadRelatedItemList(relKey, relItem);
+        });
+
+        return q.all(aRelItemsP, function(aRelItems){
+
+            return aRelItems.reduce(function(acc, relItem){
+                return utils.extend(acc, relItem);
+            },{})
+        });
+    };
+
+    /**
+     *
+     * @param relatedItemsObj
+     * @returns promise( varName:Array(ObjectId | object id) )
+     */
+    var loadRelatedItemList = function(varName, relatedItemObj){
+        var criteria = {};
+        if(relatedItemObj.criteria.id){
+            criteria = {
+                id: relatedItemObj,
+                typeName: relatedItemObj.typeName
+            }
+        }else{
+            criteria = relatedItemObj.criteria;
+            criteria["typeName"] = relatedItemObj.typeName;
+        }
+
+        return model.findItems(criteria)
+            .then(function(items){
+                return items.reduce(function(acc, item, index){
+//                return items.map(function(item){
+                    acc[varName] = acc[varName] || [];
+                    acc[varName].push(item.id);
+                    return acc;
+                }, {});
+
+            });
+    };
+
+
     exports.loadItems = function(req, res){
         var items = (( req.body) );
 

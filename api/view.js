@@ -98,8 +98,117 @@
         });
     };
 
+
+    /**
+     *
+     * @param variables
+     * @param view
+     *
+     * @returns (view)
+     */
+    var bindRelatedItemsToView = function(variables, view){
+        var viewItems = view.items.map(function( viewItem){
+            viewItem.item = bindRelatedItemsToData( variables, viewItem.item );
+            return viewItem;
+        });
+        //return q.all(viewItemsP, function(viewItems){
+            view.items = viewItems;
+            return view;
+        //});
+    };
+
+    /**
+     *
+     * @param variables
+     * @param item
+     *
+     * @returns  (item)
+     */
+    var bindRelatedItemsToData = function(variables, item){
+
+        if (item.data){
+            var dataKeys = Object.keys(item.data);
+
+            var nuData = dataKeys.reduce(function(acc, k){
+                var value = item.data[k];
+                // is this a variable reference ?
+                if(value["$VAR"]){
+                    acc[k] = variables[value["$VAR"]]
+                }else{
+                    acc[k] = value;
+                }
+                return acc;
+            }, {});
+
+            item.data = nuData;
+            return item;
+
+        }else{
+            return item;
+        }
+
+    };
+
+    /**
+     *
+     * @param relatedItemsObj
+     * @returns promise( varName:Array(ObjectId | object id) )
+     */
+    var loadRelatedItemList = function(varName, relatedItemObj){
+        var criteria = {};
+        if(relatedItemObj.criteria.id){
+            criteria = {
+                id: relatedItemObj,
+                typeName: relatedItemObj.typeName
+            }
+        }else{
+            criteria = relatedItemObj.criteria;
+            criteria["typeName"] = relatedItemObj.typeName;
+        }
+
+        return model.findItems(criteria)
+            .then(function(items){
+                return items.reduce(function(acc, item, index){
+//                return items.map(function(item){
+                    acc[varName] = acc[varName] || [];
+                    acc[varName].push(item.id);
+                    return acc;
+                }, {});
+
+            });
+    };
+
+    /**
+     *
+     * @param relatedItemsObj
+     * @returns promise( varName:Array(ObjectId | object id) )
+     */
+    var loadRelatedItems = function(relatedItemsObj){
+
+        var relKeys = Object.keys(relatedItemsObj);
+        var aRelItemsP = relKeys.map(function( relKey ){
+            var relItem = relatedItemsObj[relKey];
+            return  loadRelatedItemList(relKey, relItem);
+        });
+
+        return q.all(aRelItemsP, function(aRelItems){
+
+            return aRelItems.reduce(function(acc, relItem){
+                return utils.extend(acc, relItem);
+            },{})
+        });
+    };
+
     exports.loadViews = function(req, res){
-        var theViews = (( req.body) );
+        var loadObject = (( req.body) );
+        var theViews = loadObject.views || [];
+        var vars = loadObject.variables || {};
+        var variables = loadRelatedItems(vars);
+
+        theViews = theViews.map(function( vw ){
+           return bindRelatedItemsToView( variables, vw);
+        });
+
         //// insert any inline items
         loadInlineItems(theViews)
             .then(function(views){
@@ -119,6 +228,5 @@
             });
 
     };
-
     console.log("viewApi:" + JSON.stringify(exports));
 })(require("../model"), require("./utils.js"), require("q"));

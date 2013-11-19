@@ -11,7 +11,6 @@
     function reportError(msg) {
         throw  new Error(msg);
     };
-
 ///
     ////////////////////////////////////////////////////////////////////////////////////////////
     // Hierarchy
@@ -22,13 +21,13 @@
      * @param kindMapP
      * @returns promise(typeName -> Array(ancestors))
      */
-    var createHierarchyP = function createHierarchy(typesByNameP, kindMapP) {
-        var d = q.defer();
-        return q.all([typesByNameP, kindMapP], function (ap) {
-            var typesByName = ap[0];
-            var kindMap = ap[1];
-            return createHierarchy(typesByName, kindMap);
-        });
+    var createHierarchyP = function createHierarchyP(typesByNameP, kindMapP) {
+
+        return typesByNameP.then( function (typesByName) {
+            return kindMapP.then( function (kindMap) {
+                return createHierarchy(typesByName, kindMap);
+            });
+       });
     };
 
     /**
@@ -39,12 +38,15 @@
      */
     var createHierarchy = function createHierarchy(typesByName, kindMap) {
         /// create a list of promises to Hierarchy
-        var tna = typesByName.keys();
+        var tna =Object.keys(typesByName);
         //creates object {typename: (Array( ancestor  ) }
-        return tna.reduce(function (previousValue, name, index, array) {
+        return tna.reduce(function (acc, name, index, array) {
             var nu = { };
             nu[name] = getHierarchy(typesByName, kindMap, name);
-            return utils.copy(previousValue, nu);
+            console.log("TypeSystem.createHierarchy(): Type("+index+"): "+ name+" -> "+JSON.stringify(nu[name]));
+            var nuAcc = utils.extend(acc, nu);
+
+            return nuAcc;
         }, {});
     };
 
@@ -347,8 +349,8 @@
      */
     var hierarchyP = createHierarchyP(allByNameP, kindMapP);//promise( hierarchy)
 
-    var hierarchy = function(typeName){
-        return hierarchyP.then(function(h){
+    var hierarchy = function (typeName) {
+        return hierarchyP.then(function (h) {
             return h[typeName];
         })
     };
@@ -378,20 +380,99 @@
         return d.promise;
     };
 
+    /**
+     *
+     * @param props - Object
+     * @param defaults - Array
+     *
+     * @returns { propertyName: (property Object) }
+     */
+    function mergePropertiesAndDefaults(props, defaults) {
+        var defByName = utils.mapBy("name", defaults);
+        var propsByName = utils.mapBy("name", props);
+        var propNames = Object.keys(propsByName);
+
+        return propNames.reduce(function (acc, propName) {
+
+            var theDefault = defByName[propName];
+            var property = utils.extend({}, propsByName[propName]);
+            // if there is a default for this
+            if (theDefault) {
+                property.defaultValue = theDefault.value;
+                property.fixed = theDefault.fixed;
+            }
+            acc[propName] = property;
+            return acc;
+        }, {});
+
+    };
+
+    /// returns a new properties - parent with child applied
+    function overloadProperties(parentPropertiesByName, childPropertiesByName) {
+        parentPropertiesByName = parentPropertiesByName || {};
+        childPropertiesByName = childPropertiesByName || {};
+
+        var propNames = Object.keys( childPropertiesByName);
+        propNames = propNames.concat(Object.keys(parentPropertiesByName));
+        propNames = utils.unique(propNames);
+        return propNames.reduce(function (acc, propName) {
+
+            var oldDef = parentPropertiesByName[propName];
+            var newDef = childPropertiesByName[propName];
+
+            var prop = collapseItemProperty(oldDef, newDef);
+            acc[propName] = prop;
+            return acc;
+
+        }, {});
+
+    };
+
+    /**
+     *
+     * @param itemTypeName
+     * @param typesByName
+     * @returns Array( { name, type, required, defaultValue, isFixed })
+     */
     var effectiveItemProperties = function (itemTypeName, typesByName) {
         var hP = hierarchy(itemTypeName);
-        return hP.then(function(h){
-            var eff = {};
-            if (!h) return null;
-            h.reverse().forEach(function (tn) {
-                var t = typesByName[tn];
-                if (!t) {
-                    throw Error("Internal Error: type '" + tn + "' in hierarchy but not in typesByName!?");
+        return hP.then(function (h) {// h -> Array(itemTypeNames)
+            var effProperties = {};// {propertyName: propertyObject }
+            if (!h)
+                throw new Error("Internal Error: Could not create type ancestry for: "+ itemTypeName);
+
+            var eff = h.reverse().reduce(function (acc, ancestorTypeName) {
+                var tAncestor = typesByName[ancestorTypeName];
+                if (!tAncestor) {
+                    throw new Error("Internal Error: type '" + ancestorTypeName + "' in hierarchy but not in typesByName!?");
                 }
-                eff = utils.extend(eff, t.properties);
-            });
+
+                var properties = utils.extend({}, tAncestor.properties);
+                properties = mergePropertiesAndDefaults(properties, tAncestor.defaults);
+
+                properties = overloadProperties(effProperties, utils.mapBy("name", properties));
+                return properties;
+            }, {});
+            console.log("TypeSystem.effectiveItemProperties( " + itemTypeName + ") = " + JSON.stringify(eff));
             return eff;
         });
+    };
+
+    /**
+     *
+     * @param parentEffProp
+     * @param childProp
+     * @returns {*}
+     */
+    var collapseItemProperty = function (parentEffProp, childProp) {
+        if (!parentEffProp)
+            return childProp;
+
+        if (!childProp)
+            return parentEffProp;
+
+        var canSubclass = (parentEffProp.fixed && parentEffProp.defaultValue);
+        return canSubclass ? childProp : parentEffProp;
     };
 
     /**
@@ -404,32 +485,40 @@
     var resolveItem = function (typesByNameP, kindMapP, itemP) {
         var d = q.defer();
         return typesByNameP.then(function (typesByName) {
-            kindMapP.then(function (kindMap) {
-                hierarchyP.then(function (hierarchy) {
-                    q.when(itemP, function (item) {
+            return kindMapP.then(function (kindMap) {
+                return hierarchyP.then(function (hierarchy) {
+                    return q.when(itemP, function (item) {
+                        if(!item)
+                            throw new Error("TypeSystem.resolveItem(): item resolved to null.");
+
+                        console.log("TypeSystem.resolveItem("+item+")");
                         var itemDef = "default.built-in.baseIT";
                         var tn = item.typeName || itemDef;
-
-                        resolveTypeNameWithScope(typesByName, tn, undefined)
-                            .then(function (t) {
-                                console.log("TypeSystem: Resolved to type: " + tn);
-                                //TODO: Here we must collapse the properties from all the parents
+                        var t = resolveTypeNameWithScope(typesByName, tn, undefined);
+                        if(t) {
+                            tn = typeNameFromType(t);
+                                console.log("TypeSystem.resolveItem: Resolved to type: " + tn);
                                 item.type = t;
+
                                 return effectiveItemProperties(tn, typesByName)
-                                    .then( function( effProps ){
+                                    .then(function (effProps) {
+                                        console.log("TypeSystem.resolveItem("+item.id+"): effective props:"+JSON.stringify(effProps));
                                         item.effectiveProperties = effProps;
                                         return item;
                                     })
-                            })
-                            .catch(function (e) {
-                                console.error("TypeSystem: Error resolving Type: " + tn + " using " + itemDef, e);
+                            }else {
+                                console.error("TypeSystem.resolveItem("+item.id+"): " + tn + " using " + itemDef);
                                 item.type = typesByName[itemDef];
                                 return item;
-                            })
-                    });//when
+                            }
+                        })//w;hen
                 });//then
             });//then
-        });//then
+        })//then
+        .catch(function (e) {
+            console.error("TypeSystem.resolveItem(): ", e );
+            return e;
+        })
     };
 
     /**
@@ -440,29 +529,37 @@
      * @returns promise(view}
      */
     var resolveView = function (typesByNameP, kindMapP, viewP) {
-        var d = q.defer();
-        typesByNameP.then(function (typesByName) {
-            kindMapP.then(function (kindMap) {
-                q.when(viewP, function (view) {
-                    var viewDef = "default.built-in.baseVT";
-                    var tn = view.typeName || viewDef;
-                    var t = typesByName[tn];
-                    if (!t) {
-                        t = typesByName[viewDef];
-                        console.log("TypeSystem: No such Type: " + tn + " using " + viewDef)
-                    }
-                    if (!t) {
-                        console.error("TypeSystem: Internal error: " + viewDef + " not found ")
-                        d.reject("TypeSystem: Internal error: " + viewDef + " not found ");
-                    } else {
+
+        return typesByNameP.then(function (typesByName) {
+            q.when(viewP, function (view) {
+
+                var viewDef = "default.built-in.baseVT";
+                var tn = view.typeName || viewDef;
+
+                var t = resolveTypeNameWithScope(typesByName, tn, undefined);
+                    if(t) {
                         view.type = t;
-                        console.log("TypeSystem: Resolved view:" + JSON.stringify(view));
-                        d.resolve(view);
+                        console.log("TypeSystem: Resolved '"+ tn +"' -> " + JSON.stringify(view));
+                        // returns array of promise(viewItem)
+                        var viewItemsP = view.items.map(function (viewItem) {
+                            return resolveItem(typesByNameP, kindMapP, viewItem.item)
+                                .then(function(item){
+                                    viewItem.item = item;
+                                    return viewItem;
+                                })
+                                .catch(function(e){
+                                    var msg = "TypeSystem: Internal error: Error reading VIewItems:" + e ;
+                                    console.error(msg);
+                                    throw (msg);
+                                });
+                        });
+                        return q.all(viewItemsP, function(viewItems){
+                            view.items = viewItems;
+                            return view;
+                        });
                     }
-                });//when
-            });
+            });//when
         });
-        return d.promise;
     };
 
     /**
@@ -504,6 +601,15 @@
         return d.promise;
     };
 
+
+    var unresolveView = function (view) {
+        view.items = view.items.map(function (viewItem) {
+            viewItem.item = unresolve(viewItem.item);
+            return viewItem;
+        });
+        return view;
+    };
+
     var tsObj = (  {
         typeOf: wu.curry(typeOf, allByNameP),// (item|relationship|view) -> promise(ItemType| RelationshipType| ViewType)
         isA: wu.curry(isA, hierarchyP),// (entity, type) => promise(boolean)
@@ -512,7 +618,7 @@
         resolveView: wu.curry(resolveView, allByNameP, kindMapP),//{ promise (view) }
         resolveRelationship: wu.curry(resolveRelationship, allByNameP, kindMapP), //{ promise (relationship) }
         unresolveItem: (unresolve),
-        unresolveView: (unresolve),
+        unresolveView: (unresolveView),
         unresolveRelationship: (unresolve),
         resolveTypeName: wu.curry(resolveTypeNameWithScope, allByNameP)//// promise( full type name )
     });
