@@ -130,6 +130,9 @@
             //////  Item  //////
             saveItem : wrapFunctionWithCallback(persistence.saveItem, beforeWrite.item, afterRead.item),
             getItem : wrapFunctionWithCallback(persistence.getItem, identity, afterRead.item),
+            findItems : wrapFunctionWithCallback(persistence.findItems, identity, function (a) {
+                return a.map(afterRead.item);
+            }),
             getItems : wrapFunctionWithCallback(persistence.getItems, identity, function (a) {
                 return a.map(afterRead.item);
             }),

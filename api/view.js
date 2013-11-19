@@ -60,23 +60,65 @@
                 utils.sendError(res, "Error updating viewType:" + err);
             });
     };
-    exports.loadViews = function(req, res){
-        var views = (( req.body) );
-        // get an array of promises
-        var vp = views.map(function(vw){
-            vw = beforeSave(vw);
-            return model.saveView(vw);
-        });
 
-        q.all(vp)
-            .then(function(vList){
-                res.send(vList);
-            })
-            .catch(function(e){
-                return utils.sendError(res, JSON.stringify(e));
+    var loadInlineItem = function( view ){
+        // each view item
+        var pViewItems = view.items.map(function(vitem){
+            return loadInlineViewItem(vitem);
             });
+        return q.all(pViewItems,function(viewItems){
+            view.items = viewItems;
+            return view;
+        });
     };
 
+    /**
+     *
+     * @param vitem
+     *
+     * @returns promise(vitem)
+     */
+    var loadInlineViewItem = function( vitem ){
+
+        // transform the item into an promise(ObjectId)
+        var pItem = (typeof vitem.item === 'object')
+            ? model.saveItem(vitem.item)
+            : model.getItem(vitem.item);
+
+        return pItem.then(function(item){
+            vitem.item = item.id;
+            return vitem;
+        });
+    };
+
+    var loadInlineItems = function( views ){
+        // each view
+        return views.map(function(v){
+            return loadInlineItem(v);
+        });
+    };
+
+    exports.loadViews = function(req, res){
+        var theViews = (( req.body) );
+        //// insert any inline items
+        loadInlineItems(theViews)
+            .then(function(views){
+                // get an array of promises
+                var vp = views.map(function(vw){
+                    vw = beforeSave(vw);
+                    return model.saveView(vw);
+                });
+
+                q.all(vp)
+                    .then(function(vList){
+                        res.send(vList);
+                    })
+                    .catch(function(e){
+                        return utils.sendError(res, JSON.stringify(e));
+                    });
+            });
+
+    };
 
     console.log("viewApi:" + JSON.stringify(exports));
 })(require("../model"), require("./utils.js"), require("q"));

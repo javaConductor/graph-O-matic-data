@@ -1,7 +1,7 @@
 [{
     "title": "Rent",
     "typeName": "test.finance.Account",
-
+    "description": "The rent!",
     "data": [
         {
             "name":"accountNumber",
@@ -9,10 +9,11 @@
         }]
 },{
     "title": "Light Bill",
+    "description": "Com ED",
     "typeName": "test.finance.Account",
     "data": [
         {
-            "name":"ComED",
+            "name":"accountNumber",
             "value": "7819Laflin60620"
         }]
 }
