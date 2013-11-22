@@ -133,6 +133,9 @@
             findItems : wrapFunctionWithCallback(persistence.findItems, identity, function (a) {
                 return a.map(afterRead.item);
             }),
+            findItemsWithText : wrapFunctionWithCallback(persistence.findItemsWithText, identity, function (a) {
+                return a.map(afterRead.item);
+            }),
             getItems : wrapFunctionWithCallback(persistence.getItems, identity, function (a) {
                 return a.map(afterRead.item);
             }),

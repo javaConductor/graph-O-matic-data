@@ -131,7 +131,6 @@ console.dir(["api/item.js"]);
 
     exports.deleteItem = function(req, res){
         var id = req.params.id;
-
         var p = model.deleteItem(id);
         p
             .then(function(resp){
@@ -143,15 +142,15 @@ console.dir(["api/item.js"]);
 
     };
 
-    exports.findItems = function(req, res){
+    exports.findItemsWithText = function(req, res){
         var searchText = req.params.searchText;
-        var p = model.findItems(searchText);
+        var p = model.findItemsWithText(searchText);
         p
             .then(function(resp){
                 res.send(resp)
             })
             .catch(function(e){
-                utils.sendError(res, "Error finding items:"+searchText+" -> " + e);
+                utils.sendError(res, "Error finding items containing: "+searchText+" -> " + e);
             });
 
 	};

@@ -5,7 +5,7 @@
  * Time: 12:21 AM
  */
 
-(function (model, utils, q) {
+(function (model, utils, q, ts) {
 
     var beforeSave = function (v) {
         return v;
@@ -61,12 +61,13 @@
             });
     };
 
+    /// promise(view)
     var loadInlineItem = function( view ){
         // each view item
         var pViewItems = view.items.map(function(vitem){
             return loadInlineViewItem(vitem);
             });
-        return q.all(pViewItems,function(viewItems){
+        return q.all(pViewItems).then(function(viewItems){
             view.items = viewItems;
             return view;
         });
@@ -79,7 +80,7 @@
      * @returns promise(vitem)
      */
     var loadInlineViewItem = function( vitem ){
-
+        //TODO: transform the item data
         // transform the item into an promise(ObjectId)
         var pItem = (typeof vitem.item === 'object')
             ? model.saveItem(vitem.item)
@@ -91,6 +92,11 @@
         });
     };
 
+    /**
+     *
+     * @param views
+     * @returns {Array(promise(view)) }
+     */
     var loadInlineItems = function( views ){
         // each view
         return views.map(function(v){
@@ -111,10 +117,8 @@
             viewItem.item = bindRelatedItemsToData( variables, viewItem.item );
             return viewItem;
         });
-        //return q.all(viewItemsP, function(viewItems){
-            view.items = viewItems;
-            return view;
-        //});
+        view.items = viewItems;
+        return view;
     };
 
     /**
@@ -125,40 +129,41 @@
      * @returns  (item)
      */
     var bindRelatedItemsToData = function(variables, item){
-
-        if (item.data){
-            var dataKeys = Object.keys(item.data);
-
-            var nuData = dataKeys.reduce(function(acc, k){
-                var value = item.data[k];
+        if (item.data && item.data.length > 0){
+            var nuData = item.data.reduce(function(acc, propertyData){
+                var k = propertyData.name;
                 // is this a variable reference ?
-                if(value["$VAR"]){
-                    acc[k] = variables[value["$VAR"]]
+                if(propertyData["$VAR"]){
+                    var varName = propertyData["$VAR"];
+                    var varVal = variables[varName];
+                    if(!varVal){
+                        throw new Error("No such variable: "+varName);
+                    }
+                    acc.push( varVal );
+                }else if( false && typeof propertyData === 'object' ) {//TODO: Implement this condition!!
+
                 }else{
-                    acc[k] = value;
+                    acc.push( propertyData);
                 }
                 return acc;
-            }, {});
-
+            }, []);
             item.data = nuData;
             return item;
-
         }else{
             return item;
         }
-
     };
 
     /**
-     *
-     * @param relatedItemsObj
+     * @param varName
+     * @param relatedItemObj
      * @returns promise( varName:Array(ObjectId | object id) )
      */
     var loadRelatedItemList = function(varName, relatedItemObj){
         var criteria = {};
         if(relatedItemObj.criteria.id){
             criteria = {
-                id: relatedItemObj,
+                _id: relatedItemObj.criteria.id,
                 typeName: relatedItemObj.typeName
             }
         }else{
@@ -168,13 +173,18 @@
 
         return model.findItems(criteria)
             .then(function(items){
+
+                if (items.length === 0){
+                    var msg = "Could not load variable '"+varName+"': no matching items of type "+relatedItemObj.typeName+" found.";
+                    console.error("api.view.loadRelatedItemList("+varName+"): "+msg);
+                    throw new Error(msg);
+                }
                 return items.reduce(function(acc, item, index){
 //                return items.map(function(item){
                     acc[varName] = acc[varName] || [];
                     acc[varName].push(item.id);
                     return acc;
                 }, {});
-
             });
     };
 
@@ -184,49 +194,60 @@
      * @returns promise( varName:Array(ObjectId | object id) )
      */
     var loadRelatedItems = function(relatedItemsObj){
-
         var relKeys = Object.keys(relatedItemsObj);
         var aRelItemsP = relKeys.map(function( relKey ){
             var relItem = relatedItemsObj[relKey];
             return  loadRelatedItemList(relKey, relItem);
         });
 
-        return q.all(aRelItemsP, function(aRelItems){
-
+        return q.all(aRelItemsP).then( function(aRelItems){
+            /// maybe here is where we should check for missing items
+            //aRelItems.filter(function(relItem){ return relItem })
             return aRelItems.reduce(function(acc, relItem){
                 return utils.extend(acc, relItem);
-            },{})
-        });
+            },{});
+        }).catch(function(e){
+                console.error("api.view.loadRelatedItems: Could not load related items: " + e );
+                throw new Error("api.view.loadRelatedItems: Could not load related items: " + e);
+            });
     };
 
     exports.loadViews = function(req, res){
         var loadObject = (( req.body) );
         var theViews = loadObject.views || [];
         var vars = loadObject.variables || {};
-        var variables = loadRelatedItems(vars);
 
-        theViews = theViews.map(function( vw ){
-           return bindRelatedItemsToView( variables, vw);
-        });
-
-        //// insert any inline items
-        loadInlineItems(theViews)
-            .then(function(views){
-                // get an array of promises
-                var vp = views.map(function(vw){
-                    vw = beforeSave(vw);
-                    return model.saveView(vw);
+        loadRelatedItems(vars)
+            .then(function(variables){
+                theViews = theViews.map(function( vw ){
+                    return bindRelatedItemsToView( variables, vw);
                 });
 
-                q.all(vp)
-                    .then(function(vList){
-                        res.send(vList);
-                    })
-                    .catch(function(e){
-                        return utils.sendError(res, JSON.stringify(e));
-                    });
-            });
+            //// insert any inline items
+            var ap=loadInlineItems(theViews);
+                q.all(ap).then( function(views){
 
+                    console.log("api.loadViews():"+JSON.stringify(views));
+                    // get an array of promises
+                    var vp = views.map(function(vw){
+                        vw = beforeSave( vw );
+                        return model.saveView(vw);
+                    });
+
+                    q.all(vp)
+                        .then(function(vList){
+                            res.send(vList);
+                        })
+                        .catch(function( e){
+                            console.error("api.loadViews() -> " + e ) ;
+                            return utils.sendError(res, (e));
+                        })
+                });
+            })
+            .catch(function( e){
+                console.error("api.loadViews() -> " + e ) ;
+                return utils.sendError(res, (e));
+            });
     };
-    console.log("viewApi:" + JSON.stringify(exports));
-})(require("../model"), require("./utils.js"), require("q"));
+//    console.log("viewApi:" + JSON.stringify(exports));
+})(require("../model"), require("./utils.js"), require("q"), require("../typeSystem"));

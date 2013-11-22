@@ -1,0 +1,51 @@
+{
+    "variables":{
+    },
+    "views": [
+    {
+        "name": "Test View",
+        "items": [{
+            "item":{
+                "title" : "Some Test Item",
+                "name" : "Some Test Item",
+                "description" : "Something from the internet",
+                "typeName": "baseIT",
+                "data":[
+                    {"name": "accountNumber", "value":"lac12360620773", "type":"text"},
+                    {"name": "title", "value":"View Test Account", "type":"text"},
+                    {"name": "amount", "type":"number", "value":25.00},
+                    {"name": "debit", "type":"boolean", "value":true},
+                    {"name": "paymentAmount", "type":"number", "value":25.0}
+                ]
+            },
+            "position": {
+                "x": 100,
+                "y": 200
+            },
+            "state": "normal"
+        },{
+            "item":{
+                "title" : "Some Other Test Item",
+                "name" : "Some Other Test Item",
+                "description" : "Something else",
+                "typeName": "baseIT",
+                "data":[
+                    {"name": "accountNumber", "value":"lac12360620773", "type":"text"},
+                    {"name": "title", "value":"View Test Account", "type":"text"},
+                    {"name": "amount", "type":"number", "value":25.00},
+                    {"name": "debit", "type":"boolean", "value":true},
+                    {"name": "paymentAmount", "type":"number", "value":25.0}
+                ]
+            },
+            "position": {
+                "x": 100,
+                "y": 400
+            },
+            "state": "normal"
+        }],
+        "typeName": "baseVT",
+        "options" : {}
+    }
+
+    ]
+}

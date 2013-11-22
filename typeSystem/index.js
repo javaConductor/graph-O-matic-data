@@ -491,7 +491,7 @@
                         if(!item)
                             throw new Error("TypeSystem.resolveItem(): item resolved to null.");
 
-                        console.log("TypeSystem.resolveItem("+item+")");
+                        console.log("TypeSystem.resolveItem("+item.id+")");
                         var itemDef = "default.built-in.baseIT";
                         var tn = item.typeName || itemDef;
                         var t = resolveTypeNameWithScope(typesByName, tn, undefined);
@@ -535,7 +535,6 @@
 
                 var viewDef = "default.built-in.baseVT";
                 var tn = view.typeName || viewDef;
-
                 var t = resolveTypeNameWithScope(typesByName, tn, undefined);
                     if(t) {
                         view.type = t;
@@ -602,12 +601,50 @@
     };
 
 
+    /// returns promise(view)
     var unresolveView = function (view) {
-        view.items = view.items.map(function (viewItem) {
-            viewItem.item = unresolve(viewItem.item);
-            return viewItem;
+        ///TODO: should return promise(view)
+        // ( Array(  viewItem -> (promise(item ) ))
+        var vitemsP = view.items.map(function (viewItem) {
+            if(viewItem.item._bsontype !== "ObjectID")
+                return  unresolve(viewItem.item).then(function(itm){
+                    viewItem.item = itm;
+                    return viewItem;
+                });
+            else
+                return q(viewItem);
         });
-        return view;
+
+        /// TODO: make this work !!!
+        var aviP = vitemsP.map(function(vitem){
+            return  resolveItemInViewItem(vitem)
+        });
+
+        return q.all(aviP)
+            .then(function(avi){
+                view.items = avi;
+                return view;
+            })
+            .catch(function(e){
+               console.error("typeSystem.unresolveView(): Error: "+JSON.stringify(e));
+               throw new Error(e);
+            });
+
+    };
+
+    /// (promise(viewItem->promise(item)))  ->  promise( viewItem -> item) )
+    function xxresolveItemInViewItem (viewItemP){
+        return q.when(viewItemP, function(vitem){
+            vitem.item.then(function(itm){
+                vitem.item = itm;
+                return vitem;
+            })
+        });
+    };
+
+    /// (viewItem->promise(item))  ->  ( viewItem -> item) )
+    function resolveItemInViewItem (viewItem){
+        return viewItem;
     };
 
     var tsObj = (  {
@@ -620,8 +657,20 @@
         unresolveItem: (unresolve),
         unresolveView: (unresolveView),
         unresolveRelationship: (unresolve),
-        resolveTypeName: wu.curry(resolveTypeNameWithScope, allByNameP)//// promise( full type name )
-    });
+        resolveTypeName: wu.curry(resolveTypeNameWithScope, allByNameP),//// promise( full type name )
+        propertyTypes:  {
+            ITEM:"item",
+            NUMBER:"number",
+            TEXT:"text",
+            BOOL:"boolean",
+            DATE:"date",
+            EMAIL: "currency",
+            MAP:"map",
+            URL:"url",
+            ONE_OF:"oneOf",
+            ONE_OR_OF:"oneOrMoreOf" }
+
+});
 
     // everything exported
     module.exports = require("xtend")(tsObj);

@@ -1,0 +1,31 @@
+{"variables":{},
+"views": [
+{
+    "name": "Test View",
+    "items": [{
+        "item":{
+            "name" : "Some Test Account",
+            "description" : "Something from the internet",
+            "typeName": "test.finance.Account",
+            "data":{
+                "accountNumber": "lac12360620773",
+                "title": "View Test Account",
+                "amount": 25.00,
+                "debit": true,
+                "paymentAmount": 25.0,
+                "paymentSchedule":{"$VAR":"paymentSched"}
+            }
+        },
+        "position": {
+            "x": 100,
+            "y": 200
+        },
+        "state": "normal"
+
+        }],
+    "typeName": "baseVT",
+    "options" : {}
+}
+
+    ]
+}
