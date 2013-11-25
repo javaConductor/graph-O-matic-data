@@ -606,12 +606,12 @@
         ///TODO: should return promise(view)
         // ( Array(  viewItem -> (promise(item ) ))
         var vitemsP = view.items.map(function (viewItem) {
-            if(viewItem.item._bsontype !== "ObjectID")
-                return  unresolve(viewItem.item).then(function(itm){
-                    viewItem.item = itm;
-                    return viewItem;
-                });
-            else
+//            if(viewItem.item._bsontype !== "ObjectID")
+//                return  unresolve(viewItem.item).then(function(itm){
+//                    viewItem.item = itm;
+//                    return viewItem;
+//                });
+//            else
                 return q(viewItem);
         });
 

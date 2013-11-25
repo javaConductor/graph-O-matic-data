@@ -72,7 +72,9 @@ console.dir(["api/item.js"]);
 
     /**
      *
-     * @param relatedItemsObj
+     * @param varName
+     * @param relatedItemObj
+     *
      * @returns promise( varName:Array(ObjectId | object id) )
      */
     var loadRelatedItemList = function(varName, relatedItemObj){

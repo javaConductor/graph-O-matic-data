@@ -29,7 +29,15 @@
         var p = model.getView(viewId);
         p
             .then(function(v){
-                res.send(afterRead(v));
+
+                var r = {
+                    "id": v.id,
+                    "name": v.name,
+                    "description": v.description,
+                    "items": {"$href": "/views/"+ v.id+"/items"}
+                };
+
+                res.json(r);
             })
             .catch(function(err){
                 return utils.sendError(res, "No such view:" + viewId);
@@ -87,7 +95,7 @@
             : model.getItem(vitem.item);
 
         return pItem.then(function(item){
-            vitem.item = item.id;
+            vitem.item = item;//  ??? .id;
             return vitem;
         });
     };
