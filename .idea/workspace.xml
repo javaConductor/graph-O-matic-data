@@ -2,16 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="23b8520e-8397-4718-a457-abae1f30f47b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/mongoAdapter/index.js" afterPath="$PROJECT_DIR$/node_modules/mongoAdapter/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/typeSystem/index.js" afterPath="$PROJECT_DIR$/typeSystem/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/item.js" afterPath="$PROJECT_DIR$/api/item.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/view.js" afterPath="$PROJECT_DIR$/api/view.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="ab4472db-35bb-403b-9afc-3d326a5a41b2" name="New changelist" comment="New changelist" />
     <ignored path="graph-O-matic-data.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1385393782292" ignored="false" />
+    <file path="/Dummy.txt" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1385406789781" ignored="false" />
     <file path="/server.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1384412755183" ignored="false" />
     <file path="/index.js" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1385107600931" ignored="false" />
     <file path="/itemTypes.txt" changelist="23b8520e-8397-4718-a457-abae1f30f47b" time="1371708609211" ignored="false" />
@@ -208,7 +204,7 @@
       <file leaf-file-name="view.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/api/view.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="0" selection-start="717" selection-end="717" vertical-scroll-proportion="0.36717427">
+            <state line="31" column="0" selection-start="717" selection-end="717" vertical-scroll-proportion="0.023706896">
               <folding>
                 <element signature="e#2804#2920#0" expanded="false" />
                 <element signature="e#3078#3319#0" expanded="false" />
@@ -323,7 +319,7 @@
       <file leaf-file-name="adapter.log" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/logs/adapter.log">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="354" column="0" selection-start="172403" selection-end="172403" vertical-scroll-proportion="0.0">
+            <state line="357" column="0" selection-start="174467" selection-end="174467" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -463,26 +459,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="graph-O-matic-data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="graph-O-matic-data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="graph-O-matic-data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="Scope">
         <subPane subId="All">
           <PATH>
@@ -557,20 +533,40 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graph-O-matic-data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graph-O-matic-data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graph-O-matic-data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="54" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="68" />
     <property name="options.splitter.main.proportions" value="0.15586117" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="51" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
     <property name="recentsLimit" value="5" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="51" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../graph-O-matic" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="71" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="666" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="680" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="666" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="72" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="69" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -624,6 +620,10 @@
       <setting name="preferredDebugBrowser" value="CHROME" />
       <method />
     </configuration>
+    <configuration default="true" type="NodeJSRemoteDebug" factoryName="Node.js Remote Debug">
+      <node-js-remote-debug />
+      <method />
+    </configuration>
     <configuration default="true" type="NodeunitConfigurationType" factoryName="Nodeunit">
       <setting name="nodePath" value="/usr/local/bin/node" />
       <envs />
@@ -632,10 +632,6 @@
       <setting name="workingDirectory" value="$PROJECT_DIR$" />
       <setting name="testType" value="DIRECTORY" />
       <setting name="directory" value="" />
-      <method />
-    </configuration>
-    <configuration default="true" type="NodeJSRemoteDebug" factoryName="Node.js Remote Debug">
-      <node-js-remote-debug />
       <method />
     </configuration>
     <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" working-dir="$PROJECT_DIR$">
@@ -928,7 +924,11 @@
       <created>1385100255516</created>
       <updated>1385100255516</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="viewLoader work ... AGAIN">
+      <created>1385393902423</created>
+      <updated>1385393902423</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -939,8 +939,8 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.12672938" sideWeight="0.24843423" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19354838" sideWeight="0.63616794" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12631579" sideWeight="0.63724434" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.36275566" sideWeight="0.7634349" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12631579" sideWeight="0.63724434" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36268345" sideWeight="0.7634349" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.22748092" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.43379977" sideWeight="0.2365651" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Mongo Runner" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24434876" sideWeight="0.49916896" order="10" side_tool="false" content_ui="tabs" />
@@ -1143,9 +1143,7 @@
     </entry>
     <entry file="file:///usr/lib/node_modules/q/q.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="826" column="0" selection-start="24650" selection-end="24650" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="826" column="0" selection-start="24650" selection-end="24650" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/model/index.js">
@@ -1164,7 +1162,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/logs/adapter.log">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="354" column="0" selection-start="172403" selection-end="172403" vertical-scroll-proportion="0.0">
+        <state line="357" column="0" selection-start="174467" selection-end="174467" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -1213,7 +1211,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api/view.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="0" selection-start="717" selection-end="717" vertical-scroll-proportion="0.36717427">
+        <state line="31" column="0" selection-start="717" selection-end="717" vertical-scroll-proportion="0.023706896">
           <folding>
             <element signature="e#2804#2920#0" expanded="false" />
             <element signature="e#3078#3319#0" expanded="false" />
