@@ -146,6 +146,7 @@
             getViewItem : wrapFunctionWithCallback(persistence.getViewItem, identity, afterRead.viewItem),
             saveViewItem : wrapFunctionWithCallback(persistence.saveViewItem, beforeWrite.viewItem, afterRead.viewItem),
             updateViewItemPosition : wrapFunctionWithCallback(persistence.getViewItem, identity, afterRead.viewItem),
+            updateViewItems : wrapFunctionWithCallback(persistence.updateViewItems, identity, afterRead.viewItem),
 
             //////  View Type //////
             //////  View Type //////

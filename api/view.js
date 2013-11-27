@@ -30,14 +30,14 @@
         p
             .then(function(v){
 
-                var r = {
-                    "id": v.id,
-                    "name": v.name,
-                    "description": v.description,
-                    "items": {"$href": "/views/"+ v.id+"/items"}
-                };
+//                var r = {
+//                    "id": v.id,
+//                    "name": v.name,
+//                    "description": v.description,
+//                    "items": {"$href": "/views/"+ v.id+"/items"}
+//                };
 
-                res.json(r);
+                res.json(v);
             })
             .catch(function(err){
                 return utils.sendError(res, "No such view:" + viewId);
@@ -236,19 +236,27 @@
                 q.all(ap).then( function(views){
 
                     console.log("api.loadViews():"+JSON.stringify(views));
+
                     // get an array of promises
                     var vp = views.map(function(vw){
                         vw = beforeSave( vw );
-                        return model.saveView(vw);
+                         return model.saveView(vw).then(function(saved){
+                             /// the views should have been saved
+                             /// so update with the items
+
+
+                             return model.updateViewItems(vw);
+                         });
                     });
 
                     q.all(vp)
-                        .then(function(vList){
-                            res.send(vList);
+                        .then(function( vList ){
+                            console.log( "api.view.loadViews: loaded: "+JSON.stringify(vList) );
+                            res.json( vList );
                         })
-                        .catch(function( e){
+                        .catch(function( e ){
                             console.error("api.loadViews() -> " + e ) ;
-                            return utils.sendError(res, (e));
+                            return utils.sendError( res, e );
                         })
                 });
             })
