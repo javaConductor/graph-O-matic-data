@@ -15,7 +15,7 @@
 
     exports.saveViewType = function (req, res) {
         var viewData = req.body;
-        var p = model.saveView(beforeSave(viewData));
+        var p = model.saveViewType(beforeSave(viewData));
         p.then(function (v) {
             res.send(afterRead(v));
         }).catch(function (err) {

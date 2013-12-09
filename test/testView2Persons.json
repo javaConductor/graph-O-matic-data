@@ -1,31 +1,59 @@
-{"variables":{},
-"views": [
-{
-    "name": "Test View",
-    "items": [{
-        "item":{
-            "name" : "Some Test Account",
-            "description" : "Something from the internet",
-            "typeName": "test.finance.Account",
-            "data":{
-                "accountNumber": "lac12360620773",
-                "title": "View Test Account",
-                "amount": 25.00,
-                "debit": true,
-                "paymentAmount": 25.0,
-                "paymentSchedule":{"$VAR":"paymentSched"}
-            }
-        },
-        "position": {
-            "x": 100,
-            "y": 200
-        },
-        "state": "normal"
-
-        }],
-    "typeName": "baseVT",
-    "options" : {}
-}
-
+{"variables": {},
+    "views": [
+        {
+            "summary": {
+                "name": "Test View",
+                "title": "Testeroni",
+                "typeName": "baseVT",
+                "itemCount": 2
+            },
+            "data": {
+                "items": [
+                    {
+                        "item": {
+                            "name": "Some Other Test Account",
+                            "title": "Some Other Test Account",
+                            "description": "Something i bought from the internet",
+                            "typeName": "baseIT",
+                            "data": [
+                                {"name":  "accountNumber", "value": "lac12360620773","type":"text"},
+                                {"name":  "title", "value": "View Test Account","type":"text"},
+                                {"name":  "amount", "value": 25.00,"type":"number"},
+                                {"name":  "debit", "value": true,"type":"boolean"},
+                                {"name":  "paymentAmount", "value": 25.0,"type":"number"}
+                                ]
+                                                    },
+                        "position": {
+                            "x": 100,
+                            "y": 200
+                        },
+                        "state": "normal",
+                        "selected":false
+                    },
+                    {
+                        "item": {
+                            "name": "Some Testoid",
+                            "title": "Some Testoid",
+                            "description": "Some testoid from the internet",
+                            "typeName": "baseIT",
+                            "data": [
+                                {"name":  "accountNumber", "value": "lac12360620773","type":"text"},
+                                {"name":  "title", "value": "View Test Account","type":"text"},
+                                {"name":  "amount", "value": 125.00,"type":"number"},
+                                {"name":  "debit", "value": true,"type":"boolean"},
+                                {"name":  "paymentAmount", "value": 275.0,"type":"number"}
+                            ]
+                        },
+                        "position": {
+                            "x": 400,
+                            "y": 200
+                        },
+                        "state": "normal",
+                        "selected":true
+                    }
+                ]
+            },
+            "viewOptions": {}
+        }
     ]
 }

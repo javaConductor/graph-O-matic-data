@@ -110,6 +110,8 @@
             //////  Category //////
             //////  Category //////
             saveCategory : wrapFunctionWithCallback(persistence.saveCategory, beforeWrite.category, afterRead.category),
+            //TODO: Check CategoryUsage before deleting!!!
+            deleteCategory :  wrapFunctionWithCallback(persistence.deleteCategory, identity, identity),
             getCategory : wrapFunctionWithCallback(persistence.getCategory, identity, afterRead.category),
             getCategories : wrapFunctionWithCallback(persistence.getCategories, identity, function (a) {
                 return a.map(afterRead.category);
@@ -146,7 +148,7 @@
             getViewItem : wrapFunctionWithCallback(persistence.getViewItem, identity, afterRead.viewItem),
             saveViewItem : wrapFunctionWithCallback(persistence.saveViewItem, beforeWrite.viewItem, afterRead.viewItem),
             updateViewItemPosition : wrapFunctionWithCallback(persistence.getViewItem, identity, afterRead.viewItem),
-            updateViewItems : wrapFunctionWithCallback(persistence.updateViewItems, identity, afterRead.viewItem),
+            updateViewItems : wrapFunctionWithCallback(persistence.updateViewItems, identity, afterRead.view),
 
             //////  View Type //////
             //////  View Type //////
@@ -161,6 +163,7 @@
             getViews : wrapFunctionWithCallback(persistence.getViews, identity, function (a) {
                 return a.map(afterRead.view);
             }),
+            createView : wrapFunctionWithCallback(persistence.createView, identity, afterRead.view),
             saveView : wrapFunctionWithCallback(persistence.saveView, beforeWrite.view, afterRead.view),
             updateView : wrapFunctionWithCallback(persistence.getView, beforeWrite.view, afterRead.view),
 
@@ -168,8 +171,8 @@
             //////  Context //////
             getContext : wrapFunctionWithCallback(persistence.getContext, identity, afterRead.context),
             saveContext : wrapFunctionWithCallback(persistence.saveContext, identity, afterRead.context)
-
         };
+
         /////////// EXPORTS ////////////
         /////////// EXPORTS ////////////
     module.exports = require("xtend")( theModel);

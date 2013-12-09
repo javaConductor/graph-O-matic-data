@@ -23,11 +23,11 @@
      */
     var createHierarchyP = function createHierarchyP(typesByNameP, kindMapP) {
 
-        return typesByNameP.then( function (typesByName) {
-            return kindMapP.then( function (kindMap) {
+        return typesByNameP.then(function (typesByName) {
+            return kindMapP.then(function (kindMap) {
                 return createHierarchy(typesByName, kindMap);
             });
-       });
+        });
     };
 
     /**
@@ -38,12 +38,12 @@
      */
     var createHierarchy = function createHierarchy(typesByName, kindMap) {
         /// create a list of promises to Hierarchy
-        var tna =Object.keys(typesByName);
+        var tna = Object.keys(typesByName);
         //creates object {typename: (Array( ancestor  ) }
         return tna.reduce(function (acc, name, index, array) {
             var nu = { };
             nu[name] = getHierarchy(typesByName, kindMap, name);
-            console.log("TypeSystem.createHierarchy(): Type("+index+"): "+ name+" -> "+JSON.stringify(nu[name]));
+            console.log("TypeSystem.createHierarchy(): Type(" + index + "): " + name + " -> " + JSON.stringify(nu[name]));
             var nuAcc = utils.extend(acc, nu);
 
             return nuAcc;
@@ -412,7 +412,7 @@
         parentPropertiesByName = parentPropertiesByName || {};
         childPropertiesByName = childPropertiesByName || {};
 
-        var propNames = Object.keys( childPropertiesByName);
+        var propNames = Object.keys(childPropertiesByName);
         propNames = propNames.concat(Object.keys(parentPropertiesByName));
         propNames = utils.unique(propNames);
         return propNames.reduce(function (acc, propName) {
@@ -439,7 +439,7 @@
         return hP.then(function (h) {// h -> Array(itemTypeNames)
             var effProperties = {};// {propertyName: propertyObject }
             if (!h)
-                throw new Error("Internal Error: Could not create type ancestry for: "+ itemTypeName);
+                throw new Error("Internal Error: Could not create type ancestry for: " + itemTypeName);
 
             var eff = h.reverse().reduce(function (acc, ancestorTypeName) {
                 var tAncestor = typesByName[ancestorTypeName];
@@ -488,37 +488,37 @@
             return kindMapP.then(function (kindMap) {
                 return hierarchyP.then(function (hierarchy) {
                     return q.when(itemP, function (item) {
-                        if(!item)
+                        if (!item)
                             throw new Error("TypeSystem.resolveItem(): item resolved to null.");
 
-                        console.log("TypeSystem.resolveItem("+item.id+")");
+                        console.log("TypeSystem.resolveItem(" + item.id + ")");
                         var itemDef = "default.built-in.baseIT";
                         var tn = item.typeName || itemDef;
                         var t = resolveTypeNameWithScope(typesByName, tn, undefined);
-                        if(t) {
+                        if (t) {
                             tn = typeNameFromType(t);
-                                console.log("TypeSystem.resolveItem: Resolved to type: " + tn);
-                                item.type = t;
+                            console.log("TypeSystem.resolveItem: Resolved to type: " + tn);
+                            item.type = t;
 
-                                return effectiveItemProperties(tn, typesByName)
-                                    .then(function (effProps) {
-                                        console.log("TypeSystem.resolveItem("+item.id+"): effective props:"+JSON.stringify(effProps));
-                                        item.effectiveProperties = effProps;
-                                        return item;
-                                    })
-                            }else {
-                                console.error("TypeSystem.resolveItem("+item.id+"): " + tn + " using " + itemDef);
-                                item.type = typesByName[itemDef];
-                                return item;
-                            }
-                        })//w;hen
+                            return effectiveItemProperties(tn, typesByName)
+                                .then(function (effProps) {
+                                    console.log("TypeSystem.resolveItem(" + item.id + "): effective props:" + JSON.stringify(effProps));
+                                    item.effectiveProperties = effProps;
+                                    return item;
+                                })
+                        } else {
+                            console.error("TypeSystem.resolveItem(" + item.id + "): " + tn + " using " + itemDef);
+                            item.type = typesByName[itemDef];
+                            return item;
+                        }
+                    })//w;hen
                 });//then
             });//then
         })//then
-        .catch(function (e) {
-            console.error("TypeSystem.resolveItem(): ", e );
-            return e;
-        })
+            .catch(function (e) {
+                console.error("TypeSystem.resolveItem(): ", e);
+                return e;
+            })
     };
 
     /**
@@ -528,7 +528,7 @@
      * @param viewP  -  { view | promise(view)
      * @returns promise(view}
      */
-    var resolveView = function (typesByNameP, kindMapP, viewP) {
+    var OLDresolveView = function (typesByNameP, kindMapP, viewP) {
 
         return typesByNameP.then(function (typesByName) {
             q.when(viewP, function (view) {
@@ -536,27 +536,27 @@
                 var viewDef = "default.built-in.baseVT";
                 var tn = view.typeName || viewDef;
                 var t = resolveTypeNameWithScope(typesByName, tn, undefined);
-                    if(t) {
-                        view.type = t;
-                        console.log("TypeSystem: Resolved '"+ tn +"' -> " + JSON.stringify(view));
-                        // returns array of promise(viewItem)
-                        var viewItemsP = view.items.map(function (viewItem) {
-                            return resolveItem(typesByNameP, kindMapP, viewItem.item)
-                                .then(function(item){
-                                    viewItem.item = item;
-                                    return viewItem;
-                                })
-                                .catch(function(e){
-                                    var msg = "TypeSystem: Internal error: Error reading VIewItems:" + e ;
-                                    console.error(msg);
-                                    throw (msg);
-                                });
-                        });
-                        return q.all(viewItemsP, function(viewItems){
-                            view.items = viewItems;
-                            return view;
-                        });
-                    }
+                if (t) {
+                    view.type = t;
+                    console.log("TypeSystem: Resolved '" + tn + "' -> " + JSON.stringify(view));
+                    // returns array of promise(viewItem)
+                    var viewItemsP = view.items.map(function (viewItem) {
+                        return resolveItem(typesByNameP, kindMapP, viewItem.item)
+                            .then(function (item) {
+                                viewItem.item = item;
+                                return viewItem;
+                            })
+                            .catch(function (e) {
+                                var msg = "TypeSystem: Internal error: Error reading VIewItems:" + e;
+                                console.error(msg);
+                                throw (msg);
+                            });
+                    });
+                    return q.all(viewItemsP, function (viewItems) {
+                        view.items = viewItems;
+                        return view;
+                    });
+                }
             });//when
         });
     };
@@ -600,51 +600,150 @@
         return d.promise;
     };
 
-
     /// returns promise(view)
-    var unresolveView = function (view) {
+    var unresolveView = function (viewP) {
         ///TODO: should return promise(view)
         // ( Array(  viewItem -> (promise(item ) ))
-        var vitemsP = view.items.map(function (viewItem) {
-//            if(viewItem.item._bsontype !== "ObjectID")
-//                return  unresolve(viewItem.item).then(function(itm){
-//                    viewItem.item = itm;
-//                    return viewItem;
-//                });
-//            else
-                return q(viewItem);
-        });
 
-        /// TODO: make this work !!!
-        var aviP = vitemsP.map(function(vitem){
-            return  resolveItemInViewItem(vitem)
+        return q.when(viewP, function (view) {
+            return q.all([
+                    unresolveViewSummary(view.summary),
+                    unresolveViewOptions(view.viewOptions),
+                    unresolveViewData(view.data)
+                ])
+                .then(function (parts) {
+                    view.summary = parts[0];
+                    view.viewOptions = parts[1];
+                    view.data = parts[2];
+                    return view;
+                })
+                .catch(function (e) {
+                    console.error("typeSystem.unresolveView(): Error: " + JSON.stringify(e));
+                    throw new Error(e);
+                });
+        });
+    };
+
+    /// returns promise(viewSummary)
+    var unresolveViewSummary = function (viewSummary) {
+        ///TODO: should return promise(viewSummary)
+        return q.when(viewSummary, function (summ) {
+            return summ;
+        });
+    };
+
+    /// returns promise(viewOptions)
+    var unresolveViewOptions = function (viewOptions) {
+        ///TODO: should return promise(viewOptions)
+        return q.when(viewOptions, function (opt) {
+            return opt;
+        });
+    };
+
+    /// returns promise(view)
+    var unresolveViewData = function (viewData) {
+        ///TODO: should return promise(viewData)
+        // ( Array(  viewItem -> (promise(item ) ))
+
+        var aviP = viewData.items.map(function (viewItem) {
+            return unresolveItemInViewItem(viewItem);
         });
 
         return q.all(aviP)
-            .then(function(avi){
-                view.items = avi;
-                return view;
+            .then(function (avi) {
+                viewData.items = avi;
             })
-            .catch(function(e){
-               console.error("typeSystem.unresolveView(): Error: "+JSON.stringify(e));
-               throw new Error(e);
+            .catch(function (e) {
+                console.error("typeSystem.unresolveView(): Error: " + JSON.stringify(e));
+                throw new Error(e);
             });
-
     };
 
-    /// (promise(viewItem->promise(item)))  ->  promise( viewItem -> item) )
-    function xxresolveItemInViewItem (viewItemP){
-        return q.when(viewItemP, function(vitem){
-            vitem.item.then(function(itm){
-                vitem.item = itm;
-                return vitem;
+
+    /// returns promise(view)
+    var resolveView = function (typesByName, kindMapP, viewP) {
+        ///TODO: should return promise(view)
+        // ( Array(  viewItem -> (promise(item ) ))
+
+        q.when(viewP, function (view) {
+            var viewDef = "default.built-in.baseVT";
+            var tn = view.summary.typeName || viewDef;
+            var t = resolveTypeNameWithScope(typesByName, tn, undefined);
+            if (t)
+                view.type = t;
+
+                return q.all([
+                    unresolveViewSummary(view.summary),
+                    unresolveViewOptions(view.viewOptions),
+                    unresolveViewData(view.data)
+                ])
+                .then(function (parts) {
+                    view.summary = parts[0];
+                    view.viewOptions = parts[1];
+                    view.data = parts[2];
+                    return view;
+                })
+                .catch(function (e) {
+                    console.error("typeSystem.unresolveView(): Error: " + JSON.stringify(e));
+                    throw new Error(e);
+                });
+        });
+    };
+
+    /// returns promise(viewSummary)
+    var resolveViewSummary = function (viewSummary) {
+        ///TODO: should return promise(viewSummary)
+        return q.when(viewSummary, function (summ) {
+            return summ;
+        });
+    };
+
+    /// returns promise(viewOptions)
+    var resolveViewOptions = function (viewOptions) {
+        ///TODO: should return promise(viewOptions)
+        return q.when(viewOptions, function (opt) {
+            return opt;
+        });
+    };
+
+    /// returns promise(view)
+    var resolveViewData = function (viewData) {
+        ///TODO: should return promise(viewData)
+        // ( Array(  viewItem -> (promise(item ) ))
+
+        var aviP = viewData.items.map(function (viewItem) {
+            return resolveItemInViewItem(viewItem);
+        });
+
+        return q.all(aviP)
+            .then(function (avi) {
+                viewData.items = avi;
             })
+            .catch(function (e) {
+                console.error("typeSystem.resolveView(): Error: " + JSON.stringify(e));
+                throw new Error(e);
+            });
+    };
+
+
+    /// (viewItem->promise(item))  ->  ( viewItem -> item) )
+    function resolveItemInViewItem(viewItemP) {
+        return q.when(viewItemP,  function(viewItem){
+            return q.when(viewItem.item, function(item){
+                viewItem.item =  resolveItem(item);
+                return viewItem;
+            });
         });
     };
 
     /// (viewItem->promise(item))  ->  ( viewItem -> item) )
-    function resolveItemInViewItem (viewItem){
-        return viewItem;
+    function unresolveItemInViewItem(viewItemP) {
+        return q.when(viewItemP,  function(viewItem){
+            return q.when(viewItem.item, function(item){
+                viewItem.item =  unresolve(item);
+                return viewItem;
+            });
+        });
     };
 
     var tsObj = (  {
@@ -653,24 +752,30 @@
         hierarchy: wu.curry(getHierarchyP, allByNameP, kindMapP),// promise(Array( promise(typeName) | typeName)
         resolveItem: wu.curry(resolveItem, allByNameP, kindMapP),//{ promise (item) }
         resolveView: wu.curry(resolveView, allByNameP, kindMapP),//{ promise (view) }
+        resolveViewSummary: (resolveViewSummary),
+        resolveViewOptions: (resolveViewOptions),
+        resolveViewData: (resolveViewData),
         resolveRelationship: wu.curry(resolveRelationship, allByNameP, kindMapP), //{ promise (relationship) }
         unresolveItem: (unresolve),
         unresolveView: (unresolveView),
+        unresolveViewSummary: (unresolveViewSummary),
+        unresolveViewOptions: (unresolveViewOptions),
+        unresolveViewData: (unresolveViewData),
         unresolveRelationship: (unresolve),
         resolveTypeName: wu.curry(resolveTypeNameWithScope, allByNameP),//// promise( full type name )
-        propertyTypes:  {
-            ITEM:"item",
-            NUMBER:"number",
-            TEXT:"text",
-            BOOL:"boolean",
-            DATE:"date",
+        propertyTypes: {
+            ITEM: "item",
+            NUMBER: "number",
+            TEXT: "text",
+            BOOL: "boolean",
+            DATE: "date",
             EMAIL: "currency",
-            MAP:"map",
-            URL:"url",
-            ONE_OF:"oneOf",
-            ONE_OR_OF:"oneOrMoreOf" }
+            MAP: "map",
+            URL: "url",
+            ONE_OF: "oneOf",
+            ONE_OR_OF: "oneOrMoreOf" }
 
-});
+    });
 
     // everything exported
     module.exports = require("xtend")(tsObj);
